@@ -19,7 +19,7 @@
 
 var productionline=localStorage.productionline;
 var station=localStorage.station;
-var DEFAULT_URL='http://192.168.0.9:8089/Signage/rest/upload/self?'+'productionline='+productionline+'&station='+station;
+var DEFAULT_URL='/Signage/rest/upload/self?'+'productionline='+productionline+'&station='+station;
 
 
 var pdfjsWebLibs = {pdfjsWebPDFJS: window.pdfjsDistBuildPdf};

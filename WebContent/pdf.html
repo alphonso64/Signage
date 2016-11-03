@@ -10,7 +10,7 @@
 			iframe{border: 0;}
 		</style>
 	</head>
-	<body> 
+	<body>
 		<iframe id="dafeng_pdf" src="web/viewer.html" width="100%"></iframe>
 		<a onclick="window.location.reload(true);"></a>
 		<script src="web/jquery-1.11.3.js"></script>
@@ -18,7 +18,7 @@
 			var _height=window.screen.height-3;
 			$('#dafeng_pdf').css('height',_height+'px');
 			//websocket
-	        var socket = new WebSocket('ws://192.168.0.9:8089/Signage/websocket');
+	        var socket = new WebSocket('ws://192.168.3.21:8089/Signage/websocket');
 	        socket.onopen = function(e) {
 	            var proObject ={ productionline : localStorage.productionline,
 										station : localStorage.station

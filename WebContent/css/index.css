@@ -1,7 +1,6 @@
 img{
-	vertical-align:middle;
+	vertical-align:bottom;
 }
-
 ul,p,h1,h2,h3,h4,h5,h6,dl,dt,dd{
 	margin:0;
 	padding:0;
@@ -10,41 +9,40 @@ ul,p,h1,h2,h3,h4,h5,h6,dl,dt,dd{
 input{
 	border:0;
 }
+input,button,select{
+	outline:none;
+}
 .hidden{
 	display: none;
+}
+body{
+	background-color: #F8F8F8;
 }
 header>p{
 	font-size: 30px;
 	text-align: center;
 	line-height: 46px;
 	padding: 20px 0;
-	border-bottom: 1px solid #ddd;
-}
-header>p>b{
-	display: inline-block;
-	width: 230px;
-	height: 46px;
-	background: url(../web/images/logo.jpg) repeat 0 0;
+	border-bottom: 1px solid #E7E7E7;
 }
 #nav{
 	float: left;
 	width: 250px;
 }
 #nav>ul.menu>li{
-	border-bottom: 1px solid #ddd;
+	border-bottom: 1px solid #E7E7E7;
 	padding: 10px 20px;
 	cursor: pointer;
 }
 #nav>ul.menu>li.selected{
-	border-right: 1px solid #F9F9F9;
-	background-color: #F9F9F9;
+	background-color: #E3E3E3;
 }
 #main{
 	margin-left: 249px;
-	min-height: 800px;
-	border: 1px solid #ddd;
+	min-height: 810px;
+	border: 1px solid #E7E7E7;
 	border-top: 0;
-	background-color: #F9F9F9;
+	background-color: #fff;
 }
 #main>div{
 	display: none;
@@ -52,22 +50,18 @@ header>p>b{
 #main>div.selected{
 	display: block;
 }
-
-
 /*统一样式*/
 #main>div{
 	padding: 10px 20px 20px;
 }
-
 #main>div>h1{
 	font-family: inherit;
     font-weight: 500;
-    line-height: 1.1;
+    line-height: 1.2;
     color: inherit;
     padding: 15px 0;
-	border-bottom: 1px solid #ddd;
+	border-bottom: 1px solid #ccc;
 }
-
 /*操作界面*/
 #configure>ul{
 	margin-top: 20px;
@@ -91,23 +85,29 @@ header>p>b{
 input.con_invcode{
 	border: 1px solid #666;
 	border-radius: 3px;
-	padding: 6px;
+	padding: 8px;
 	margin: 0;
 }
 input.con_invcode:focus{
-	border: 1px solid #056AF2;
+	border: 1px solid #3385FF;
 }
 button.con_submit{
-	width: 100px;
-	height: 25px;
-	border: 1px solid #666;
+	width: 86px;
+	height: 33px;
 	border-radius: 3px;
+	border: 1px solid #3385FF;
+	background-color: #3385FF;
+	color: #fff;
+	cursor: pointer;
+}
+button.con_submit:hover{
+	border: 1px solid #317EF3;
+	background-color: #317EF3;
 }
 button.con_submit:active{
-	background-color: #666666;
+	border: 1px solid #3075DC;
+	background-color: #3075DC;
 }
-
-
 /*配置界面*/
 #ope_top{
 	margin: 20px 0;
@@ -116,7 +116,7 @@ button.con_submit:active{
 #ope_top>ul>li{
 	float: left;
 	margin-right: 100px;
-	line-height: 25px;
+	line-height: 33px;
 }
 #ope_top>ul>li i{
 	font-size: 14px;
@@ -131,14 +131,25 @@ input.ope_invcode{
 	border: 1px solid #666;
 	border-radius: 3px;
 }
+input.ope_invcode:focus{
+	border: 1px solid #3385FF;
+}
 input.ope_submit{
 	width: 60px;
 	height: 31px;
-	border: 1px solid #666;
 	border-radius: 3px;
+	border: 1px solid #3385FF;
+	background-color: #3385FF;
+	cursor: pointer;
+	color: #fff;
+}
+input.ope_submit:hover{
+	border: 1px solid #317EF3;
+	background-color: #317EF3;
 }
 input.ope_submit:active{
-	background-color: #666;
+	border: 1px solid #3075DC;
+	background-color: #3075DC;
 }
 /*员工列表*/
 #ope_main{
@@ -146,83 +157,86 @@ input.ope_submit:active{
 	border-radius: 5px;
 	overflow: hidden;
 	text-align: center;
-	padding-bottom: 20px;
+	background-color: #fff;
 }
 #ope_main>div{
 	float: left;
+	height: 636px;
+	overflow: hidden;
+}
+#station,#proset_invcode,#toset_invcode{
+	width: 13.1%;
 	border-right: 1px solid #ccc;
-	
 }
 #ope_main>div>p{
 	padding: 10px 0;
+	height: 21px;
 	border-bottom: 1px solid #ccc;
+	overflow: hidden;
 }
-#ope_main>div:nth-child(2){
-	position: relative;
-	right: 1px;
-	border-left: 1px solid #ccc;
-}
-ul.station li{
-	width: 150px;
+ul.station li,ul.proset_invcode li{
+	height: 18px;
 	padding: 8px 0;
 	border-bottom: 1px solid #ccc;
 }
-ul.invcode li{
-	width: 150px;
+ul.toset_invcode li{
+	height: 20px;
 	padding: 7px 0;
 	border-bottom: 1px solid #ccc;
 }
-ul.invcode select{
-	width: 120px;
+ul.toset_invcode select{
+	width: 70%;
 }
-
-#ope_main>div:nth-child(2)>p{
-	width: 150px;
-}
-
 /******预览缩略图*******/
 div#thumbnail{
-	width: 44%;
-	border-right: 0;
+	width: 60%;
 }
 #thumbnail>p{
-	border-bottom: 1px solid #ccc;
-	border-right: 1px solid #ccc;
+	height: 25px;
+	padding: 10px 0;
 }
 #thumbnail>div>dl{
 	float: left;
-	line-height: 70px;
-	width: 150px;
-	height: 70px;
+	line-height: 60px;
+	width: 14%;
+	height: 61px;
 	border: 1px solid #1A5899;
 	border-radius: 5px;
-	margin-top: 20px;
-	margin-left: 20px;
+	margin-top: 2%;
+	margin-left: 2%;
 	cursor: pointer;
+	overflow: hidden;
+}
+#thumbnail>div>dl:hover{
+	background-color: #1A5899;
+	color: #FFF;
 }
 #thumbnail>div>dl>dt{
 	display: none;
 }
+
+
 /*提示框 */
 #popup{
-	width: 100%;
-	height: 930px;
-	position: absolute;
+	position: fixed;
 	top: 0;
 	left: 0;
-	background-color: rgba(103,100,100,0.3);
+	right: 0;
+	bottom: 0;
+	background-color: rgba(103,100,100,0.4);
 }
 #popup>div{
 	width: 300px;
 	height: 100px;
+	margin: 200px auto;
 	border: 1px solid #666;
 	border-radius: 5px;
 	text-align: center;
 	box-shadow: 5px 5px 10px 3px #888;
 	padding-top: 40px;
-	position: absolute;
+	/*position: absolute;
 	top: 200px;
-	left: 795px;
+	left: 795px;*/
 	background-color: #fff;
 }
 #popup>div>button{
@@ -230,28 +244,47 @@ div#thumbnail{
 }
 /*****全屏预览*****/
 #fullScreen{
-	width: 100%;
-	height: 930px;
-	position: absolute;
+	position: fixed;
 	top: 0;
 	left: 0;
-	background-color: rgba(100,100,100,0.3);
+	right: 0;
+	bottom: 0;
+	background-color: rgba(100,100,100,0.4);
 }
-#fullScreen>iframe{
-	display: block;
-	margin: 80px auto;
+#fullScreen>div{
+	width: 60%;
+	height: 80%;
+	margin: 5% auto;
+	border: 2px solid #056AF2;
+	background-color: #73848C;
+}
+#fullScreen iframe{
+	width: 100%;
+	height: 100%;
 	border: 0;
 }
-
+#fullScreen img{
+	display: block;
+	margin: 20% auto;
+	width: 35%;
+}
 /*提交*/
 input.ope_query{
 	width: 60px;
 	height: 31px;
-	border: 1px solid #666;
 	border-radius: 3px;
+	border: 1px solid #E35552;
+	background-color: #E35552;
+	color: #fff;
+	cursor: pointer;
+}
+input.ope_query:hover{
+	background-color: #C9302C;
+	border: 1px solid #C9302C;
 }
 input.ope_query:active{
-	background-color: #e4393c;
+	background-color: #AC2925;
+	border: 1px solid #AC2925;
 }
 
 /*文件提交*/
@@ -265,16 +298,42 @@ input.ope_query:active{
 	border-bottom: 1px solid #ccc;
 	padding-bottom: 20px;
 }
-#file>form p>input{
-	border: 1px solid #ccc;
+#upfile{
+	padding: 7px;
+	border: 1px solid #3385FF;
+	border-right: 0;
+}
+#btnSubmit{
+	width: 60px;
+	color: #fff;
+	padding: 8px;
+	background-color: #3385FF;
+	cursor: pointer;
+}
+#btnSubmit:hover{
+	background-color: #317EF3;
+}
+#btnSubmit:active{
+	background-color: #3075DC;
 }
 #file>form>input{
 	margin-top: 16px;
-	margin-left: 89px;
+	margin-left: 9px;
 	width: 69px;
-	height: 23px;
-	border: 1px solid #666;
+	height: 31px;
+	cursor: pointer;
+	color: #fff;
+	border: 1px solid #3385FF;
+	background-color: #3385FF;
 	border-radius: 3px;
+}
+#file>form>input:hover{
+	border-color: #317EF3;
+	background-color: #317EF3;
+}
+#file>form>input:active{
+	border-color: #3075DC;
+	background-color: #3075DC;
 }
 /*信息储存*/
 #message>div{

@@ -28,6 +28,7 @@ import org.hibernate.secure.internal.DisabledJaccServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.thingword.alphonso.bean.DispatchFile;
+import com.thingword.alphonso.bean.ReturnConfigureData;
 import com.thingword.alphonso.bean.ReturnData;
 import com.thingword.alphonso.bean.ReturnMessage;
 import com.thingword.alphonso.bean.WebSocketID;
@@ -71,7 +72,8 @@ public class UpLoadResource {
 	@GET
 	@Path("/reqDispatchFileDetails")
 	@Produces(MediaType.APPLICATION_JSON)
-	public ReturnData<DispatchFile> reqDispatchFileDetails(@QueryParam("invcode") String invcode) {
+	public ReturnConfigureData<DispatchFile> reqDispatchFileDetails(@QueryParam("invcode") String invcode) {
+		System.out.println("ReturnConfigureData");
 		return dispatchServiceImpl.getDispatchFileDetail(invcode);
 	}
 

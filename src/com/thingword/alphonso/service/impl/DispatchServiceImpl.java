@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.thingword.alphonso.WebSocketWorker;
 import com.thingword.alphonso.bean.DispatchFile;
 import com.thingword.alphonso.bean.MESSAGE;
+import com.thingword.alphonso.bean.ReturnConfigureData;
 import com.thingword.alphonso.bean.ReturnData;
 import com.thingword.alphonso.bean.ReturnMessage;
 import com.thingword.alphonso.bean.db.Configure;
@@ -99,8 +100,8 @@ public class DispatchServiceImpl implements DispatchService {
 	}
 
 	@Override
-	public ReturnData<DispatchFile> getDispatchFileDetail(String invcode) {
-		ReturnData<DispatchFile> returnData = new ReturnData<>();
+	public ReturnConfigureData<DispatchFile> getDispatchFileDetail(String invcode) {
+		ReturnConfigureData<DispatchFile> returnData = new ReturnConfigureData<>();
 		returnData.setReturn_code(MESSAGE.RETURN_FAIL);
 		returnData.setReturn_msg(MESSAGE.QUERY_DISPATCH_NORECORD);
 		Product product = productDaoImpl.getProduct(invcode);
@@ -111,9 +112,13 @@ public class DispatchServiceImpl implements DispatchService {
 		if(dispatchFiles.isEmpty()){
 			return returnData;
 		}
+		Configure configure = configureDaoImpl.getConfigure(invcode).reducePath();
+//		String val = configure.getW1();
+//		System.out.println(val.substring(val.lastIndexOf("\\")+1,val.length()));
 		returnData.setData(dispatchFiles);
 		returnData.setReturn_code(MESSAGE.RETURN_SUCCESS);
 		returnData.setReturn_msg(MESSAGE.QUERY_DISPATCH__SUCCESS);
+		returnData.setConfigure(configure);
 		return returnData;
 	}
 

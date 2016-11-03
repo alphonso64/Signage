@@ -1,0 +1,65 @@
+<?xml version="1.0"?>  
+<!DOCTYPE hibernate-mapping PUBLIC  
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"  
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.thingword.alphonso.bean.db">
+
+	<class name="Product" table="product">
+		<id name="ID" column="Id" type="int">
+			<generator class="native" />
+		</id>
+		<property name="invcode" type="string" />
+		<property name="path" type="string" />
+		<property name="pdfpath" type="string" />
+	</class>
+
+	<class name="Configure" table="configure">
+		<id name="ID" column="Id" type="int">
+			<generator class="native" />
+		</id>
+		<property name="invcode" type="string" />
+		<property name="w1" type="string" />
+		<property name="w2" type="string" />
+		<property name="w3" type="string" />
+		<property name="w4" type="string" />
+		<property name="w5" type="string" />
+		<property name="w6" type="string" />
+		<property name="w7" type="string" />
+		<property name="w8" type="string" />
+		<property name="w9" type="string" />
+		<property name="w10" type="string" />
+		<property name="w11" type="string" />
+		<property name="w12" type="string" />
+		<property name="w13" type="string" />
+		<property name="w14" type="string" />
+		<property name="w15" type="string" />
+		<property name="w16" type="string" />
+		<property name="w17" type="string" />
+	</class>
+	
+	<class name="RmLine" table="rmline">
+		<id name="ID" column="Id" type="int">
+			<generator class="native" />
+		</id>
+		<property name="line" type="string" />
+		<property name="w1" type="string" />
+		<property name="w2" type="string" />
+		<property name="w3" type="string" />
+		<property name="w4" type="string" />
+		<property name="w5" type="string" />
+		<property name="w6" type="string" />
+		<property name="w7" type="string" />
+		<property name="w8" type="string" />
+		<property name="w9" type="string" />
+		<property name="w10" type="string" />
+		<property name="w11" type="string" />
+		<property name="w12" type="string" />
+		<property name="w13" type="string" />
+		<property name="w14" type="string" />
+		<property name="w15" type="string" />
+		<property name="w16" type="string" />
+		<property name="w17" type="string" />
+	</class>
+
+</hibernate-mapping>

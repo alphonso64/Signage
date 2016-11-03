@@ -1,0 +1,289 @@
+img{
+	vertical-align:middle;
+}
+
+ul,p,h1,h2,h3,h4,h5,h6,dl,dt,dd{
+	margin:0;
+	padding:0;
+	list-style:none;
+}
+input{
+	border:0;
+}
+.hidden{
+	display: none;
+}
+header>p{
+	font-size: 30px;
+	text-align: center;
+	line-height: 46px;
+	padding: 20px 0;
+	border-bottom: 1px solid #ddd;
+}
+header>p>b{
+	display: inline-block;
+	width: 230px;
+	height: 46px;
+	background: url(../web/images/logo.jpg) repeat 0 0;
+}
+#nav{
+	float: left;
+	width: 250px;
+}
+#nav>ul.menu>li{
+	border-bottom: 1px solid #ddd;
+	padding: 10px 20px;
+	cursor: pointer;
+}
+#nav>ul.menu>li.selected{
+	border-right: 1px solid #F9F9F9;
+	background-color: #F9F9F9;
+}
+#main{
+	margin-left: 249px;
+	min-height: 800px;
+	border: 1px solid #ddd;
+	border-top: 0;
+	background-color: #F9F9F9;
+}
+#main>div{
+	display: none;
+}
+#main>div.selected{
+	display: block;
+}
+
+
+/*统一样式*/
+#main>div{
+	padding: 10px 20px 20px;
+}
+
+#main>div>h1{
+	font-family: inherit;
+    font-weight: 500;
+    line-height: 1.1;
+    color: inherit;
+    padding: 15px 0;
+	border-bottom: 1px solid #ddd;
+}
+
+/*操作界面*/
+#configure>ul{
+	margin-top: 20px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	padding: 10px 20px;
+}
+#configure>ul>li{
+	margin: 10px 0;
+	padding-bottom: 10px;
+	border-bottom: 1px solid #ccc;
+}
+#configure i{
+	font-size: 14px;
+	color: #888;
+}
+#configure ul span{
+	display: inline-block;
+	width: 110px;
+}
+input.con_invcode{
+	border: 1px solid #666;
+	border-radius: 3px;
+	padding: 6px;
+	margin: 0;
+}
+input.con_invcode:focus{
+	border: 1px solid #056AF2;
+}
+button.con_submit{
+	width: 100px;
+	height: 25px;
+	border: 1px solid #666;
+	border-radius: 3px;
+}
+button.con_submit:active{
+	background-color: #666666;
+}
+
+
+/*配置界面*/
+#ope_top{
+	margin: 20px 0;
+	overflow: hidden;
+}
+#ope_top>ul>li{
+	float: left;
+	margin-right: 100px;
+	line-height: 25px;
+}
+#ope_top>ul>li i{
+	font-size: 14px;
+	color: #888;
+}
+#ope_top>ul select{
+	height: 31px;
+}
+input.ope_invcode{
+	padding: 2px 5px;
+	height: 25px;
+	border: 1px solid #666;
+	border-radius: 3px;
+}
+input.ope_submit{
+	width: 60px;
+	height: 31px;
+	border: 1px solid #666;
+	border-radius: 3px;
+}
+input.ope_submit:active{
+	background-color: #666;
+}
+/*员工列表*/
+#ope_main{
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	overflow: hidden;
+	text-align: center;
+	padding-bottom: 20px;
+}
+#ope_main>div{
+	float: left;
+	border-right: 1px solid #ccc;
+	
+}
+#ope_main>div>p{
+	padding: 10px 0;
+	border-bottom: 1px solid #ccc;
+}
+#ope_main>div:nth-child(2){
+	position: relative;
+	right: 1px;
+	border-left: 1px solid #ccc;
+}
+ul.station li{
+	width: 150px;
+	padding: 8px 0;
+	border-bottom: 1px solid #ccc;
+}
+ul.invcode li{
+	width: 150px;
+	padding: 7px 0;
+	border-bottom: 1px solid #ccc;
+}
+ul.invcode select{
+	width: 120px;
+}
+
+#ope_main>div:nth-child(2)>p{
+	width: 150px;
+}
+
+/******预览缩略图*******/
+div#thumbnail{
+	width: 44%;
+	border-right: 0;
+}
+#thumbnail>p{
+	border-bottom: 1px solid #ccc;
+	border-right: 1px solid #ccc;
+}
+#thumbnail>div>dl{
+	float: left;
+	line-height: 70px;
+	width: 150px;
+	height: 70px;
+	border: 1px solid #1A5899;
+	border-radius: 5px;
+	margin-top: 20px;
+	margin-left: 20px;
+	cursor: pointer;
+}
+#thumbnail>div>dl>dt{
+	display: none;
+}
+/*提示框 */
+#popup{
+	width: 100%;
+	height: 930px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: rgba(103,100,100,0.3);
+}
+#popup>div{
+	width: 300px;
+	height: 100px;
+	border: 1px solid #666;
+	border-radius: 5px;
+	text-align: center;
+	box-shadow: 5px 5px 10px 3px #888;
+	padding-top: 40px;
+	position: absolute;
+	top: 200px;
+	left: 795px;
+	background-color: #fff;
+}
+#popup>div>button{
+	margin-top: 30px;
+}
+/*****全屏预览*****/
+#fullScreen{
+	width: 100%;
+	height: 930px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: rgba(100,100,100,0.3);
+}
+#fullScreen>iframe{
+	display: block;
+	margin: 80px auto;
+	border: 0;
+}
+
+/*提交*/
+input.ope_query{
+	width: 60px;
+	height: 31px;
+	border: 1px solid #666;
+	border-radius: 3px;
+}
+input.ope_query:active{
+	background-color: #e4393c;
+}
+
+/*文件提交*/
+#file>form{
+	border: 1px solid #ccc;
+	padding: 20px;
+	margin-top: 20px;
+	border-radius: 5px;
+}
+#file>form p{
+	border-bottom: 1px solid #ccc;
+	padding-bottom: 20px;
+}
+#file>form p>input{
+	border: 1px solid #ccc;
+}
+#file>form>input{
+	margin-top: 16px;
+	margin-left: 89px;
+	width: 69px;
+	height: 23px;
+	border: 1px solid #666;
+	border-radius: 3px;
+}
+/*信息储存*/
+#message>div{
+	min-height: 100px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	margin-top: 20px;
+	padding: 20px;
+}
+
+
+

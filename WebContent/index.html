@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>达峰科技指导书操作配置界面</title>
+		<link rel="shortcut icon" href="web/images/dafeng.ico"/>
+		<link rel="stylesheet" type="text/css" href="css/index.css"/>
+	</head>
+	<body>
+		<header>
+			<p><img src="web/images/logo.jpg"/> 达峰科技指导书操作配置界面</p>
+		</header>
+		<div id="nav">
+			<ul class="menu">
+				<li class="selected"><p>操作界面</p></li>
+				<li><p>配置界面</p></li>
+				<li><p>文件上传</p></li>
+				<li><p>信息存储</p></li>
+			</ul>
+		</div>
+		<div id="main">
+			
+			<!--操作界面-->
+			<div id="configure" class="selected">
+				<h1>操作界面</h1>
+				<ul>
+					<li>
+						<span>流水线编号 ：</span>
+						<select>
+							<option value="C4">C4</option>
+						</select>
+					</li>
+					<li>
+						<span>指导书编号 ：</span>
+						<input class="con_invcode" type="number" min="0" placeholder="请输入指导书编号" onkeydown="con_keyDown(event)"/>
+					</li>
+					<li>
+						<span>提交按钮 ：&nbsp;</span>
+						<button class="con_submit">提交</button>
+					</li>
+					<li>
+						<i>**提示 ：点击提交按钮弹出“提交成功”，则操作成功!**</i>
+					</li>
+				</ul>
+				<form>
+				</form>
+			</div>
+			
+			
+			<!--配置界面-->
+			<div id="operation">
+				<h1>配置界面</h1>
+				<div id="ope_top">
+					<ul>
+						<li>
+							流水线编号:
+							<select>
+								<option value="C4">C4</option>
+							</select>
+						</li>
+						<li>
+							指导书编号:
+							<input class="ope_invcode" type="number" min="0" placeholder="请输入指导书编号" onkeydown="ope_keyDown(event)"/>
+							<input class="ope_submit" type="button" value="查询"/>
+						</li>
+						<li>
+							<input class="ope_query" type="submit" value="提交"/>
+						</li>
+						<li>
+							<i>**提示 ：请先输入编号，成功后配置相关信息**</i>
+						</li>
+					</ul>
+				</div>
+				<div id="ope_main">
+					<!-------员工座位号------->
+					<div>
+						<p>员工座位号</p>
+						<ul class="station">
+							<li>1号</li><li>2号</li><li>3号</li><li>4号</li><li>5号</li><li>6号</li><li>7号</li>
+							<li>8号</li><li>9号</li><li>10号</li><li>11号</li><li>12号</li><li>13号</li>
+							<li>14号</li><li>15号</li><li>16号</li><li>17号</li>
+						</ul>
+					</div>
+					<!-------指导书编号------->
+					<div>
+						<p>指导书文件名</p>
+						<ul class="invcode"></ul>
+					</div>
+					<!------指导书预览-------->
+					<div id="thumbnail">
+						<p>指导书缩略图</p>
+						<div></div>
+					</div>
+				</div>
+			</div>
+			<!--文件上传-->
+			<div id="file">
+				<h1>文件上传</h1>
+				<form id="fileUp" method="post" enctype="multipart/form-data">
+	   				<p>
+						选择文件 : <input type="file" name="filepath" size="45" />
+	   				</p>
+					<input id="flieSubmit" type="button" value="上传"/>
+				</form>
+			</div>
+			<!--信息储存-->
+			<div id="message">
+				<h1>信息存储</h1>
+				<div>
+					<p>请在客户端访问如下网址:"http://192.168.3.21:8089/ProductionLineSignage/test.html"，并按提示输入流水线编号和员工座位号，点击提交，当弹出信息"提交成功"，则操作成功。</p>
+				</div>
+			</div>
+		</div>
+		
+		<!--操作界面弹出框-->
+		<div id="popup" class="hidden">
+			<div>
+				<p>连接中请稍后...</p>
+				<button>确定</button>
+			</div>
+		</div>
+		
+		<!-----pdf全屏预览框----->
+		<div id="fullScreen" class="hidden">
+			<iframe width="60%" height="80%"></iframe>
+		</div>
+		
+		<script src="web/jquery-1.11.3.js"></script>
+		<script src="web/jquery-form.js"></script>
+		<script src="build/index.js"></script>
+	</body>
+</html>

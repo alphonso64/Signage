@@ -135,25 +135,25 @@ public class Configure {
 		this.w17 = w17;
 	}
 	public Configure reducePath(){
-		w1 = w1.substring(w1.lastIndexOf("\\")+1,w1.length());
-		w2 = w2.substring(w2.lastIndexOf("\\")+1,w2.length());
-		w3 = w3.substring(w3.lastIndexOf("\\")+1,w3.length());
-		w4 = w4.substring(w4.lastIndexOf("\\")+1,w4.length());
-		w5 = w5.substring(w5.lastIndexOf("\\")+1,w5.length());
-		w6 = w6.substring(w6.lastIndexOf("\\")+1,w6.length());
-		w7 = w7.substring(w7.lastIndexOf("\\")+1,w7.length());
-		
-		w8 = w8.substring(w8.lastIndexOf("\\")+1,w8.length());
-		w9 = w9.substring(w9.lastIndexOf("\\")+1,w9.length());
-		w10 = w10.substring(w10.lastIndexOf("\\")+1,w10.length());
-		w11 = w11.substring(w11.lastIndexOf("\\")+1,w11.length());
-		w12 = w12.substring(w12.lastIndexOf("\\")+1,w12.length());
-		w13 = w13.substring(w13.lastIndexOf("\\")+1,w13.length());
-		w14 = w14.substring(w14.lastIndexOf("\\")+1,w14.length());
-		
-		w15 = w15.substring(w15.lastIndexOf("\\")+1,w15.length());
-		w16 = w16.substring(w16.lastIndexOf("\\")+1,w16.length());
-		w17 = w17.substring(w17.lastIndexOf("\\")+1,w17.length());
+//		w1 = w1.substring(w1.lastIndexOf("\\")+1,w1.length());
+//		w2 = w2.substring(w2.lastIndexOf("\\")+1,w2.length());
+//		w3 = w3.substring(w3.lastIndexOf("\\")+1,w3.length());
+//		w4 = w4.substring(w4.lastIndexOf("\\")+1,w4.length());
+//		w5 = w5.substring(w5.lastIndexOf("\\")+1,w5.length());
+//		w6 = w6.substring(w6.lastIndexOf("\\")+1,w6.length());
+//		w7 = w7.substring(w7.lastIndexOf("\\")+1,w7.length());
+//		
+//		w8 = w8.substring(w8.lastIndexOf("\\")+1,w8.length());
+//		w9 = w9.substring(w9.lastIndexOf("\\")+1,w9.length());
+//		w10 = w10.substring(w10.lastIndexOf("\\")+1,w10.length());
+//		w11 = w11.substring(w11.lastIndexOf("\\")+1,w11.length());
+//		w12 = w12.substring(w12.lastIndexOf("\\")+1,w12.length());
+//		w13 = w13.substring(w13.lastIndexOf("\\")+1,w13.length());
+//		w14 = w14.substring(w14.lastIndexOf("\\")+1,w14.length());
+//		
+//		w15 = w15.substring(w15.lastIndexOf("\\")+1,w15.length());
+//		w16 = w16.substring(w16.lastIndexOf("\\")+1,w16.length());
+//		w17 = w17.substring(w17.lastIndexOf("\\")+1,w17.length());
 		return this;
 	}
 }

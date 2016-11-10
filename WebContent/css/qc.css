@@ -1,0 +1,255 @@
+img{
+	vertical-align:bottom;
+}
+ul,p,h1,h2,h3,h4,h5,h6,dl,dt,dd{
+	margin:0;
+	padding:0;
+	list-style:none;
+}
+input{
+	border:0;
+}
+input,button,select{
+	outline:none;
+}
+.hidden{
+	display: none;
+}
+body{
+	margin: 0;
+	background-color: #EDECEC;
+}
+#header{
+	text-align: center;
+	padding: 10px;
+	color: #FFFF00;
+	font-size: 40px;
+	background-color: #00A0E9;
+	margin-bottom: 20px;
+	box-shadow: 3px 5px 10px 2px #9D9B9D;
+}
+#main{
+	
+	
+}
+#main_left{
+	color: #fff;
+	width: 200px;
+	float: left;
+	min-height: 800px;
+	box-shadow: 3px 5px 10px 2px #9D9B9D;
+	background-color: #fff;
+}
+
+#main_left>li{
+	width: 100px;
+	color: #4D4D4D;
+	margin: 60px auto;
+	text-align: center;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	font-weight: bold;
+	border-radius: 30px 0 10px 10px;
+	cursor: pointer;
+	box-shadow: 2px 2px 5px 0.5px #9D9B9D;
+	position: relative;
+	top: 0;
+	left: 0;
+}
+#main_left>li:active{
+	top: 2px;
+	left: 2px;
+	box-shadow: 1px 1px 2px 0 #9D9B9D;
+}
+#main_left>li.selected{
+	background-color: #F73636;
+	color: #fff;
+}
+
+#main_left>div{
+	margin-bottom: 20px;
+	background-color: #1B93E1;
+	padding: 10px;
+}
+#main_left>div>p{
+	padding: 10px;
+}
+#main_box{
+	margin-left: 220px;
+	margin-right: 20px;
+	overflow: hidden;
+	box-shadow: 3px 5px 10px 2px #9D9B9D;
+}
+#main_box>div{
+	display: none;
+	background-color: #fff;
+	color: #fff;
+}
+#main_box>div.selected{
+	display: block;
+}
+
+#main_box>div>p{
+	background-color: #FF9501;
+	padding: 20px 3%;
+	box-shadow: 3px 5px 10px 2px #9D9B9D;
+}
+
+ul.bad_box{	
+	overflow: hidden;
+	min-height: 742px;
+}
+
+ul.bad_box>li{
+	float: left;
+	margin-top: 3%;
+	margin-left: 3%;
+	width: 200px;
+	height: 100px;
+	line-height: 100px;
+	text-align: center;
+	border-radius: 0 40px 20px 20px;
+	box-shadow: 3px 5px 10px 2px #9D9B9D;
+	background-color: #E74C3C;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*错误弹出框*/
+#chose{
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(106,188,224,0.5);
+}
+#chose_box{
+	width: 500px;
+	height: 400px;
+	padding: 40px;
+	margin: 10% auto;
+	background-color: #0886BF;
+	color: #fff;
+	border: 3px solid #fff;
+}
+#chose_box>div{
+	margin-top:30px;
+	margin-bottom: 30px;
+	background-color: #B9B7B9;
+	overflow: hidden;
+	color: #000;
+	border: 2px solid #fff;
+}
+#chose_box>div>p{
+	float: right;
+}
+#chose_box>div>p button{
+	width: 30px;
+	height: 30px;
+	border: 0;
+	background-color: #fff;
+	font-size: 18px;
+}
+#chose_box>div>p button:active{
+	background-color: #333333;
+}
+#chose_box>div>p span{
+	padding: 4px 14px 5px;
+}
+#chose_box>div select{
+	border: 0;
+	width: 50px;
+	height: 30px;
+}
+#chose_box label{
+	padding: 5px;
+	border: 2px solid #fff;
+	border-radius: 8px;
+}
+#chose_box label.checked{
+  background-color: #e4393c;
+  
+}
+#chose_box>ul{
+	overflow: hidden;
+}
+#chose_box>ul input{
+	display: none;
+}
+#chose_box>ul li{
+	float: left;
+	width: 50%;
+	margin: 20px 0;
+}
+
+#chose_box>form{
+	float: right;
+	margin-top: 50px;
+}
+#chose_box>form input{
+	width: 80px;
+	height: 30px;
+	margin-left: 40px;
+	background-color: #9D9B9D;
+	border: 2px solid #fff;
+}
+#chose_box>form input:active{
+	background-color: #C9302C;
+	color: #fff;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

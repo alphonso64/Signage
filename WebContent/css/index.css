@@ -19,7 +19,7 @@ body{
 	background-color: #F8F8F8;
 }
 header>p{
-	font-size: 30px;
+	font-size: 40px;
 	text-align: center;
 	line-height: 46px;
 	padding: 20px 0;
@@ -31,8 +31,13 @@ header>p{
 }
 #nav>ul.menu>li{
 	border-bottom: 1px solid #E7E7E7;
+	border-right: 1px solid #E7E7E7;
 	padding: 10px 20px;
 	cursor: pointer;
+	background-color: #fff;
+}
+#nav>ul.menu>li:hover{
+	background-color: #EDEDED;
 }
 #nav>ul.menu>li.selected{
 	background-color: #E3E3E3;
@@ -62,102 +67,100 @@ header>p{
     padding: 15px 0;
 	border-bottom: 1px solid #ccc;
 }
-/*操作界面*/
-#configure>ul{
-	margin-top: 20px;
-	border: 1px solid #ccc;
-	border-radius: 4px;
-	padding: 10px 20px;
+/**操作界面**/
+#con_box>ul{
+	width: 100%;
+	overflow: hidden;
+	text-align: center;
 }
-#configure>ul>li{
-	margin: 10px 0;
-	padding-bottom: 10px;
-	border-bottom: 1px solid #ccc;
+#con_box>ul>li{
+	float: left;
+	width: 5.4%;
+	padding: 10px 0;
+	height: 24px;
+	border-right: 1px solid #fff;
+	border-bottom:1px solid #fff;
+	overflow: hidden;
+	background-color: #C4D1E5;
 }
-#configure i{
-	font-size: 14px;
-	color: #888;
+#con_box>ul:first-child>li{
+	border-top: 1px solid #fff;
+	background-color: #95B7E8;
 }
-#configure ul span{
-	display: inline-block;
-	width: 110px;
+#con_box>ul>li:first-child{
+	border-left: 1px solid #fff;
 }
-input.con_invcode{
-	border: 1px solid #666;
-	border-radius: 3px;
-	padding: 8px;
-	margin: 0;
-}
-input.con_invcode:focus{
-	border: 1px solid #3385FF;
-}
-button.con_submit{
-	width: 86px;
-	height: 33px;
-	border-radius: 3px;
-	border: 1px solid #3385FF;
-	background-color: #3385FF;
-	color: #fff;
-	cursor: pointer;
-}
-button.con_submit:hover{
-	border: 1px solid #317EF3;
-	background-color: #317EF3;
-}
-button.con_submit:active{
-	border: 1px solid #3075DC;
-	background-color: #3075DC;
-}
+
 /*配置界面*/
-#ope_top{
+#ope_top,#configure>ul{
 	margin: 20px 0;
 	overflow: hidden;
 }
-#ope_top>ul>li{
+#ope_top>ul>li,#configure>ul>li{
 	float: left;
-	margin-right: 100px;
 	line-height: 33px;
 }
-#ope_top>ul>li i{
-	font-size: 14px;
-	color: #888;
+#ope_top>ul>li:first-child,#configure>ul>li:first-child{
+	margin-right: 3%;
 }
-#ope_top>ul select{
+#ope_top>ul>li:nth-child(3),#configure>ul>li:nth-child(3){
+	margin-right: 2%;
+}
+#ope_top>ul select,#configure>ul select{
 	height: 31px;
 }
-input.ope_invcode{
+#ope_top>ul span,#configure>ul span{
+	color: #056AF2;
+	text-decoration: underline;
+}
+#ope_top>ul span:last-child,#configure>ul span:last-child{
+	display: inline-block;
+	width: 100px;
+}
+input.ope_invcode,input.con_invcode{
 	padding: 2px 5px;
 	height: 25px;
-	border: 1px solid #666;
+	border: 1px solid #ccc;
 	border-radius: 3px;
+	width: 42%;
 }
-input.ope_invcode:focus{
+input.ope_invcode:focus,input.con_invcode:focus{
 	border: 1px solid #3385FF;
 }
-input.ope_submit{
-	width: 60px;
+input.ope_clear,input.con_clear{
+	width: 62px;
 	height: 31px;
 	border-radius: 3px;
-	border: 1px solid #3385FF;
+	background-color: #00912F;
+	cursor: pointer;
+	color: #fff;
+}
+input.ope_clear:hover,input.con_clear:hover{
+	background-color: #037629;
+}
+input.ope_clear:active,input.con_clear:active{
+	background-color: #05551F;
+}
+input.ope_query,input.con_query{
+	width: 62px;
+	height: 31px;
+	border-radius: 3px;
 	background-color: #3385FF;
 	cursor: pointer;
 	color: #fff;
 }
-input.ope_submit:hover{
-	border: 1px solid #317EF3;
-	background-color: #317EF3;
+input.ope_query:hover,input.con_query:hover{
+	background-color: #2E76E0;
 }
-input.ope_submit:active{
-	border: 1px solid #3075DC;
-	background-color: #3075DC;
+input.ope_query:active,input.con_query:active{
+	background-color: #1F5DB7;
 }
 /*员工列表*/
 #ope_main{
-	border: 1px solid #ccc;
+	border: 1px solid #fff;
 	border-radius: 5px;
 	overflow: hidden;
 	text-align: center;
-	background-color: #fff;
 }
 #ope_main>div{
 	float: left;
@@ -166,23 +169,25 @@ input.ope_submit:active{
 }
 #station,#proset_invcode,#toset_invcode{
 	width: 13.1%;
-	border-right: 1px solid #ccc;
+	border-right: 1px solid #fff;
 }
 #ope_main>div>p{
 	padding: 10px 0;
 	height: 21px;
-	border-bottom: 1px solid #ccc;
+	border-bottom: 1px solid #fff;
 	overflow: hidden;
+	background-color: #95B7E8;
 }
 ul.station li,ul.proset_invcode li{
 	height: 18px;
 	padding: 8px 0;
-	border-bottom: 1px solid #ccc;
+	border-bottom: 1px solid #fff;
+	background-color: #C4D1E5;
 }
 ul.toset_invcode li{
 	height: 20px;
 	padding: 7px 0;
-	border-bottom: 1px solid #ccc;
+	border-bottom: 1px solid #fff;
 }
 ul.toset_invcode select{
 	width: 70%;
@@ -215,7 +220,6 @@ div#thumbnail{
 	display: none;
 }
 
-
 /*提示框 */
 #popup{
 	position: fixed;
@@ -234,9 +238,6 @@ div#thumbnail{
 	text-align: center;
 	box-shadow: 5px 5px 10px 3px #888;
 	padding-top: 40px;
-	/*position: absolute;
-	top: 200px;
-	left: 795px;*/
 	background-color: #fff;
 }
 #popup>div>button{
@@ -269,52 +270,34 @@ div#thumbnail{
 	width: 35%;
 }
 /*提交*/
-input.ope_query{
-	width: 60px;
+input.ope_submit,input.con_submit{
+	width: 62px;
 	height: 31px;
 	border-radius: 3px;
-	border: 1px solid #E35552;
 	background-color: #E35552;
 	color: #fff;
 	cursor: pointer;
+	margin-left: 30px;
 }
-input.ope_query:hover{
+input.ope_submit:hover,input.con_submit:hover{
 	background-color: #C9302C;
-	border: 1px solid #C9302C;
 }
-input.ope_query:active{
+input.ope_submit:active,input.con_submit:active{
 	background-color: #AC2925;
-	border: 1px solid #AC2925;
 }
-
 /*文件提交*/
 #file>form{
-	border: 1px solid #ccc;
+	border: 1px solid #fff;
 	padding: 20px;
 	margin-top: 20px;
 	border-radius: 5px;
 }
 #file>form p{
-	border-bottom: 1px solid #ccc;
+	border-bottom: 1px solid #fff;
 	padding-bottom: 20px;
 }
-#upfile{
-	padding: 7px;
-	border: 1px solid #3385FF;
-	border-right: 0;
-}
-#btnSubmit{
-	width: 60px;
-	color: #fff;
-	padding: 8px;
-	background-color: #3385FF;
-	cursor: pointer;
-}
-#btnSubmit:hover{
-	background-color: #317EF3;
-}
-#btnSubmit:active{
-	background-color: #3075DC;
+#path{
+	display: none;
 }
 #file>form>input{
 	margin-top: 16px;
@@ -323,26 +306,32 @@ input.ope_query:active{
 	height: 31px;
 	cursor: pointer;
 	color: #fff;
-	border: 1px solid #3385FF;
 	background-color: #3385FF;
 	border-radius: 3px;
 }
 #file>form>input:hover{
-	border-color: #317EF3;
 	background-color: #317EF3;
 }
 #file>form>input:active{
-	border-color: #3075DC;
 	background-color: #3075DC;
 }
-/*信息储存*/
-#message>div{
-	min-height: 100px;
-	border: 1px solid #ccc;
-	border-radius: 5px;
-	margin-top: 20px;
-	padding: 20px;
+#upfile{
+	padding: 7px 5px;
+	border: 1px solid #3385FF;
+	border-right: 0;
+	border-radius: 3px 0 0 3px;
 }
-
-
-
+#btnSubmit{
+	width: 62px;
+	height: 31px;
+	border-radius: 0 3px 3px 0;
+	background-color: #3385FF;
+	color: #fff;
+	cursor: pointer;
+}
+#btnSubmit:hover{
+	background-color: #2E76E0;
+}
+#btnSubmit:active{
+	background-color: #1F5DB7;
+}

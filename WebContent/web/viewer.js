@@ -21,7 +21,6 @@ var productionline=localStorage.productionline;
 var station=localStorage.station;
 var DEFAULT_URL='/Signage/rest/upload/self?'+'productionline='+productionline+'&station='+station;
 
-
 var pdfjsWebLibs = {pdfjsWebPDFJS: window.pdfjsDistBuildPdf};
   
 (function () {

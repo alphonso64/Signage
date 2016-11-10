@@ -8,14 +8,13 @@
 	</head>
 	<body>
 		<header>
-			<p><img src="web/images/logo.jpg"/> 达峰科技指导书操作配置界面</p>
+			<p><img src="css/logo2.png"/> 达峰科技指导书操作配置界面</p>
 		</header>
 		<div id="nav">
 			<ul class="menu">
 				<li class="selected"><p>操作界面</p></li>
 				<li><p>配置界面</p></li>
 				<li><p>文件上传</p></li>
-				<li><p>信息存储</p></li>
 			</ul>
 		</div>
 		<div id="main">
@@ -25,27 +24,28 @@
 				<h1>操作界面</h1>
 				<ul>
 					<li>
-						<span>流水线编号 ：</span>
+						流水线编号:
 						<select>
 							<option value="C4">C4</option>
 						</select>
 					</li>
 					<li>
-						<span>指导书编号 ：</span>
-						<input class="con_invcode" type="number" min="0" placeholder="请输入指导书编号" onkeydown="con_keyDown(event)"/>
+						文件编号:
+						<input class="con_invcode" type="number" min="0" placeholder="请输入文件编号" onkeydown="con_keyDown(event)"/>
+						<input class="con_query" type="button" value="查询"/>
 					</li>
 					<li>
-						<span>提交按钮 ：&nbsp;</span>
-						<button class="con_submit">提交</button>
+						当前流水线:<span>C4</span>&nbsp;文件编号:<span>无</span>
 					</li>
 					<li>
-						<i>**提示 ：点击提交按钮弹出“提交成功”，则操作成功!**</i>
+						<input class="con_clear" type="button" value="清空"/>
+						<input class="con_submit" type="submit" value="提交"/>
 					</li>
 				</ul>
-				<form>
-				</form>
+				<div id="con_box">
+					<ul></ul><ul></ul>
+				</div>
 			</div>
-			
 			
 			<!--配置界面-->
 			<div id="operation" >
@@ -59,17 +59,19 @@
 							</select>
 						</li>
 						<li>
-							指导书编号:
-							<input class="ope_invcode" type="number" min="0" placeholder="请输入指导书编号" onkeydown="ope_keyDown(event)"/>
-							<input class="ope_submit" type="button" value="查询"/>
+							文件编号:
+							<input class="ope_invcode" type="number" min="0" placeholder="请输入文件编号" onkeydown="ope_keyDown(event)"/>
+							<input class="ope_query" type="button" value="查询"/>
 						</li>
 						<li>
-							<input class="ope_query" type="submit" value="提交"/>
+							当前流水线:<span>C4</span>&nbsp;文件编号:<span>无</span>
 						</li>
 						<li>
-							<i>**提示 ：请先输入编号，成功后配置相关信息**</i>
+							<input class="ope_clear" type="button" value="清空"/>
+							<input class="ope_submit" type="submit" value="提交"/>
 						</li>
 					</ul>
+					
 				</div>
 				<div id="ope_main">
 					<!-------员工座位号------->
@@ -99,7 +101,6 @@
 					<div id="thumbnail">
 						<p>指导书缩略图</p>
 						<div>
-							
 						</div>
 					</div>
 				</div>
@@ -109,18 +110,11 @@
 				<h1>文件上传</h1>
 				<form id="fileUp" method="post" enctype="multipart/form-data">
 	   				<p>文件浏览：
-	   					<input type="text" readonly="readonly" size="20" name="upfile" id="upfile"><input id="btnSubmit" type="button" value="浏览" onclick="path.click()">
-						<input type="file" name="filepath" size="45" id="path" style="display:none" onchange="upfile.value=this.value"/>
+	   					<input type="text" readonly="readonly" size="20" name="upfile" id="upfile" value="未选择文件"/><input id="btnSubmit" type="button" value="浏览"/>
+						<input type="file" name="filepath" size="45" id="path" />
 	   				</p>
 					文件上传：<input id="flieSubmit" type="button" value="上传"/>
 				</form>
-			</div>
-			<!--信息储存-->
-			<div id="message">
-				<h1>信息存储</h1>
-				<div>
-					
-				</div>
 			</div>
 		</div>
 		

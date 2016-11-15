@@ -32,11 +32,10 @@
 		<a onclick="window.location.reload(true);"></a>
 		<script src="web/jquery-1.11.3.js"></script>
 		<script>
-		    console.log('asdasd');
 			var webhref=window.location.href
 					.replace(/(\/[a-zA-Z]+)*\.html\?*.*/g,'/Signage/websocket')
 					.replace(/https*/g,'ws');
-			console.log(webhref);
+			
 	        var socket = new WebSocket(webhref);
 	        socket.onopen = function(e) {
 	            var proObject ={ productionline : localStorage.productionline,

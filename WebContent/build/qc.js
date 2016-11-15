@@ -39,7 +39,7 @@ $(function(){
 $(function(){
 	var num=$('.bad_box>li').length;
 	if(num>=20){
-		console.log(num);
+		
 	}else if(num>=10){
 		console.log(123);
 	}

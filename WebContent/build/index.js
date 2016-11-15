@@ -7,13 +7,14 @@ $(function(){
 	});
 });
 //////////////////////////////////////
+
 //操作界面查询
 function conDown(){
-	if($('input.con_invcode').val().length!=0){
-		$('#configure>ul span').eq(1).html($('input.con_invcode').val());
+	if($('input.con_invcode').val().length!=0&&($('input.con_invcode').attr('readonly')!='readonly')){
 		$('#popup p').html('连接中请稍后...');
 		ifButton();
 		$('#popup').removeClass('hidden');
+		
 		$.ajax({
 			type:"get",
 			url:"/Signage/rest/upload/reqDispatchFileDetails?invcode="+$('input.con_invcode').val(),
@@ -21,24 +22,36 @@ function conDown(){
 			success:function(e){
 				if(e.return_code=="success"){
 					$('#popup').addClass('hidden');
+					$('input.con_invcode').attr('readonly','readonly');
+					$('input.con_query').removeClass('query');//去除样式
+					$('input.con_submit').addClass('sub');//添加样式
+					$('input.con_invcode').removeClass('inv');//去除
 					con_success(e);
 				}else if(e.return_code=="fail"){
 					$('#popup p').html(e.return_msg);
 					ifButton();
+					for(var i=1;i<18;i++){
+						$('#con_box>ul:nth-child(2) li').eq(i).html('');
+					}
 				}
 			},
 			error:function(){
 				$('#popup p').html('服务器连接错误！');
 				ifButton();
+				for(var i=1;i<18;i++){
+					$('#con_box>ul:nth-child(2) li').eq(i).html('');
+				}
 			}
 		});
 	}
 }
+////////////////////////////////////////////////////////////////////
 $(function(){
 	$('input.con_query').click(function(){
 		conDown();
 	});
 });
+
 //回车
 function con_keyDown(e){
   	var ev= window.event||e;
@@ -49,72 +62,63 @@ function con_keyDown(e){
 //查询成功
 function con_success(e){
 	var cont=0;
-		for(var key in e.configure){
-			cont++;
-		}
-		for(var key in e.configure){
-			if(e.configure[key]==null){
-				for(var i=0;i<cont;i++){
-					if('w'+i==key){
-						$('#con_box>ul:nth-child(2) li').eq(i).html('').html('空');
-					}
+	for(var key in e.configure){
+		cont++;
+	}
+	for(var key in e.configure){
+		if(e.configure[key]==null){
+			for(var i=0;i<cont;i++){
+				if('w'+i==key){
+					$('#con_box>ul:nth-child(2) li').eq(i).html('空');
 				}
-			}else if(key=='invcode'||key=='id'){
-				continue;
-			}else{
-				for(var i=0;i<cont;i++){
-					if('w'+i==key){
-						$('#con_box>ul:nth-child(2) li').eq(i).html('').html(e.configure[key]);
-					}
+			}
+		}else if(key=='invcode'||key=='id'){
+			continue;
+		}else{
+			for(var i=0;i<cont;i++){
+				if('w'+i==key){
+					$('#con_box>ul:nth-child(2) li').eq(i).html('').html(e.configure[key]);
 				}
 			}
 		}
+	}
 }
+
 //操作界面提交
 $(function(){
 	$('input.con_submit').click(function(){
-		if($('#configure>ul span').eq(1).html()!='无'){
+		if($('input.con_invcode').attr('readonly')=='readonly'){
 			$('#popup p').html('连接中请稍后...');
 			ifButton();
 			$('#popup').removeClass('hidden');
 			$.ajax({
 				type:"get",
-				url:"/Signage/rest/upload/dispatchFiles?productionline=C4&invcode="+$('#configure>ul span').eq(1).html(),
+				url:"/Signage/rest/upload/dispatchFiles?productionline=B1&invcode="+$('input.con_invcode').val(),
 				dataType:"json",
 				success:function(e){
 					$('#popup p').html(e.return_msg);
 					ifButton();
+					if(e.return_msg=='fail'){
+						for(var i=1;i<18;i++){
+							$('#con_box>ul:nth-child(2) li').eq(i).html('');
+						}
+					}
 				},
 				error:function(){
 					$('#popup p').html('服务器连接错误！');
 					ifButton();
-				}
-			});
-		}else if($('input.con_invcode').val().length!=0){
-			$('#configure>ul span').eq(1).html($('input.con_invcode').val());
-			$('#popup p').html('连接中请稍后...');
-			ifButton();
-			$('#popup').removeClass('hidden');
-			$.ajax({
-				type:"get",
-				url:"/Signage/rest/upload/dispatchFiles?productionline=C4&invcode="+$('input.con_invcode').val(),
-				dataType:"json",
-				success:function(e){
-					$('#popup p').html(e.return_msg);
-					ifButton();
-				},
-				error:function(){
-					$('#popup p').html('服务器连接错误！');
-					ifButton();
+					for(var i=1;i<18;i++){
+						$('#con_box>ul:nth-child(2) li').eq(i).html('');
+					}
 				}
 			});
 		}
 	});
 });
+
 //配置界面查询
 function opeDown(){
-	if($('input.ope_invcode').val().length!=0){
-		$('#ope_top>ul span').eq(1).html($('input.ope_invcode').val());
+	if($('input.ope_invcode').val().length!=0&&($('input.ope_invcode').attr('readonly')!='readonly')){
 		$('#popup p').html('连接中请稍后...');
 		ifButton();
 		$('#popup').removeClass('hidden');
@@ -125,15 +129,25 @@ function opeDown(){
 			success:function(e){
 				if(e.return_code=="success"){
 					$('#popup').addClass('hidden');
+					$('input.ope_invcode').attr('readonly','readonly');
+					$('input.ope_query').removeClass('query');//去除样式
+					$('input.ope_submit').addClass('sub');//添加样式
+					$('input.ope_invcode').removeClass('inv');
 					ope_success(e);
 				}else if(e.return_code=="fail"){
 					$('#popup p').html(e.return_msg);
 					ifButton();
+					$('ul.proset_invcode').html('');//清空
+					$('ul.toset_invcode').html('');//
+					$('#thumbnail>div').html('');//
 				}
 			},
 			error:function(){
 				$('#popup p').html('服务器连接错误！');
 				ifButton();
+				$('ul.proset_invcode').html('');//清空
+				$('ul.toset_invcode').html('');//
+				$('#thumbnail>div').html('');//
 			}
 		});
 	}
@@ -154,6 +168,7 @@ function ope_keyDown(e){
 function ope_success(e){
 	var num=e.data.length;
 	//插入
+	$('ul.proset_invcode').html('');//清空预配置
 	$('ul.toset_invcode').html('');//清空编号
 	$('#thumbnail>div').html('');//清空预览
 	for(var i=0;i<num&&(i<17);i++){
@@ -174,7 +189,6 @@ function ope_success(e){
 			continue;
 		}else{
 			$('ul.proset_invcode').append('<li>'+e.configure[key]+'</li>');
-			console.log(key+':'+e.configure[key]);
 		}
 	}
 }
@@ -218,11 +232,13 @@ $(function(){
 //提交按钮
 $(function(){
 	$('input.ope_submit').click(function(){
-		if($('#ope_top>ul span').eq(1).html()!='无'){//提交内容不为空
+		
+		if($('input.ope_invcode').attr('readonly')=='readonly'){//先查询在提交
 			$('#popup p').html('连接中请稍后...');
 			ifButton();
+			$('#popup').removeClass('hidden');
 			var ope_json={};
-			ope_json.invcode=$('#ope_top>ul span').eq(1).html();
+			ope_json.invcode=$('input.ope_invcode').val();
 			for(var i=0;i<$('ul.toset_invcode>li').length;i++){
 				if($('ul.toset_invcode>li').eq(i).children('select').val()!='空'){
 					for(var j=0;j<$('#thumbnail>div>dl').length+1;j++){
@@ -234,43 +250,61 @@ $(function(){
 				}
 			}
 			var oper=JSON.stringify(ope_json);
-			$.ajax({
-				type:"post",
-				url:"/Signage/rest/upload/setConfigure",
-				contentType : "application/json",
-				data:oper,
-				dataType:"json",
-				success:function(e){
-					$('#popup p').html(e.return_msg);
-					ifButton();
-				},
-				error:function(){
-					$('#popup p').html('服务器连接错误！');
-					ifButton();
+			//配置和预配置发生变化时
+			var man=true;
+			for(var i=0;i<17;i++){
+				if($('ul.proset_invcode>li').eq(i).html()!=($('ul.toset_invcode>li').eq(i).children('select').val().replace(/\.pdf/g,''))){
+					man=false;
+					$.ajax({
+						type:"post",
+						url:"/Signage/rest/upload/setConfigure",
+						contentType : "application/json",
+						data:oper,
+						dataType:"json",
+						success:function(e){
+							$('#popup p').html(e.return_msg);
+							ifButton();
+						},
+						error:function(){
+							$('#popup p').html('服务器连接错误！');
+							ifButton();
+						}
+					});
+					break;
 				}
-			});
-			$('#popup').removeClass('hidden');
+			}
+			if(man){//相同
+				$('#popup p').html('和预配置文件相同!');
+				ifButton();
+			}
 		}
+	});
+});
+
+///操作清空
+$(function(){
+	$('input.con_clear').click(function(){
+		$('input.con_invcode').removeAttr('readonly');
+		$('input.con_invcode').val('');
+		for(var i=1;i<18;i++){
+			$('#con_box>ul:nth-child(2) li').eq(i).html('');
+		}
+		$('input.con_query').addClass('query');
+		$('input.con_submit').removeClass('sub');
+		$('input.con_invcode').addClass('inv');
 	});
 });
 ///配置清空
 $(function(){
-	$('input.con_clear').click(function(){
-		$('input.con_invcode').val('');
-		$('#configure>ul span').eq(1).html('无');
-		for(var i=1;i<18;i++){
-			$('#con_box>ul:nth-child(2) li').eq(i).html('');
-		}
-	});
-});
-///操作清空
-$(function(){
 	$('input.ope_clear').click(function(){
+		$('input.ope_invcode').removeAttr('readonly');
 		$('input.ope_invcode').val('');
-		$('#ope_top span').eq(1).html('无');
 		$('ul.proset_invcode').html('');
 		$('ul.toset_invcode').html('');
 		$('#thumbnail>div').html('');
+		$('input.ope_query').addClass('query');
+		$('input.ope_submit').removeClass('sub');
+		$('input.ope_invcode').addClass('inv');
 	});
 });
 ////文件提交
@@ -334,21 +368,29 @@ function ifLoading(){
 }
 window.onload=function(){
 	ifLoading();
-	$('#con_box>ul').eq(0).append('<li>员工编号</li>');
-	$('#con_box>ul').eq(1).append('<li>对应文件</li>');
+	$('#con_box>ul').eq(0).append('<li>工位号</li>');
+	$('#con_box>ul').eq(1).append('<li>文件名</li>');
 	for(var i=0;i<17;i++){
 		$('#con_box>ul').eq(0).append('<li>'+(i+1)+'</li>');
 		$('#con_box>ul').eq(1).append('<li></li>');
 	}
 }
-
-
-
-
-
-
-
-
+//
+//$(function(){
+//	$('input[class$="_invcode"]').focus(function(){
+//		if($(this).attr('readonly')=='readonly'){
+//			$(this).removeClass('inv');
+//		}else{
+//			$(this).addClass('inv');
+//		}
+//	}).blur(function(){
+//		if($(this).attr('readonly')=='readonly'){
+//			$(this).removeClass('inv');
+//		}else{
+//			$(this).addClass('inv');
+//		}
+//	});
+//});
 
 
 

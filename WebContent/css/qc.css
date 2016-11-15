@@ -24,9 +24,9 @@ body{
 	padding: 10px;
 	color: #FFFF00;
 	font-size: 40px;
-	background-color: #00A0E9;
+	background-color: #377EA8;
 	margin-bottom: 20px;
-	box-shadow: 3px 5px 10px 2px #9D9B9D;
+	box-shadow: 3px 3px 7px 1px #9D9B9D;
 }
 #main{
 	
@@ -37,7 +37,7 @@ body{
 	width: 200px;
 	float: left;
 	min-height: 800px;
-	box-shadow: 3px 5px 10px 2px #9D9B9D;
+	box-shadow: 3px 3px 7px 1px #9D9B9D;
 	background-color: #fff;
 }
 
@@ -62,7 +62,7 @@ body{
 	box-shadow: 1px 1px 2px 0 #9D9B9D;
 }
 #main_left>li.selected{
-	background-color: #F73636;
+	background-color: #E34B4B;
 	color: #fff;
 }
 
@@ -78,7 +78,7 @@ body{
 	margin-left: 220px;
 	margin-right: 20px;
 	overflow: hidden;
-	box-shadow: 3px 5px 10px 2px #9D9B9D;
+	box-shadow: 3px 3px 7px 1px #9D9B9D;
 }
 #main_box>div{
 	display: none;
@@ -90,9 +90,10 @@ body{
 }
 
 #main_box>div>p{
-	background-color: #FF9501;
+	background-color: #F79305;
+	font-weight: bold;
 	padding: 20px 3%;
-	box-shadow: 3px 5px 10px 2px #9D9B9D;
+	
 }
 
 ul.bad_box{	
@@ -104,15 +105,24 @@ ul.bad_box>li{
 	float: left;
 	margin-top: 3%;
 	margin-left: 3%;
-	width: 200px;
+	width: 5%;
 	height: 100px;
 	line-height: 100px;
+	position: relative;
 	text-align: center;
 	border-radius: 0 40px 20px 20px;
 	box-shadow: 3px 5px 10px 2px #9D9B9D;
-	background-color: #E74C3C;
+	background-color: #037629;
+	cursor: pointer;
+	top: 0;
+	left: 0;
 }
-
+ul.bad_box>li:active{
+	box-shadow: 1px 2px 4px 0.1px #9D9B9D;
+	background-color: #8E8E8E;
+	top: 3px;
+	left: 3px;
+}
 
 
 

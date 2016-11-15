@@ -77,9 +77,11 @@ public class DispatchServiceImpl implements DispatchService {
 			rmLine.setW16(configure.getW16());
 			rmLine.setW17(configure.getW17());
 		}else{
+//			System.out.println("flase");
 			return message;
 		}
-		rmLineDaoImpl.updateRmLine(rmLine);
+		boolean flag = rmLineDaoImpl.updateRmLine(rmLine);
+		System.out.println("updateRmLine:"+flag+" "+rmLine.getW1());
 
 		for (WebSocketWorker item : WebSocketWorker.webSocketSet) {
 			try {

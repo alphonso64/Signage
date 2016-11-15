@@ -248,7 +248,7 @@ public class UploadServiceImpl implements UploadService {
 	private String parseProductCraftFileName(String name) {
 		try {
 			String pname = new String(name.getBytes("ISO8859-1"), "GBK");
-			String regex = "\\d+\\.zip";
+			String regex = "[0-9A-Za-z]+\\.zip";
 			Pattern p1 = Pattern.compile(regex);
 
 			if (p1.matcher(pname).matches()) {

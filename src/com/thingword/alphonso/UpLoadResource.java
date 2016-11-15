@@ -64,8 +64,8 @@ public class UpLoadResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	public ReturnMessage dispatchFiles(@QueryParam("productionline") String productline,
 			@QueryParam("invcode") String invcode) {
-//		System.out.println("dispatchFiles" + productline + " " + invcode);
-		return dispatchServiceImpl.dispatchFileTosWorker(productline, invcode);
+		System.out.println("dispatchFiles" + productline + " " + invcode);
+		return dispatchServiceImpl.dispatchFileTosWorker(productline.toUpperCase(), invcode.toUpperCase());
 
 	}
 
@@ -74,7 +74,7 @@ public class UpLoadResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	public ReturnConfigureData<DispatchFile> reqDispatchFileDetails(@QueryParam("invcode") String invcode) {
 		System.out.println("ReturnConfigureData");
-		return dispatchServiceImpl.getDispatchFileDetail(invcode);
+		return dispatchServiceImpl.getDispatchFileDetail(invcode.toUpperCase());
 	}
 
 	@POST
@@ -94,7 +94,7 @@ public class UpLoadResource {
 			@QueryParam("station") String station, @Context HttpServletRequest request,
 			@Context HttpServletResponse response) {
 //		System.out.println("self:" + productline + " " + station);
-		byte[] bytes = dispatchServiceImpl.getDispatchFile(productline, station);
+		byte[] bytes = dispatchServiceImpl.getDispatchFile(productline.toUpperCase(), station);
 		response.addHeader("Content-Length", String.valueOf(bytes.length));
 		return bytes;
 	}

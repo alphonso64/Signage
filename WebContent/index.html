@@ -26,19 +26,16 @@
 					<li>
 						流水线编号:
 						<select>
-							<option value="C4">C4</option>
+							<option value="B1">B1</option>
 						</select>
 					</li>
 					<li>
 						文件编号:
-						<input class="con_invcode" type="number" min="0" placeholder="请输入文件编号" onkeydown="con_keyDown(event)"/>
-						<input class="con_query" type="button" value="查询"/>
-					</li>
-					<li>
-						当前流水线:<span>C4</span>&nbsp;文件编号:<span>无</span>
-					</li>
-					<li>
+						<input class="con_invcode inv" type="text" onkeyup="value=value.replace(/[^\w\.\/]/ig,'')" min="0" placeholder="请输入文件编号" onkeydown="con_keyDown(event)"/>
+						<input class="con_query query" type="button" value="查询"/>
 						<input class="con_clear" type="button" value="清空"/>
+					</li>
+					<li>
 						<input class="con_submit" type="submit" value="提交"/>
 					</li>
 				</ul>
@@ -52,31 +49,25 @@
 				<h1>配置界面</h1>
 				<div id="ope_top">
 					<ul>
-						<li>
-							流水线编号:
+						<li>流水线编号:
 							<select>
-								<option value="C4">C4</option>
+								<option value="B1">B1</option>
 							</select>
 						</li>
-						<li>
-							文件编号:
-							<input class="ope_invcode" type="number" min="0" placeholder="请输入文件编号" onkeydown="ope_keyDown(event)"/>
-							<input class="ope_query" type="button" value="查询"/>
-						</li>
-						<li>
-							当前流水线:<span>C4</span>&nbsp;文件编号:<span>无</span>
-						</li>
-						<li>
+						<li>文件编号:
+							<input class="ope_invcode inv" type="text" onkeyup="value=value.replace(/[^\w\.\/]/ig,'')" min="0" placeholder="请输入文件编号" onkeydown="ope_keyDown(event)"/>
+							<input class="ope_query query" type="button" value="查询"/>
 							<input class="ope_clear" type="button" value="清空"/>
+						</li>
+						<li>
 							<input class="ope_submit" type="submit" value="提交"/>
 						</li>
 					</ul>
-					
 				</div>
 				<div id="ope_main">
 					<!-------员工座位号------->
 					<div id="station">
-						<p>员工座位号</p>
+						<p>工位号</p>
 						<ul class="station">
 							<li>1号</li><li>2号</li><li>3号</li><li>4号</li><li>5号</li><li>6号</li><li>7号</li>
 							<li>8号</li><li>9号</li><li>10号</li><li>11号</li><li>12号</li><li>13号</li>

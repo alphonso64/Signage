@@ -99,32 +99,27 @@ header>p{
 #ope_top>ul>li,#configure>ul>li{
 	float: left;
 	line-height: 33px;
-}
-#ope_top>ul>li:first-child,#configure>ul>li:first-child{
 	margin-right: 3%;
 }
-#ope_top>ul>li:nth-child(3),#configure>ul>li:nth-child(3){
-	margin-right: 2%;
+
+#ope_top>ul>li:last-child,#configure>ul>li:last-child{
+	margin-left: 10%;
 }
 #ope_top>ul select,#configure>ul select{
 	height: 31px;
 }
-#ope_top>ul span,#configure>ul span{
-	color: #056AF2;
-	text-decoration: underline;
-}
-#ope_top>ul span:last-child,#configure>ul span:last-child{
-	display: inline-block;
-	width: 100px;
-}
 input.ope_invcode,input.con_invcode{
 	padding: 2px 5px;
 	height: 25px;
-	border: 1px solid #ccc;
 	border-radius: 3px;
+	border: 1px solid #ccc;
 	width: 42%;
+	background-color:#ddd;
 }
-input.ope_invcode:focus,input.con_invcode:focus{
+input.inv{
+	background-color:#fff;
+}
+input.inv:focus{
 	border: 1px solid #3385FF;
 }
 input.ope_clear,input.con_clear{
@@ -145,16 +140,21 @@ input.ope_query,input.con_query{
 	width: 62px;
 	height: 31px;
 	border-radius: 3px;
-	background-color: #3385FF;
 	cursor: pointer;
 	color: #fff;
 }
-input.ope_query:hover,input.con_query:hover{
+
+input.query{
+	background-color: #3385FF;
+}
+input.query:hover{
 	background-color: #2E76E0;
 }
-input.ope_query:active,input.con_query:active{
+input.query:active{
 	background-color: #1F5DB7;
 }
+/********************************************************/
+
 /*员工列表*/
 #ope_main{
 	border: 1px solid #fff;
@@ -270,21 +270,26 @@ div#thumbnail{
 	width: 35%;
 }
 /*提交*/
+
 input.ope_submit,input.con_submit{
 	width: 62px;
 	height: 31px;
 	border-radius: 3px;
-	background-color: #E35552;
 	color: #fff;
 	cursor: pointer;
 	margin-left: 30px;
 }
-input.ope_submit:hover,input.con_submit:hover{
+input.sub{
+	background-color: #E35552;
+}
+input.sub:hover{
 	background-color: #C9302C;
 }
-input.ope_submit:active,input.con_submit:active{
+input.sub:active{
 	background-color: #AC2925;
 }
+
+/************/
 /*文件提交*/
 #file>form{
 	border: 1px solid #fff;

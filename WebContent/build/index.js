@@ -171,7 +171,7 @@ function ope_success(e){
 	$('ul.proset_invcode').html('');//清空预配置
 	$('ul.toset_invcode').html('');//清空编号
 	$('#thumbnail>div').html('');//清空预览
-	for(var i=0;i<num&&(i<17);i++){
+	for(var i=0;i<17;i++){
 		var sec='<option>空</option>';
 		for(var j=0;j<num;j++){
 			sec+='<option>'+e.data[j].name+'</option>';

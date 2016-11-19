@@ -55,7 +55,7 @@ header>p{
 #main>div.selected{
 	display: block;
 }
-/*统一样式*/
+/*缁熶竴鏍峰紡*/
 #main>div{
 	padding: 10px 20px 20px;
 }
@@ -67,7 +67,7 @@ header>p{
     padding: 15px 0;
 	border-bottom: 1px solid #ccc;
 }
-/**操作界面**/
+/**鎿嶄綔鐣岄潰**/
 #con_box>ul{
 	width: 100%;
 	overflow: hidden;
@@ -91,7 +91,7 @@ header>p{
 	border-left: 1px solid #fff;
 }
 
-/*配置界面*/
+/*閰嶇疆鐣岄潰*/
 #ope_top,#configure>ul{
 	margin: 20px 0;
 	overflow: hidden;
@@ -155,7 +155,7 @@ input.query:active{
 }
 /********************************************************/
 
-/*员工列表*/
+/*鍛樺伐鍒楄〃*/
 #ope_main{
 	border: 1px solid #fff;
 	border-radius: 5px;
@@ -192,7 +192,7 @@ ul.toset_invcode li{
 ul.toset_invcode select{
 	width: 70%;
 }
-/******预览缩略图*******/
+/******棰勮缂╃暐鍥�*******/
 div#thumbnail{
 	width: 60%;
 }
@@ -220,7 +220,7 @@ div#thumbnail{
 	display: none;
 }
 
-/*提示框 */
+/*鎻愮ず妗� */
 #popup{
 	position: fixed;
 	top: 0;
@@ -243,7 +243,7 @@ div#thumbnail{
 #popup>div>button{
 	margin-top: 30px;
 }
-/*****全屏预览*****/
+/*****鍏ㄥ睆棰勮*****/
 #fullScreen{
 	position: fixed;
 	top: 0;
@@ -269,7 +269,7 @@ div#thumbnail{
 	margin: 20% auto;
 	width: 35%;
 }
-/*提交*/
+/*鎻愪氦*/
 
 input.ope_submit,input.con_submit{
 	width: 62px;
@@ -290,7 +290,7 @@ input.sub:active{
 }
 
 /************/
-/*文件提交*/
+/*鏂囦欢鎻愪氦*/
 #file>form{
 	border: 1px solid #fff;
 	padding: 20px;

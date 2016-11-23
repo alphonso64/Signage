@@ -12,6 +12,9 @@ input{
 input,button,select{
 	outline:none;
 }
+input[type="button"]{
+	font-weight: bold;
+}
 .hidden{
 	display: none;
 }
@@ -24,30 +27,34 @@ header>p{
 	line-height: 46px;
 	padding: 20px 0;
 	border-bottom: 1px solid #E7E7E7;
+	color: #6A6464;
 }
 #nav{
 	float: left;
 	width: 250px;
 }
 #nav>ul.menu>li{
-	border-bottom: 1px solid #E7E7E7;
 	border-right: 1px solid #E7E7E7;
 	padding: 10px 20px;
 	cursor: pointer;
 	background-color: #fff;
+	color: #3E3693;
 }
 #nav>ul.menu>li:hover{
 	background-color: #EDEDED;
 }
 #nav>ul.menu>li.selected{
-	background-color: #E3E3E3;
+	background-color: #C9DEFC;
+	border-right: 1px solid #C9DEFC;
 }
 #main{
 	margin-left: 249px;
-	min-height: 810px;
+	min-height: 700px;
+	min-width: 1000px;
 	border: 1px solid #E7E7E7;
 	border-top: 0;
 	background-color: #fff;
+	color: #3E3693;
 }
 #main>div{
 	display: none;
@@ -55,7 +62,7 @@ header>p{
 #main>div.selected{
 	display: block;
 }
-/*缁熶竴鏍峰紡*/
+/*统一样式*/
 #main>div{
 	padding: 10px 20px 20px;
 }
@@ -65,9 +72,10 @@ header>p{
     line-height: 1.2;
     color: inherit;
     padding: 15px 0;
-	border-bottom: 1px solid #ccc;
+	border-bottom: 2px solid #ddd;
 }
-/**鎿嶄綔鐣岄潰**/
+
+/**操作界面**/
 #con_box>ul{
 	width: 100%;
 	overflow: hidden;
@@ -75,23 +83,19 @@ header>p{
 }
 #con_box>ul>li{
 	float: left;
-	width: 5.4%;
-	padding: 10px 0;
-	height: 24px;
-	border-right: 1px solid #fff;
-	border-bottom:1px solid #fff;
+	width: 5.34%;
+	padding: 7px 0;
+	height: 18px;
+	border-right: 2px solid #fff;
+	border-bottom:2px solid #fff;
 	overflow: hidden;
-	background-color: #C4D1E5;
+	background-color: #D3E0F5;
 }
 #con_box>ul:first-child>li{
-	border-top: 1px solid #fff;
-	background-color: #95B7E8;
-}
-#con_box>ul>li:first-child{
-	border-left: 1px solid #fff;
+	background-color: #7EB2FC;
 }
 
-/*閰嶇疆鐣岄潰*/
+/*配置界面*/
 #ope_top,#configure>ul{
 	margin: 20px 0;
 	overflow: hidden;
@@ -101,7 +105,6 @@ header>p{
 	line-height: 33px;
 	margin-right: 3%;
 }
-
 #ope_top>ul>li:last-child,#configure>ul>li:last-child{
 	margin-left: 10%;
 }
@@ -113,7 +116,7 @@ input.ope_invcode,input.con_invcode{
 	height: 25px;
 	border-radius: 3px;
 	border: 1px solid #ccc;
-	width: 42%;
+	width: 150px;
 	background-color:#ddd;
 }
 input.inv{
@@ -155,44 +158,69 @@ input.query:active{
 }
 /********************************************************/
 
-/*鍛樺伐鍒楄〃*/
+/*员工列表*/
 #ope_main{
-	border: 1px solid #fff;
-	border-radius: 5px;
 	overflow: hidden;
 	text-align: center;
+	position: relative;
+}
+#ope_main>input{
+	color: #fff;
+	font-size: 0.7em;
+	font-weight: bold;
+	position: absolute;
+	padding: 0;
+	width: 3%;
+	height: 20px;
+	line-height: 10px;
+	background-color: #00912F;
+	top: 6px;
+	left: 24.8%;
+	cursor: pointer;
+	border: 1px solid #fff;
+}
+#ope_main>input:hover{
+	background-color: #037629;
+}
+#ope_main>input:active{
+	background-color: #05551F;
 }
 #ope_main>div{
 	float: left;
-	height: 636px;
 	overflow: hidden;
 }
 #station,#proset_invcode,#toset_invcode{
 	width: 13.1%;
-	border-right: 1px solid #fff;
+	border-right: 2px solid #fff;
 }
 #ope_main>div>p{
-	padding: 10px 0;
-	height: 21px;
-	border-bottom: 1px solid #fff;
+	padding: 6px 0;
+	height: 19px;
+	border-bottom: 2px solid #fff;
 	overflow: hidden;
-	background-color: #95B7E8;
+	background-color: #7EB2FC;
 }
 ul.station li,ul.proset_invcode li{
-	height: 18px;
-	padding: 8px 0;
-	border-bottom: 1px solid #fff;
-	background-color: #C4D1E5;
+	height: 16px;
+	padding: 7px 0;
+	border-bottom: 2px solid #fff;
+	background-color: #D3E0F5;
 }
 ul.toset_invcode li{
-	height: 20px;
-	padding: 7px 0;
-	border-bottom: 1px solid #fff;
+	height: 18px;
+	padding: 6px 0;
+	border-bottom: 2px solid #fff;
+	background-color: #D3E0F5;
 }
 ul.toset_invcode select{
-	width: 70%;
+	width: 60%;
 }
-/******棰勮缂╃暐鍥�*******/
+.toset_invcode>li>button{
+	width: 25%;
+	padding: 0;
+	cursor: pointer;
+}
+/******预览缩略图*******/
 div#thumbnail{
 	width: 60%;
 }
@@ -205,22 +233,24 @@ div#thumbnail{
 	line-height: 60px;
 	width: 14%;
 	height: 61px;
-	border: 1px solid #1A5899;
-	border-radius: 5px;
+	border: 1px solid #5593D1;
+	border-radius: 8px;
 	margin-top: 2%;
 	margin-left: 2%;
 	cursor: pointer;
 	overflow: hidden;
 }
 #thumbnail>div>dl:hover{
-	background-color: #1A5899;
+	background-color: #64CBD3;
+	border-color: #fff;
 	color: #FFF;
+	
 }
 #thumbnail>div>dl>dt{
 	display: none;
 }
 
-/*鎻愮ず妗� */
+/*提示框 */
 #popup{
 	position: fixed;
 	top: 0;
@@ -243,7 +273,7 @@ div#thumbnail{
 #popup>div>button{
 	margin-top: 30px;
 }
-/*****鍏ㄥ睆棰勮*****/
+/*****全屏预览*****/
 #fullScreen{
 	position: fixed;
 	top: 0;
@@ -269,7 +299,7 @@ div#thumbnail{
 	margin: 20% auto;
 	width: 35%;
 }
-/*鎻愪氦*/
+/*提交*/
 
 input.ope_submit,input.con_submit{
 	width: 62px;
@@ -289,36 +319,49 @@ input.sub:active{
 	background-color: #AC2925;
 }
 
-/************/
-/*鏂囦欢鎻愪氦*/
-#file>form{
-	border: 1px solid #fff;
-	padding: 20px;
-	margin-top: 20px;
+/*确认提交*/
+[id^='confirm']{
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(103,100,100,0.4);
+}
+[id^='confirm']>div{
+	width: 300px;
+	height: 130px;
+	margin: 200px auto;
+	border: 1px solid #666;
 	border-radius: 5px;
+	text-align: center;
+	box-shadow: 5px 5px 10px 3px #888;
+	padding-top: 40px;
+	background-color: #fff;
 }
-#file>form p{
-	border-bottom: 1px solid #fff;
-	padding-bottom: 20px;
+[id^='confirm']>div>button{
+	margin-top: 50px;
+	margin:50px 40px 0;
 }
+
+/************/
+/*文件提交*/
 #path{
 	display: none;
 }
-#file>form>input{
-	margin-top: 16px;
-	margin-left: 9px;
-	width: 69px;
+#flieSubmit{
+	width: 62px;
 	height: 31px;
 	cursor: pointer;
 	color: #fff;
-	background-color: #3385FF;
+	background-color: #00912F;
 	border-radius: 3px;
 }
-#file>form>input:hover{
-	background-color: #317EF3;
+#flieSubmit:hover{
+	background-color: #037629;
 }
-#file>form>input:active{
-	background-color: #3075DC;
+#flieSubmit:active{
+	background-color: #05551F;
 }
 #upfile{
 	padding: 7px 5px;
@@ -327,7 +370,7 @@ input.sub:active{
 	border-radius: 3px 0 0 3px;
 }
 #btnSubmit{
-	width: 62px;
+	width: 55px;
 	height: 31px;
 	border-radius: 0 3px 3px 0;
 	background-color: #3385FF;
@@ -340,3 +383,160 @@ input.sub:active{
 #btnSubmit:active{
 	background-color: #1F5DB7;
 }
+#fileQuery>input{
+	border: 1px solid #ccc;
+	border-right: 0;
+	border-radius: 3px 0 0 3px;
+	padding: 7px 5px;
+}
+#fileQuery>input:focus{
+	border-color: #3385FF;
+}
+#fileQuery>button{
+	width: 55px;
+	height: 31px;
+	border: 0;
+	border-radius: 0 3px 3px 0;
+	background-color: #3385FF;
+	color: #fff;
+	font-weight: bold;
+	cursor: pointer;
+}
+#fileQuery>button:hover{
+	background-color: #2E76E0;
+}
+#fileQuery>button:active{
+	background-color: #1F5DB7;
+}
+/*文件管理*/
+#file_main{
+	margin-top: 20px;
+}
+#fileUp{
+	padding-bottom: 12px;
+	border-bottom: 1px solid #ccc;
+}
+#fileQuery{
+	margin-top: 12px;
+}
+#file_box{
+	margin-top: 12px;
+	margin-bottom: 20px;
+}
+#file_box>ul{
+	max-height: 500px;
+	overflow-y: auto;
+	display: none;
+}
+/*搜索出来的文件显示*/
+#file_box>ul.fileQuery{
+	display: block;
+}
+#file_box>ul>li{
+	border-bottom: 2px solid #fff;
+}
+#file_box>ul>li>p{
+	padding: 6px 10px;
+	font-size: 0.9em;
+	background-color: #C4DBFC;
+	border-bottom: 1px solid #ccc;
+	position: relative;
+	cursor: pointer;
+}
+#file_box>ul>li>p:hover{
+	background-color: #81ADEA;
+}
+#file_box>ul>li>p:active{
+	top: 1px;
+	border-bottom: 1px solid transparent;
+}
+#file_box b{
+	display: inline-block;
+	min-width: 120px;
+	margin-right: 30px;
+	border-right: 1px solid #5D55A5;
+}
+#file_box>ul>li>div{
+	display: none;
+	background-color: #F8F8F8;
+	user-select:none;
+	padding: 7px;
+	-webkit-user-select:none;
+	-moz-user-select:none;/*火狐*/
+	-ms-user-select:none;/*IE10*/
+}
+#file_box dl{
+	display: inline-block;
+	cursor: pointer;
+	padding: 10px 15px;
+	margin: 7px;
+	border-radius: 5px;
+	background-color: #5DBCC6;
+	user-select:none;
+	-webkit-user-select:none;
+	-moz-user-select:none;/*火狐*/
+	-ms-user-select:none;/*IE10*/
+	color: #fff;
+	font-weight: bold;
+}
+#file_box dl:hover{
+	background-color:#34A7B2;
+}
+#file_box dt{
+	display: none;
+}
+/*跳页*/
+#file_jump{
+	float: right;
+}
+#file_jump>li{
+	margin-left: 6px;
+	float: left;
+}
+#file_jump>li>input{
+	width: 30px;
+	border: 1px solid #999;
+	text-align: center;
+	padding: 4px 2px;
+}
+#file_jump>li>button,#btn{
+	padding: 3px 5px;
+	cursor: pointer;
+}
+#file_jump>li:nth-child(4){
+	padding: 3px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

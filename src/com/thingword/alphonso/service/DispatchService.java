@@ -12,4 +12,5 @@ public interface DispatchService {
 	public byte[] getDispatchFile(String line,String location);
 	public ReturnConfigureData<DispatchFile> getDispatchFileDetail(String invcode);
 	public ReturnMessage setConfigure(Configure configure);
+	public ReturnMessage setSpecificConfigure(Configure configure);
 }

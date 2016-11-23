@@ -17,11 +17,10 @@
 			<ul class="menu">
 				<li class="selected"><p>操作界面</p></li>
 				<li><p>配置界面</p></li>
-				<li><p>文件上传</p></li>
+				<li><p>文件管理</p></li>
 			</ul>
 		</div>
 		<div id="main">
-			
 			<!--操作界面-->
 			<div id="configure" class="selected">
 				<h1>操作界面</h1>
@@ -34,7 +33,7 @@
 					</li>
 					<li>
 						文件编号:
-						<input class="con_invcode inv" type="text" onkeyup="value=value.replace(/[^\w\.\/]/ig,'')" min="0" placeholder="请输入文件编号" onkeydown="con_keyDown(event)"/>
+						<input class="con_invcode inv" type="text" onkeyup="value=value.replace(/[^\w\.\/]/ig,'')" placeholder="请输入文件编号" onkeydown="con_keyDown(event)"/>
 						<input class="con_query query" type="button" value="查询"/>
 						<input class="con_clear" type="button" value="清空"/>
 					</li>
@@ -48,7 +47,7 @@
 			</div>
 			
 			<!--配置界面-->
-			<div id="operation" >
+			<div id="operation">
 				<h1>配置界面</h1>
 				<div id="ope_top">
 					<ul>
@@ -58,7 +57,7 @@
 							</select>
 						</li>
 						<li>文件编号:
-							<input class="ope_invcode inv" type="text" onkeyup="value=value.replace(/[^\w\.\/]/ig,'')" min="0" placeholder="请输入文件编号" onkeydown="ope_keyDown(event)"/>
+							<input class="ope_invcode inv" type="text" onkeyup="value=value.replace(/[^\w\.\/]/ig,'')" placeholder="请输入文件编号" onkeydown="ope_keyDown(event)"/>
 							<input class="ope_query query" type="button" value="查询"/>
 							<input class="ope_clear" type="button" value="清空"/>
 						</li>
@@ -68,6 +67,7 @@
 					</ul>
 				</div>
 				<div id="ope_main">
+					<input type="button" value=">>"/>
 					<!-------员工座位号------->
 					<div id="station">
 						<p>工位号</p>
@@ -101,14 +101,32 @@
 			</div>
 			<!--文件上传-->
 			<div id="file">
-				<h1>文件上传</h1>
-				<form id="fileUp" method="post" enctype="multipart/form-data">
-	   				<p>文件浏览：
-	   					<input type="text" readonly="readonly" size="20" name="upfile" id="upfile" value="未选择文件"/><input id="btnSubmit" type="button" value="浏览"/>
-						<input type="file" name="filepath" size="45" id="path" />
-	   				</p>
-					文件上传：<input id="flieSubmit" type="button" value="上传"/>
-				</form>
+				<h1>文件管理</h1>
+				<div id="file_main">
+					<div id="file_input">
+						<form id="fileUp" method="post" enctype="multipart/form-data">
+	   					文件上传：<input type="text" readonly="readonly" size="20" name="upfile" id="upfile" value="未选择文件"/><input id="btnSubmit" type="button" value="浏览"/>
+							<input type="file" name="filepath" size="45" id="path" /><input id="flieSubmit" type="button" value="上传"/>
+						</form>
+						<form id="fileQuery">
+						文件搜索：<input type="text" onkeyup="value=value.replace(/[^\w\.\/]/ig,'')" placeholder="请输入文件编号" onkeydown="file_keyDown(event)"/><button>搜索</button>
+						</form>
+					</div>
+					<div id="file_box">
+						<!--填充数据-->
+						<ul>
+						</ul>
+					</div>
+					<!--跳页-->
+					<ul id="file_jump">
+						<li><button>&lt;&lt;</button></li>
+						<li><input type="text" id="" value="1" onkeyup="value=value.replace(/\D/g,'')" onafterupdate="value=value.replace(/\D/g,'')" onkeydown="jumph(event)"/></li>
+						<li><button>&gt;&gt;</button></li>
+						<li>一共<b>0</b>页</li>
+						<li><button>跳页</button></li>
+					</ul>
+					<button id="btn">点击刷新文件列表</button>
+				</div>
 			</div>
 		</div>
 		
@@ -128,7 +146,30 @@
 				<img src="web/images/loading.jpg"/>
 			</div>
 		</div>
-		
+		<!--确认提交1-->
+		<div id="confirm1" class="hidden">
+			<div>
+				<p>确认提交？</p>
+				<button>取消</button>
+				<button>确定</button>
+			</div>
+		</div>
+		<!--确认提交2-->
+		<div id="confirm2" class="hidden">
+			<div>
+				<p>确认提交？</p>
+				<button>取消</button>
+				<button>确定</button>
+			</div>
+		</div>
+		<!--单个提交-->
+		<div id="confirm3" class="hidden">
+			<div>
+				<p>确认提交？</p>
+				<button>取消</button>
+				<button>确定</button>
+			</div>
+		</div>
 		<script src="web/jquery-1.11.3.js"></script>
 		<script src="web/jquery-form.js"></script>
 		<script src="build/index.js"></script>

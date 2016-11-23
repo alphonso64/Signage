@@ -7,14 +7,12 @@ $(function(){
 	});
 });
 //////////////////////////////////////
-
 //操作界面查询
 function conDown(){
 	if($('input.con_invcode').val().length!=0&&($('input.con_invcode').attr('readonly')!='readonly')){
 		$('#popup p').html('连接中请稍后...');
 		ifButton();
 		$('#popup').removeClass('hidden');
-		
 		$.ajax({
 			type:"get",
 			url:"/Signage/rest/upload/reqDispatchFileDetails?invcode="+$('input.con_invcode').val(),
@@ -26,6 +24,7 @@ function conDown(){
 					$('input.con_query').removeClass('query');//去除样式
 					$('input.con_submit').addClass('sub');//添加样式
 					$('input.con_invcode').removeClass('inv');//去除
+					$('#configure>ul>li:first-child select').attr('disabled','disabled');
 					con_success(e);
 				}else if(e.return_code=="fail"){
 					$('#popup p').html(e.return_msg);
@@ -51,7 +50,6 @@ $(function(){
 		conDown();
 	});
 });
-
 //回车
 function con_keyDown(e){
   	var ev= window.event||e;
@@ -86,8 +84,10 @@ function con_success(e){
 
 //操作界面提交
 $(function(){
-	$('input.con_submit').click(function(){
-		if($('input.con_invcode').attr('readonly')=='readonly'){
+//	$('input.con_submit').click(function(){
+	$('#confirm1 button').eq(1).click(function(){
+	//	if($('input.con_invcode').attr('readonly')=='readonly'){
+			$('#confirm1').addClass('hidden');
 			$('#popup p').html('连接中请稍后...');
 			ifButton();
 			$('#popup').removeClass('hidden');
@@ -112,7 +112,7 @@ $(function(){
 					}
 				}
 			});
-		}
+	//	}
 	});
 });
 
@@ -133,6 +133,7 @@ function opeDown(){
 					$('input.ope_query').removeClass('query');//去除样式
 					$('input.ope_submit').addClass('sub');//添加样式
 					$('input.ope_invcode').removeClass('inv');
+					$('#ope_top>ul>li:first-child select').attr('disabled','disabled');
 					ope_success(e);
 				}else if(e.return_code=="fail"){
 					$('#popup p').html(e.return_msg);
@@ -176,10 +177,10 @@ function ope_success(e){
 		for(var j=0;j<num;j++){
 			sec+='<option>'+e.data[j].name+'</option>';
 		}
-		$('ul.toset_invcode').append('<li><select>'+sec+'</select></li>');
+		$('ul.toset_invcode').append('<li><select>'+sec+'</select><button>提交</button></li>');
 	}
 	for(var a=0;a<num;a++){ //指导书预览
-		$('#thumbnail>div').append('<dl>'+e.data[a].name.replace(/\.pdf/g,'')+'<dt>'+e.data[a].path+'</dl>');
+		$('#thumbnail>div').append('<dl>'+e.data[a].name.replace(/\.pdf/g,'')+'<dt>'+e.data[a].path+'</dt></dl>');
 	}
 	//插入预配置
 	for(var key in e.configure){
@@ -206,16 +207,13 @@ $('#thumbnail>div').on('click','dl',function(){
 			ifLoading();
 		},
 		error:function(){
-			if($('#fullScreen').attr('class')==''){
-				$('#fullScreen').addClass('hidden');
-				$('#popup').removeClass('hidden');
-				$('#popup p').html('服务器连接错误！');
-				ifButton();
-			}
+			$('#fullScreen').addClass('hidden');
+			$('#popup').removeClass('hidden');
+			$('#popup p').html('服务器连接错误！');
+			ifButton();
 		}
 	});
 });
-
 //提示框关闭
 $(function(){
 	$('#popup>div>button').click(function(){
@@ -225,59 +223,106 @@ $(function(){
 //关闭全屏预览
 $(function(){
 	$('#fullScreen').click(function(){
-		$(this).addClass('hidden');	
+		$(this).addClass('hidden');
 	});
 });
 
 //提交按钮
 $(function(){
-	$('input.ope_submit').click(function(){
-		
-		if($('input.ope_invcode').attr('readonly')=='readonly'){//先查询在提交
-			$('#popup p').html('连接中请稍后...');
-			ifButton();
-			$('#popup').removeClass('hidden');
-			var ope_json={};
-			ope_json.invcode=$('input.ope_invcode').val();
-			for(var i=0;i<$('ul.toset_invcode>li').length;i++){
-				if($('ul.toset_invcode>li').eq(i).children('select').val()!='空'){
-					for(var j=0;j<$('#thumbnail>div>dl').length+1;j++){
-						if($('ul.toset_invcode>li').eq(i).children('select').val()==$('ul.toset_invcode>li>select>option').eq(j).html()){
-							ope_json['w'+(i+1)]=$('#thumbnail>div>dl').eq(j-1).children('dt').html();
-							break;
-						}
+	$('#confirm2 button').eq(1).click(function(){
+		$('#confirm2').addClass('hidden');
+		$('#popup p').html('连接中请稍后...');
+		ifButton();
+		$('#popup').removeClass('hidden');
+		var ope_json={};
+		ope_json.invcode=$('input.ope_invcode').val();
+		for(var i=0;i<$('ul.toset_invcode>li').length;i++){
+			if($('ul.toset_invcode>li').eq(i).children('select').val()!='空'){
+				for(var j=0;j<$('#thumbnail>div>dl').length+1;j++){
+					if($('ul.toset_invcode>li').eq(i).children('select').val()==$('ul.toset_invcode>li>select>option').eq(j).html()){
+						ope_json['w'+(i+1)]=$('#thumbnail>div>dl').eq(j-1).children('dt').html();
+						break;
 					}
 				}
 			}
-			var oper=JSON.stringify(ope_json);
-			//配置和预配置发生变化时
-			var man=true;
-			for(var i=0;i<17;i++){
-				if($('ul.proset_invcode>li').eq(i).html()!=($('ul.toset_invcode>li').eq(i).children('select').val().replace(/\.pdf/g,''))){
-					man=false;
-					$.ajax({
-						type:"post",
-						url:"/Signage/rest/upload/setConfigure",
-						contentType : "application/json",
-						data:oper,
-						dataType:"json",
-						success:function(e){
-							$('#popup p').html(e.return_msg);
-							ifButton();
-						},
-						error:function(){
-							$('#popup p').html('服务器连接错误！');
-							ifButton();
-						}
-					});
+		}
+		var oper=JSON.stringify(ope_json);
+		var man=true;
+		for(var i=0;i<17;i++){
+			if($('ul.proset_invcode>li').eq(i).html()!=($('ul.toset_invcode>li').eq(i).children('select').val().replace(/\.pdf/g,''))){
+				$('ul.proset_invcode>li').eq(i).html($('ul.toset_invcode>li').eq(i).children('select').val().replace(/\.pdf/g,''));
+				man=false;
+			}
+		}
+		if(man){
+			$('#popup p').html('和预配置文件相同!');
+			ifButton();
+		}else{
+			$.ajax({
+				type:"post",
+				url:"/Signage/rest/upload/setConfigure",
+				contentType : "application/json",
+				data:oper,
+				dataType:"json",
+				success:function(e){
+					$('#popup p').html(e.return_msg);
+					ifButton();
+				},
+				error:function(){
+					$('#popup p').html('服务器连接错误！');
+					ifButton();
+				}
+			});
+		}
+	});
+	//单个提交
+	$('ul.toset_invcode').on('click','button',function(){
+		if($(this).prev('select').val().replace(/\.pdf/g,'') != $('ul.proset_invcode>li').eq($(this).parent().index()).html()){
+			$('#confirm3').fadeIn(200);
+		}
+		$(this).parent().addClass('abc');
+	});
+	$('#confirm3 button').eq(0).click(function(){//取消
+		$('#confirm3').fadeOut(200);
+		$('ul.toset_invcode>li.abc').removeClass('abc');
+	});
+	///////////////////////////////////////
+	$('#confirm3 button').eq(1).click(function(){
+		$('#confirm3').fadeOut(200);
+		$('#popup p').html('连接中请稍后...');
+		ifButton();
+		$('#popup').removeClass('hidden');
+		var wnum=$('ul.toset_invcode>li.abc select').val().replace(/\.pdf/g,'');
+		console.log(wnum);
+		var rePath={};
+		rePath.invcode=$('input.ope_invcode').val();
+		if(wnum != '空'){
+			for(var i=0;i<$('#thumbnail>div>dl').length+1;i++){
+				if( wnum ==  $('#thumbnail>div>dl').eq(i).html().replace(/<dt>.*<\/dt>/g,'')){
+					rePath['w'+($('ul.toset_invcode>li.abc').index()+1)] = $('#thumbnail>div>dl').eq(i).children('dt').html();
 					break;
 				}
 			}
-			if(man){//相同
-				$('#popup p').html('和预配置文件相同!');
+		}else{
+			rePath['w'+($('ul.toset_invcode>li.abc').index()+1)] = 'null';
+		}
+		$('ul.proset_invcode>li').eq($('ul.toset_invcode>li.abc').index()).html(wnum);
+		$.ajax({
+			type:"post",
+			url:"/Signage/rest/upload/setSpecificConfigure",
+			contentType : "application/json",
+			data:JSON.stringify(rePath),
+			dataType:"json",
+			success:function(e){
+				$('#popup p').html(e.return_msg);
+				ifButton();
+			},
+			error:function(){
+				$('#popup p').html('服务器连接错误！');
 				ifButton();
 			}
-		}
+		});
+		$('ul.toset_invcode>li.abc').removeClass('abc');
 	});
 });
 
@@ -292,6 +337,7 @@ $(function(){
 		$('input.con_query').addClass('query');
 		$('input.con_submit').removeClass('sub');
 		$('input.con_invcode').addClass('inv');
+		$('#configure>ul>li:first-child select').removeAttr('disabled');
 	});
 });
 ///配置清空
@@ -305,6 +351,7 @@ $(function(){
 		$('input.ope_query').addClass('query');
 		$('input.ope_submit').removeClass('sub');
 		$('input.ope_invcode').addClass('inv');
+		$('#ope_top>ul>li:first-child select').removeAttr('disabled');
 	});
 });
 ////文件提交
@@ -366,6 +413,204 @@ function ifLoading(){
 		$('#fullScreen iframe').show();
 	}
 }
+//确认提交
+$(function(){
+	//1
+	$('#confirm1 button').eq(0).click(function(){
+		$('#confirm1').addClass('hidden');
+	});
+	$('input.con_submit').click(function(){
+		if($('input.con_invcode').attr('readonly')=='readonly'){
+			$('#confirm1').removeClass('hidden');
+		}
+	});
+	//2
+	$('#confirm2 button').eq(0).click(function(){
+		$('#confirm2').addClass('hidden');
+	});
+	$('input.ope_submit').click(function(){
+		if($('input.ope_invcode').attr('readonly')=='readonly'){//先查询在提交
+			$('#confirm2').removeClass('hidden');
+		}
+	});
+});
+//数据转换
+$(function(){
+	$('#ope_main>input').click(function(){
+		if($('input.ope_invcode').attr('readonly')=='readonly'){
+			for(var i=0;i<17;i++){
+				if($('.proset_invcode>li').eq(i).html()=='空'){
+					$('.toset_invcode>li').eq(i).children('select').val('空');
+				}
+				else{
+					console.log($('.proset_invcode>li').eq(i).html()+'.pdf');
+					$('.toset_invcode>li').eq(i).children('select').val($('.proset_invcode>li').eq(i).html()+'.pdf');
+				}
+			}
+		}
+	});
+});
+
+//文件管理
+$(function(){
+	//文件刷新按钮 meixie
+	$('#btn').click(function(){
+		$.ajax({
+			type:"get",
+			url:"/Signage/rest/upload/getProductList",
+			dataType:"json",
+			success:function(e){
+				fileLoad(e);
+			}
+		});
+	});
+	//上下翻页
+	$('#file_jump>li').eq(0).click(function(){
+		if($('#file_jump input').val().length == 0){
+			$('#file_jump input').val(1);
+			$('#file_box>ul').eq(0).show();////
+			$('#file_box>ul').eq($('#file_jump input').val()-1).siblings().hide();
+		}else if($('#file_jump input').val() != 1 && $('#file_jump b').html() != 0){
+			$('#file_jump input').val($('#file_jump input').val()-1);
+			$('#file_box>ul').eq($('#file_jump input').val()-1).show();////
+			$('#file_box>ul').eq($('#file_jump input').val()-1).siblings().hide();
+		}
+	});
+	$('#file_jump>li').eq(2).click(function(){
+		if($('#file_jump input').val().length == 0){
+			$('#file_jump input').val(1);
+			$('#file_box>ul').eq(0).show();////
+			$('#file_box>ul').eq($('#file_jump input').val()-1).siblings().hide();
+		}else if($('#file_jump input').val() != $('#file_jump b').html() && $('#file_jump b').html() != 0){
+			$('#file_jump input').val(Number($('#file_jump input').val())+1);
+			$('#file_box>ul').eq($('#file_jump input').val()-1).show();////
+			$('#file_box>ul').eq($('#file_jump input').val()-1).siblings().hide();
+		}
+	});
+	//内部动画样式  加载
+	$('#file_box').on('click','li',function(){
+		var aLi=$(this);
+		$.ajax({
+			type:"get",
+			url:"/Signage/rest/upload/reqDispatchFileDetails?invcode="+(aLi.children('p').children('b').html()),
+			dataType:"json",
+			cache:true,
+			success:function(e){
+				aLi.children('div').html('');
+				if(e.return_code=="success"){
+					for(var i=0;i<e.data.length;i++){ //指导书预览
+						aLi.children('div').append('<dl>'+e.data[i].name.replace(/\.pdf/g,'')+'<dt>'+e.data[i].path+'</dt></dl>');
+					}
+					aLi.children('div').slideToggle(200);
+					aLi.siblings().children('div').slideUp(200);
+				}
+			},
+			error:function(){
+				aLi.children('div').html('加载失败...');
+				aLi.children('div').slideToggle(200);
+				aLi.siblings().children('div').slideUp(200);
+			}
+		});
+		/****待定
+		 * $(this).children('div').slideToggle(200);
+		 * $(this).siblings('li.sh').children('div').slideUp(200);
+		 * $(this).siblings('li.sh').removeClass('sh');
+		 * $(this).addClass('sh');
+		****/
+	});
+	//文件pdf预览
+	$('#file_box').on('click','dl',function(e){
+		e.stopPropagation();
+		$('#fullScreen').removeClass('hidden');
+		$('#fullScreen iframe').attr('src','');
+		ifLoading();
+		var dlUrl="/Signage/rest/upload/reqpdffile?path="+$(this).children('dt').html();
+		$.ajax({
+			type:"get",
+			url:dlUrl,
+			success:function(){
+				$('#fullScreen iframe').attr('src',dlUrl);
+				ifLoading();
+			},
+			error:function(){
+				$('#fullScreen').addClass('hidden');
+				$('#popup').removeClass('hidden');
+				$('#popup p').html('服务器连接错误！');
+				ifButton();
+			}
+		});
+	});
+	//文件查找
+	$('#fileQuery>button').click(function(e){
+		e.preventDefault();
+		fileQueryBtn();
+	});
+});
+//文件查找
+function fileQueryBtn(){
+	if($('#fileQuery>input').val().length!=0){
+		$('#file_box>ul.fileQuery').remove();
+		$('#file_box>ul').hide();
+		var queryLi='';
+		for(var i=0;i<$('#file_jump b').html();i++){
+			var jumpLi=$('#file_box>ul').eq(i).children('li');
+			for(var j=0; j<jumpLi.length; j++){
+				if(jumpLi.eq(j).children('p').children('b').html().indexOf($('#fileQuery>input').val()) >= 0){
+					queryLi+='<li>' + jumpLi.eq(j).html().replace(/style="display: block;"/g,'') + '</li>';
+				}
+			}
+		}
+		$('#file_box').append('<ul class="fileQuery">' + queryLi + '</ul>');
+	}
+}
+function file_keyDown(e){
+  	var ev= window.event||e;
+  	if (ev.keyCode == 13) {
+		fileQueryBtn();
+  	}
+}
+//跳页按钮
+function jumpBtn(){
+	if( $('#file_jump input').val() <= $('#file_jump b').html() && $('#file_jump input').val().length !=0 ){
+		$('#file_left>li').eq($('#file_jump input').val()-1).show();////
+		$('#file_left>li').eq($('#file_jump input').val()-1).siblings().hide();
+	}
+}
+$('#file_jump>li:last-child button').click(function(){
+	jumpBtn();
+});
+function jumph(e){
+  	var ev= window.event||e;
+  	if (ev.keyCode == 13) {
+		jumpBtn();
+  	}
+}
+//文件列表的加载
+function fileLoad(){
+	$.ajax({
+		type:"get",
+		url:"/Signage/rest/upload/getProductList",
+		dataType:"json",
+		success:function(e){
+			var Eth = Math.ceil(e.data.length/10);//页数
+			$('#file_jump b').html(Eth);//页数加载
+			$('#file_box').html('');//清空内容
+			$('#file_jump input').val(1);
+			for(var i=0,a=0;i<Eth;i++){
+				var li_box='';
+				for(var j=a==0?a:a+1; j<(i+1)*10 && j<e.data.length;j++){
+					a=j;
+					li_box+='<li><p><b>'+e.data[j].invcode+'</b>'+e.data[j].invstd+'</p><div></div></li>';
+				}
+				var ul_box='<ul>'+li_box+'</ul>';
+				$('#file_box').append(ul_box);
+			}
+			$('#file_box>ul:first-child').show();
+		}
+	});
+}
+
+
 window.onload=function(){
 	ifLoading();
 	$('#con_box>ul').eq(0).append('<li>工位号</li>');
@@ -375,22 +620,7 @@ window.onload=function(){
 		$('#con_box>ul').eq(1).append('<li></li>');
 	}
 }
-//
-//$(function(){
-//	$('input[class$="_invcode"]').focus(function(){
-//		if($(this).attr('readonly')=='readonly'){
-//			$(this).removeClass('inv');
-//		}else{
-//			$(this).addClass('inv');
-//		}
-//	}).blur(function(){
-//		if($(this).attr('readonly')=='readonly'){
-//			$(this).removeClass('inv');
-//		}else{
-//			$(this).addClass('inv');
-//		}
-//	});
-//});
+
 
 
 

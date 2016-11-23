@@ -81,10 +81,11 @@ public class DispatchServiceImpl implements DispatchService {
 			return message;
 		}
 		boolean flag = rmLineDaoImpl.updateRmLine(rmLine);
-		System.out.println("updateRmLine:"+flag+" "+rmLine.getW1());
+//		System.out.println("updateRmLine:"+flag+" "+rmLine.getW1());
 
 		for (WebSocketWorker item : WebSocketWorker.webSocketSet) {
 			try {
+			
 				if (item.ID != null && item.ID.getProductionline()!=null) {
 					if (item.ID.getProductionline().equals(line.toUpperCase())) {
 						item.sendMessage(" ");
@@ -135,6 +136,174 @@ public class DispatchServiceImpl implements DispatchService {
 		
 		configure.setID(configure_id.getID());
 		configureDaoImpl.updateConfigure(configure);
+		message.setReturn_code(MESSAGE.RETURN_SUCCESS);
+		message.setReturn_msg(MESSAGE.CONFIGURE__SUCCESS);
+		return message;
+	}
+
+	@Override
+	public ReturnMessage setSpecificConfigure(Configure configure) {
+		ReturnMessage message = new ReturnMessage();
+		message.setReturn_code(MESSAGE.RETURN_FAIL);
+		message.setReturn_msg(MESSAGE.CONFIGURE__FAIL);
+		Configure configure_id = configureDaoImpl.getConfigure(configure.getInvcode());
+		if(configure_id== null)
+			return message;
+		
+		String temp = configure.getW1();
+		if(temp!=null){
+			if(temp.equals("null")){
+				configure_id.setW1(null);
+			}else{
+				configure_id.setW1(temp);
+			}
+		}
+		
+		temp = configure.getW2();
+		if(temp!=null){
+			if(temp.equals("null")){
+				configure_id.setW2(null);
+			}else{
+				configure_id.setW2(temp);
+			}
+		}
+		
+		temp = configure.getW3();
+		if(temp!=null){
+			if(temp.equals("null")){
+				configure_id.setW3(null);
+			}else{
+				configure_id.setW3(temp);
+			}
+		}
+		
+		temp = configure.getW4();
+		if(temp!=null){
+			if(temp.equals("null")){
+				configure_id.setW4(null);
+			}else{
+				configure_id.setW4(temp);
+			}
+		}
+		
+		temp = configure.getW5();
+		if(temp!=null){
+			if(temp.equals("null")){
+				configure_id.setW5(null);
+			}else{
+				configure_id.setW5(temp);
+			}
+		}
+		
+		temp = configure.getW6();
+		if(temp!=null){
+			if(temp.equals("null")){
+				configure_id.setW6(null);
+			}else{
+				configure_id.setW6(temp);
+			}
+		}
+		
+		temp = configure.getW7();
+		if(temp!=null){
+			if(temp.equals("null")){
+				configure_id.setW7(null);
+			}else{
+				configure_id.setW7(temp);
+			}
+		}
+		
+		temp = configure.getW8();
+		if(temp!=null){
+			if(temp.equals("null")){
+				configure_id.setW8(null);
+			}else{
+				configure_id.setW8(temp);
+			}
+		}
+		
+		temp = configure.getW9();
+		if(temp!=null){
+			if(temp.equals("null")){
+				configure_id.setW9(null);
+			}else{
+				configure_id.setW9(temp);
+			}
+		}
+		
+		temp = configure.getW10();
+		if(temp!=null){
+			if(temp.equals("null")){
+				configure_id.setW10(null);
+			}else{
+				configure_id.setW10(temp);
+			}
+		}
+		
+		temp = configure.getW11();
+		if(temp!=null){
+			if(temp.equals("null")){
+				configure_id.setW11(null);
+			}else{
+				configure_id.setW11(temp);
+			}
+		}
+		
+		temp = configure.getW12();
+		if(temp!=null){
+			if(temp.equals("null")){
+				configure_id.setW12(null);
+			}else{
+				configure_id.setW12(temp);
+			}
+		}
+		
+		temp = configure.getW13();
+		if(temp!=null){
+			if(temp.equals("null")){
+				configure_id.setW13(null);
+			}else{
+				configure_id.setW13(temp);
+			}
+		}
+		
+		temp = configure.getW14();
+		if(temp!=null){
+			if(temp.equals("null")){
+				configure_id.setW14(null);
+			}else{
+				configure_id.setW14(temp);
+			}
+		}
+		
+		temp = configure.getW15();
+		if(temp!=null){
+			if(temp.equals("null")){
+				configure_id.setW15(null);
+			}else{
+				configure_id.setW15(temp);
+			}
+		}
+		
+		temp = configure.getW16();
+		if(temp!=null){
+			if(temp.equals("null")){
+				configure_id.setW16(null);
+			}else{
+				configure_id.setW16(temp);
+			}
+		}
+		
+		temp = configure.getW17();
+		if(temp!=null){
+			if(temp.equals("null")){
+				configure_id.setW17(null);
+			}else{
+				configure_id.setW17(temp);
+			}
+		}
+		
+		configureDaoImpl.updateConfigure(configure_id);
 		message.setReturn_code(MESSAGE.RETURN_SUCCESS);
 		message.setReturn_msg(MESSAGE.CONFIGURE__SUCCESS);
 		return message;

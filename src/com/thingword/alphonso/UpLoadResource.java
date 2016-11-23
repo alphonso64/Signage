@@ -52,10 +52,17 @@ public class UpLoadResource {
 	@Autowired
 	private DispatchServiceImpl dispatchServiceImpl;
 
-	@POST
-	@Path("/getPro")
+//	@POST
+//	@Path("/getPro")
+//	@Produces(MediaType.APPLICATION_JSON)
+//	public List<Product> getPro() {
+//		return productServiceImpl.ListAllProduct();
+//	}
+	
+	@GET
+	@Path("/getProductList")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Product> getPro() {
+	public ReturnData<Product> getProductList() {
 		return productServiceImpl.ListAllProduct();
 	}
 
@@ -64,7 +71,7 @@ public class UpLoadResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	public ReturnMessage dispatchFiles(@QueryParam("productionline") String productline,
 			@QueryParam("invcode") String invcode) {
-		System.out.println("dispatchFiles" + productline + " " + invcode);
+//		System.out.println("dispatchFiles" + productline + " " + invcode);
 		return dispatchServiceImpl.dispatchFileTosWorker(productline.toUpperCase(), invcode.toUpperCase());
 
 	}
@@ -73,7 +80,7 @@ public class UpLoadResource {
 	@Path("/reqDispatchFileDetails")
 	@Produces(MediaType.APPLICATION_JSON)
 	public ReturnConfigureData<DispatchFile> reqDispatchFileDetails(@QueryParam("invcode") String invcode) {
-		System.out.println("ReturnConfigureData");
+//		System.out.println("ReturnConfigureData");
 		return dispatchServiceImpl.getDispatchFileDetail(invcode.toUpperCase());
 	}
 
@@ -106,13 +113,13 @@ public class UpLoadResource {
 	public ReturnMessage setConfigure(Configure configure) {
 		return dispatchServiceImpl.setConfigure(configure);
 	}
-
-	@GET
-	@Path("/getconfigure")
+	
+	@POST
+	@Path("/setSpecificConfigure")
+	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Configure getconfigure() {
-		Configure configure = new Configure();
-		return configure;
+	public ReturnMessage setSpecificConfigure(Configure configure) {
+		return dispatchServiceImpl.setSpecificConfigure(configure);
 	}
 
 	@GET
@@ -120,7 +127,6 @@ public class UpLoadResource {
 	@Produces("application/pdf")
 	public byte[] reqpdffile(@QueryParam("path") String path, @Context HttpServletRequest request,
 			@Context HttpServletResponse response) {
-//		System.out.println("reqpdffile:" + path);
 		byte[] bytes = FileUtil.getFile(path);
 		response.addHeader("Content-Length", String.valueOf(bytes.length));
 		return bytes;

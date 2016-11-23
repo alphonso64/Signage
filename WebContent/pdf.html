@@ -2,7 +2,9 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<meta http-equiv="Expires" CONTENT="0">
+		<meta HTTP-EQUIV="Pragma" CONTENT="no-cache"> 
+		<meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache"> 
+		<meta HTTP-EQUIV="Expires" CONTENT="0">
 		<title>达峰科技作业指导书</title>
 		<link rel="shortcut icon" href="web/images/dafeng.ico"/>
 		<style type="text/css">
@@ -31,12 +33,13 @@
 		</div>
 		<a onclick="window.location.reload(true);"></a>
 		<script src="web/jquery-1.11.3.js"></script>
+		<script src="build/reconnecting-websocket.min.js"></script>
 		<script>
 			var webhref=window.location.href
 					.replace(/(\/[a-zA-Z]+)*\.html\?*.*/g,'/Signage/websocket')
 					.replace(/https*/g,'ws');
 			
-	        var socket = new WebSocket(webhref);
+			var socket = new ReconnectingWebSocket(webhref);
 	        socket.onopen = function(e) {
 	            var proObject ={ productionline : localStorage.productionline,
 										station : localStorage.station
@@ -48,8 +51,6 @@
 	            console.log('message', e.data);
 	           $('a').click();
 	        }
-	        socket.onclose = function(e) {console.log('close');}
-	        socket.onerror = function(e){console.log('Error');}
 		</script>
 	</body>
 </html>

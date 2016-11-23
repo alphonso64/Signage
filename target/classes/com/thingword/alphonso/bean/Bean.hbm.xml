@@ -10,6 +10,7 @@
 			<generator class="native" />
 		</id>
 		<property name="invcode" type="string" />
+		<property name="invstd" type="string" />
 		<property name="path" type="string" />
 		<property name="pdfpath" type="string" />
 	</class>

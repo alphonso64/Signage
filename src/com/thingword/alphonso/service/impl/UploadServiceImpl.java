@@ -86,14 +86,12 @@ public class UploadServiceImpl implements UploadService {
 		ReturnMessage returnMessage = new ReturnMessage();
 		returnMessage.setReturn_code(MESSAGE.RETURN_FAIL);
 		returnMessage.setReturn_msg(MESSAGE.UPLOAD_FIAL);
-		String parent = parseProductCraftFileName(name);
+		Product product = parseProductCraftFileName(name);
+		String parent = product.getInvcode();
 		if (parent == null) {
 			returnMessage.setReturn_msg(MESSAGE.UPLOAD_FAIL_FORMAT);
 			return returnMessage;
 		}
-		Product product = new Product();
-		
-		product.setInvcode(parent);
 		product.setPath(prePath + parent);
 		if (!ZipUtil.unzip(inputStream, prePath + parent)) {
 			returnMessage.setReturn_msg(MESSAGE.UPLOAD_FAIL_UNZIP);
@@ -245,18 +243,23 @@ public class UploadServiceImpl implements UploadService {
 		return val;
 	}
 
-	private String parseProductCraftFileName(String name) {
+	private Product parseProductCraftFileName(String name) {
+		Product product = new Product();
 		try {
-			String pname = new String(name.getBytes("ISO8859-1"), "GBK");
-			String regex = "[0-9A-Za-z]+\\.zip";
-			Pattern p1 = Pattern.compile(regex);
-
+			String pname = new String(name.getBytes("ISO8859-1"), "utf-8");
+			String regex = "[0-9A-Za-z]+\\(.+\\)\\.zip";
+			String regex_a = "[0-9A-Za-z]+.zip";
+			Pattern p1 = Pattern.compile(regex_a);
+			Pattern p2 = Pattern.compile(regex);
 			if (p1.matcher(pname).matches()) {
-				return pname.substring(0, pname.length() - 4);
+				product.setInvcode(pname.substring(0, pname.length() - 4));
+			}else if(p2.matcher(pname).matches()){
+				product.setInvcode(pname.substring(0,pname.indexOf("(")));
+				product.setInvstd(pname.substring(pname.indexOf("(")+1,pname.indexOf(")")));
 			}
 		} catch (UnsupportedEncodingException e) {
 		}
-		return null;
+		return product;
 	}
 
 }

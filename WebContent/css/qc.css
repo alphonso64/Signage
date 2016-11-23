@@ -18,26 +18,33 @@ input,button,select{
 body{
 	margin: 0;
 	background-color: #EDECEC;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
 }
 #header{
 	text-align: center;
-	padding: 10px;
+	height: 6%;
+	/*min-height: 50px;*/
 	color: #FFFF00;
 	font-size: 40px;
-	background-color: #377EA8;
-	margin-bottom: 20px;
-	box-shadow: 3px 3px 7px 1px #9D9B9D;
+	background-color: #29BFD6;
+	box-shadow: 3px 3px 7px 1px #BFBFBF;
+	margin-bottom: 0.7%;
 }
 #main{
-	
-	
+	height: 92%;
+	/*min-height: 700px;*/
 }
 #main_left{
 	color: #fff;
 	width: 200px;
 	float: left;
-	min-height: 800px;
-	box-shadow: 3px 3px 7px 1px #9D9B9D;
+	height: 100%;
+	margin-right: 0.7%;
+	box-shadow: 3px 3px 7px 1px #ADADAD;
 	background-color: #fff;
 }
 
@@ -49,7 +56,6 @@ body{
 	padding-top: 20px;
 	padding-bottom: 20px;
 	font-weight: bold;
-	border-radius: 30px 0 10px 10px;
 	cursor: pointer;
 	box-shadow: 2px 2px 5px 0.5px #9D9B9D;
 	position: relative;
@@ -75,10 +81,10 @@ body{
 	padding: 10px;
 }
 #main_box{
-	margin-left: 220px;
-	margin-right: 20px;
+	height: 100%;
+	margin-right: 0.7%;
 	overflow: hidden;
-	box-shadow: 3px 3px 7px 1px #9D9B9D;
+	box-shadow: 3px 3px 7px 1px #ADADAD;
 }
 #main_box>div{
 	display: none;
@@ -95,10 +101,11 @@ body{
 	padding: 20px 3%;
 	
 }
-
+#bad{
+	height: 100%;
+}
 ul.bad_box{	
-	overflow: hidden;
-	min-height: 742px;
+	height: 100%;
 }
 
 ul.bad_box>li{
@@ -123,9 +130,14 @@ ul.bad_box>li:active{
 	top: 3px;
 	left: 3px;
 }
+/*图表大小*/
+#chart{
+	width: 100%;
+	height: 100%;
+}
+#histogram{
 
-
-
+}
 
 
 
@@ -185,12 +197,10 @@ ul.bad_box>li:active{
 }
 #chose_box label{
 	padding: 5px;
-	border: 2px solid #fff;
-	border-radius: 8px;
+	border: 1px solid #fff;
 }
 #chose_box label.checked{
   background-color: #e4393c;
-  
 }
 #chose_box>ul{
 	overflow: hidden;

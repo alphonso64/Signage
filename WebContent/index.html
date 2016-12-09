@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="UTF-8">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<meta HTTP-EQUIV="Pragma" CONTENT="no-cache"> 
 		<meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache"> 
 		<meta HTTP-EQUIV="Expires" CONTENT="0">
@@ -15,45 +15,99 @@
 		</header>
 		<div id="nav">
 			<ul class="menu">
-				<li class="selected"><p>操作界面</p></li>
-				<li><p>配置界面</p></li>
+				<li class="selected"><p>换线操作</p></li>
+				<li><p>详细配置</p></li>
 				<li><p>文件管理</p></li>
+				<li><p>通用设置</p></li>
 			</ul>
 		</div>
 		<div id="main">
 			<!--操作界面-->
 			<div id="configure" class="selected">
-				<h1>操作界面</h1>
+				<h1>换线操作</h1>
 				<ul>
 					<li>
 						流水线编号:
-						<select>
-							<option value="B1">B1</option>
+						<select class="con_sec">
 						</select>
 					</li>
 					<li>
-						文件编号:
-						<input class="con_invcode inv" type="text" onkeyup="value=value.replace(/[^\w\.\/]/ig,'')" placeholder="请输入文件编号" onkeydown="con_keyDown(event)"/>
+						文件一编号:
+						<input class="con_invcode inv" type="text" onkeyup="value=value.replace(/[^\w\.\/]/ig,'')" placeholder="请输入文件一编号" onkeydown="con_keyDown1(event)"/>
 						<input class="con_query query" type="button" value="查询"/>
 						<input class="con_clear" type="button" value="清空"/>
 					</li>
 					<li>
-						<input class="con_submit" type="submit" value="提交"/>
+						<input class="con_submit" type="submit" value="换线"/>
 					</li>
 				</ul>
 				<div id="con_box">
-					<ul></ul><ul></ul>
+					<ul>
+						<li>工位号</li><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li>
+						<li>10</li><li>11</li><li>12</li><li>13</li><li>14</li><li>15</li><li>16</li><li>17</li>
+					</ul>
+					<ul>
+						<li>文件名</li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+						<li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+					</ul>
+					<ul>
+						<li>视频名</li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+						<li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+					</ul>
+				</div>
+				<br/>
+				<!--混合配置-->
+				<button class="hidden">显示混合配置</button>
+				<span>
+					文件二编号: <input class="con_invcode2 inv" type="text" onkeyup="value=value.replace(/[^\w\.\/]/ig,'')" placeholder="请输入文件二编号" onkeydown="con_keyDown2(event)"/>
+					<input class="con_query2 query" type="button" value="查询"/>
+					<input class="con_clear2" type="button" value="清空"/>
+				</span>
+				<div id="btn_box">
+					<!--文件二-->
+					<div id="con_box1">
+						<ul>
+							<li>工位号</li><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li>
+							<li>10</li><li>11</li><li>12</li><li>13</li><li>14</li><li>15</li><li>16</li><li>17</li>
+						</ul>
+						<ul>
+							<li>文件名</li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+							<li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+						</ul>
+						<ul>
+							<li>视频名</li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+							<li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+						</ul>
+					</div>
+					<!--最终配置-->
+					<p>混合配置 : 按住左键框选，工位号变红代表所选工位配置为文件二。</p>
+					<div id="con_box2">
+						<ul>
+							<li>工位号</li><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li>
+							<li>10</li><li>11</li><li>12</li><li>13</li><li>14</li><li>15</li><li>16</li><li>17</li>
+						</ul>
+						<ul>
+							<li>文件名</li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+							<li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+						</ul>
+						<ul>
+							<li>视频名</li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+							<li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+						</ul>
+					</div>
+					<!--绘图-->
+					<div id="rubberbandDiv"></div>
+					<canvas id="mycanvas"></canvas>
+					<button>还原混合配置</button>
 				</div>
 			</div>
-			
 			<!--配置界面-->
 			<div id="operation">
-				<h1>配置界面</h1>
+				<h1>详细配置</h1>
 				<div id="ope_top">
 					<ul>
 						<li>流水线编号:
-							<select>
-								<option value="B1">B1</option>
+							<select class="ope_sec">
 							</select>
 						</li>
 						<li>文件编号:
@@ -62,12 +116,13 @@
 							<input class="ope_clear" type="button" value="清空"/>
 						</li>
 						<li>
-							<input class="ope_submit" type="submit" value="提交"/>
+							<input class="ope_submit" type="submit" value="配置提交"/>
+							<input class="ope_changeLine" type="button" value="换线" />
 						</li>
 					</ul>
 				</div>
 				<div id="ope_main">
-					<input type="button" value=">>"/>
+					<input type="button" value=">>"/><!--转移-->
 					<!-------员工座位号------->
 					<div id="station">
 						<p>工位号</p>
@@ -77,24 +132,37 @@
 							<li>14号</li><li>15号</li><li>16号</li><li>17号</li>
 						</ul>
 					</div>
-					
 					<!-------预配置指导书文件------->
 					<div id="proset_invcode">
 						<p>预配置文件</p>
 						<ul class="proset_invcode">
 						</ul>
 					</div>
-					
 					<!-------待配置指导书------->
 					<div id="toset_invcode">
 						<p>待配置文件</p>
 						<ul class="toset_invcode">
 						</ul>
 					</div>
+					<!--视频-->
+					<div id="video">
+						<p>视频文件</p>
+						<ul class="video">
+						</ul>
+					</div>
 					<!------指导书预览-------->
 					<div id="thumbnail">
-						<p>指导书缩略图</p>
+						<p>指导书和视频文件预览</p>
 						<div>
+							<fieldset id="pdfView">
+	    						<legend>指导书文件缩略图</legend>
+					  		</fieldset>
+					  		<fieldset id="videoView">
+	    						<legend>视频文件缩略图</legend>
+					  		</fieldset>
+					  		<fieldset id="publicVideo">
+	    						<legend>通用视频文件缩略图</legend>
+					  		</fieldset>
 						</div>
 					</div>
 				</div>
@@ -105,8 +173,12 @@
 				<div id="file_main">
 					<div id="file_input">
 						<form id="fileUp" method="post" enctype="multipart/form-data">
-	   					文件上传：<input type="text" readonly="readonly" size="20" name="upfile" id="upfile" value="未选择文件"/><input id="btnSubmit" type="button" value="浏览"/>
+	   						文件上传：<input type="text" size="20" name="upfile" id="upfile" value="未选择文件" readonly="readonly"/><input id="btnSubmit" type="button" value="浏览"/>
 							<input type="file" name="filepath" size="45" id="path" /><input id="flieSubmit" type="button" value="上传"/>
+						</form>
+						<form id="videofileUp" method="post" enctype="multipart/form-data">
+							通用视频上传: <input type="text" size="20" name="upvideofile" id="upvideofile" value="未选择文件" readonly="readonly"/><input id="videobtnSubmit" type="button" value="浏览"/>
+							<input type="file" name="filepath" size="45" id="videopath" /><input id="videoflieSubmit" type="button" value="上传"/>
 						</form>
 						<form id="fileQuery">
 						文件搜索：<input type="text" onkeyup="value=value.replace(/[^\w\.\/]/ig,'')" placeholder="请输入文件编号" onkeydown="file_keyDown(event)"/><button>搜索</button>
@@ -114,13 +186,11 @@
 					</div>
 					<div id="file_box">
 						<!--填充数据-->
-						<ul>
-						</ul>
 					</div>
 					<!--跳页-->
 					<ul id="file_jump">
 						<li><button>&lt;&lt;</button></li>
-						<li><input type="text" id="" value="1" onkeyup="value=value.replace(/\D/g,'')" onafterupdate="value=value.replace(/\D/g,'')" onkeydown="jumph(event)"/></li>
+						<li><input type="text" id="" value="1" onkeyup="value=value.replace(/\D/ig,'')" onafterupdate="value=value.replace(/\D/ig,'')" onkeydown="jumph(event)"/></li>
 						<li><button>&gt;&gt;</button></li>
 						<li>一共<b>0</b>页</li>
 						<li><button>跳页</button></li>
@@ -128,8 +198,39 @@
 					<button id="btn">点击刷新文件列表</button>
 				</div>
 			</div>
+			<div id="publicset" >
+				<h1>通用设置</h1>
+				<ul class="publicset">
+					<li>
+						PDF文件显示时间： <select>
+							<option value="10">10秒</option><option value="20">20秒</option><option value="30">30秒</option>
+							<option value="60">1分钟</option><option value="90">1分30秒</option><option value="120">2分钟</option>
+							<option value="150">2分30秒</option><option value="180">3分钟</option><option value="240">4分钟</option>
+							<option value="300">5分钟</option><option value="600">10分钟</option><option value="900">15分钟</option>
+						</select>
+						视频循环次数 : <select>
+							<option value="1">1</option><option value="2">2</option><option value="3">3</option>
+							<option value="4">4</option><option value="5">5</option><option value="6">6</option>
+							<option value="7">7</option><option value="8">8</option><option value="9">9</option>
+							<option value="10">10</option><option value="11">11</option><option value="12">12</option>
+							<option value="13">13</option><option value="14">14</option><option value="15">15</option>
+						</select>次
+						<button>提交</button>
+					</li>
+					<li id="line">
+						<!--<p>流水线管理：</p>
+						<ul class="line">
+							<li>
+								流水线编号
+							</li>
+						</ul>
+						<p>
+							<button>增加流水线</button>
+						</p>-->
+					</li>
+				</ul>
+			</div>
 		</div>
-		
 		<!--操作界面弹出框-->
 		<div id="popup" class="hidden">
 			<div>
@@ -137,25 +238,30 @@
 				<button>确定</button>
 			</div>
 		</div>
-		
 		<!-----pdf全屏预览框----->
-		<div id="fullScreen" class="hidden">
+		<div id="fullScreen">
 			<div>
 				<iframe src="">
 				</iframe>
 				<img src="web/images/loading.jpg"/>
 			</div>
 		</div>
+		<!--视频全屏预览-->
+		<div id="fullvideo">
+			<video src="" controls="controls">
+				您的浏览器不支持视频播放!
+			</video>
+		</div>
 		<!--确认提交1-->
-		<div id="confirm1" class="hidden">
+		<div id="confirm1">
 			<div>
-				<p>确认提交？</p>
+				<p>确认换线？</p>
 				<button>取消</button>
 				<button>确定</button>
 			</div>
 		</div>
 		<!--确认提交2-->
-		<div id="confirm2" class="hidden">
+		<div id="confirm2">
 			<div>
 				<p>确认提交？</p>
 				<button>取消</button>
@@ -163,9 +269,37 @@
 			</div>
 		</div>
 		<!--单个提交-->
-		<div id="confirm3" class="hidden">
+		<div id="confirm3">
 			<div>
 				<p>确认提交？</p>
+				<button>取消</button>
+				<button>确定</button>
+			</div>
+		</div>
+		<div id="confirm4"><!--配置换线-->
+			<div>
+				<p>确认提交？</p>
+				<button>取消</button>
+				<button>确定</button>
+			</div>
+		</div>
+		<div id="confirm5"><!--文件是否覆盖或者上传-->
+			<div>
+				<p>确认上传？</p>
+				<button>取消</button>
+				<button>确定</button>
+			</div>
+		</div>
+		<div id="confirm6"><!--通用视频是否覆盖或者上传-->
+			<div>
+				<p>确认上传？</p>
+				<button>取消</button>
+				<button>确定</button>
+			</div>
+		</div>
+		<div id="confirm7"><!--pdf和视频时间上传-->
+			<div>
+				<p>确认上传？</p>
 				<button>取消</button>
 				<button>确定</button>
 			</div>

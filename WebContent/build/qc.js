@@ -1,28 +1,35 @@
 window.onload=function(){
-	
+	$.ajax({
+		type:"get",
+		url:"qc.php",
+		dataType:"json",
+		success:function(e){
+			if( e.return_code == 'success' ){
+				var badLi = '';
+				for(var i=0; i<e.data.length; i++){
+					badLi += '<li>' + e.data[i].elecode + '</li>';
+				}
+				$('.bad_box').append( badLi );
+			}
+		}
+	});
 }
 //菜单的切换
 $(function(){
 	$('#main_left').on('click','li',function(){
 		$(this).addClass('selected').siblings('li.selected').removeClass('selected');
-//		$('#main_box>div').eq($(this).index()-1).addClass('selected').siblings('div.selected').removeClass('selected');
 		$('#main_box>div').eq($(this).index()-1).fadeIn(0).siblings('div').fadeOut(0);
 	});
 });
 
 //错误选择框
 $(function(){
+	$('.bad_box').on('click','li',function(){
+		$('#chose').fadeIn(200);
+	});
 	//选择
 	$('#chose_box>ul label').click(function(){
 		$(this).addClass('checked').parent().siblings().children('label.checked').removeClass('checked');
-		console.log($('label.checked input').val());
-	});
-	//取消
-	$('#chose_box>form input[type="button"]').click(function(){
-		$('#chose').hide();
-		$('#chose_box>div select').val('0');
-		$('#chose_box>div>p>span').html('1');
-		$('#chose_box>ul label.checked').removeClass('checked');
 	});
 	//数量加减
 	$('.subtract').click(function(){
@@ -33,22 +40,48 @@ $(function(){
 	$('.add').click(function(){
 		$(this).siblings('span').html(parseInt($(this).siblings('span').html())+1);
 	});
-	
+	//取消
+	$('.chose_cancel').click(function(){
+		$('#chose').fadeOut(200);
+		$('#chose_box>div select').val('0');
+		$('#chose_box>div>p>span').html('1');
+		$('#chose_box>ul label.checked').removeClass('checked');
+	});
 	//确定
-	
+	$('.chose_confirm').click(function(e){
+		e.preventDefault();
+		if($('#chose_box>ul label').hasClass('checked')){
+			$('#confirm').fadeIn(200);
+		}
+	});
+	//确认提交框
+	$('#confirm button').eq(0).click(function(){
+		$('#confirm').fadeOut(200);
+	});
+	$('#confirm button').eq(1).click(function(){
+		
+		$.ajax({
+			type:"post",
+			url:"",
+			dataType:'json',
+			success: function(){
+				
+			},
+			error: function(){
+				
+			}
+		});
+	});
 });
-
-//确认元件的多少
-$(function(){
+//确认元件的多少计算li的多少
+function liNumber(){
 	var num=$('.bad_box>li').length;
 	if(num>=20){
 		
 	}else if(num>=10){
 		console.log(123);
 	}
-	
-});
-
+}
 //统计图表
 $(function(){
 	require.config({
@@ -63,10 +96,10 @@ $(function(){
 	        'echarts/chart/line'
 	    ],
 	    function (ec) {
-	    	var container = document.getElementById('histogram');
+	    	var container = document.getElementById('chart_box');
 			var resizeContainer = function () {
-    			$('#histogram').css('width',$('#main_box').width()+'px');
-    			$('#histogram').css('height',$('#main_box').height()*0.9+'px');
+    			$('#chart_box').css('width',$('#main_box').width()-3+'px');
+    			$('#chart_box').css('height',$(window).height()-191+'px');
 			};
 			resizeContainer();
 	        var myChart = ec.init(container);
@@ -136,7 +169,7 @@ $(function(){
 					            }
 					        }
 					    },
-					    data: [12,21,10,4,12,5,6,5,25,23,7,24,45,35,9,16,20,3,5],
+					    data: [12,21,10,4,12,5,6,5,25,23,7,24,45,35,9,16,20,3,5]
 					}
 				]
 			};
@@ -314,16 +347,16 @@ $(function(){
 			    ]
 			};
 			// 为echarts对象加载数据
-	        myChart.setOption(option3); 
-	        window.onresize = function () {
-    			//重置容器高宽
-    			resizeContainer();
-    			myChart.resize();
+	        myChart.setOption(option1); 
+			window.onresize = function () {
+			    //重置容器高宽
+			    resizeContainer();
+			    myChart.resize();
 			};
+	        
 	    }
 	);
 })
-
 
 
 

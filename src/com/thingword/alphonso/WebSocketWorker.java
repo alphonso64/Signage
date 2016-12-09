@@ -10,6 +10,7 @@ import org.omg.CORBA.PRIVATE_MEMBER;
 
 import com.google.gson.Gson;
 import com.thingword.alphonso.bean.WebSocketID;
+import com.thingword.alphonso.util.CLog;
 
 /**
  * @ServerEndpoint 注解是一个类层次的注解，它的功能主要是将目前的类定义成一个websocket服务器端,
@@ -37,7 +38,7 @@ public class WebSocketWorker {
         this.session = session;
         webSocketSet.add(this);     //加入set中
         addOnlineCount();           //在线数加1
-//        System.out.println("有新连接加入！当前在线终端为" + getOnlineCount());
+        CLog.Log("有新连接加入！当前在线终端为" + getOnlineCount());
     }
 
     /**
@@ -59,7 +60,7 @@ public class WebSocketWorker {
     public void onMessage(String message, Session session) {
     	Gson gson = new Gson();
     	ID = gson.fromJson(message,WebSocketID.class);
-//    	System.out.println(ID.getProductionline());
+    	CLog.Log("GET mESSAGE");
     }
 
     /**

@@ -19,8 +19,8 @@
 
 var productionline=localStorage.productionline;
 var station=localStorage.station;
-var DEFAULT_URL='/Signage/rest/upload/self?'+'productionline='+productionline+'&station='+station;
-
+var DEFAULT_URL='/Signage/rest/upload/reqUpdatePDF?'+'productionline='+productionline+'&station='+station;
+//var DEFAULT_URL='新F65小尺寸主板工艺文件.pdf';
 var pdfjsWebLibs = {pdfjsWebPDFJS: window.pdfjsDistBuildPdf};
   
 (function () {

@@ -9,6 +9,7 @@ import org.hibernate.Transaction;
 
 import com.thingword.alphonso.bean.db.Configure;
 import com.thingword.alphonso.bean.db.Product;
+import com.thingword.alphonso.bean.db.Set;
 import com.thingword.alphonso.dao.ProductDao;
 import com.thingword.alphonso.util.HibernateUtil;
 
@@ -98,5 +99,71 @@ public class ProductDaoImpl implements ProductDao{
 			s.close();
 		}
 		return product;
+	}
+	
+
+	public boolean deleteSet() {
+		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		Session s = null;
+		Transaction t = null;
+		boolean flag = false;
+		try {
+			s = sessionFactory.openSession();
+			t = s.beginTransaction();
+			String hql = "delete from Set ";
+			s.createQuery(hql).executeUpdate();
+			t.commit();
+			flag = true;
+		} catch (Exception err) {
+			t.rollback();
+			err.printStackTrace();
+		} finally {
+			s.close();
+		}
+		return flag;
+	}
+
+	@Override
+	public boolean updateSet(Set set) {
+		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		Session s = null;
+		Transaction t = null;
+		boolean flag = false;
+		deleteSet();
+		try {
+			s = sessionFactory.openSession();
+			t = s.beginTransaction();
+			s.save(set);
+			t.commit();
+			flag = true;
+		} catch (Exception err) {
+			t.rollback();
+			err.printStackTrace();
+		} finally {
+			s.close();
+		}
+		return flag;
+	}
+
+	@Override
+	public List<Set> getSet() {
+		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		Session s = null;
+		Transaction t = null;
+		List<Set> set = null;
+		try {
+			s = sessionFactory.openSession();
+			t = s.beginTransaction();
+			String hql = "from Set ";
+			Query query = s.createQuery(hql);
+			set =  query.list();
+			t.commit();
+		} catch (Exception err) {
+			t.rollback();
+			err.printStackTrace();
+		} finally {
+			s.close();
+		}
+		return set;
 	}
 }

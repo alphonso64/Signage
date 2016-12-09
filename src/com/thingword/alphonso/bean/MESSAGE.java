@@ -20,6 +20,9 @@ public class MESSAGE {
 	public final static String CONFIGURE__SUCCESS = "配置成功"; 
 	public final static String CONFIGURE__FAIL = "配置失败"; ;
 	
+	public final static String WEBSOCKET__UPDATE = "update"; 
+	public final static String WEBSOCKET__WARNING = "warning"; 
 	
+	public final static String SET__SUCCESS = "设置成功"; ;
 	
 }

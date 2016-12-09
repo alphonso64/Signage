@@ -4,12 +4,15 @@ import java.util.List;
 
 import com.thingword.alphonso.bean.db.Configure;
 import com.thingword.alphonso.bean.db.RmLine;
+import com.thingword.alphonso.bean.db.VideoConfigure;
 
 public class ReturnConfigureData<T> {
 	private String return_msg;
 	private String return_code;
-	private Configure configure;
- 	private List<T> data;
+	private Configure pdfconfigure;
+ 	private List<T> pdf;
+	private VideoConfigure videoconfigure;
+ 	private List<T> video;
 	public String getReturn_msg() {
 		return return_msg;
 	}
@@ -22,17 +25,28 @@ public class ReturnConfigureData<T> {
 	public void setReturn_code(String return_code) {
 		this.return_code = return_code;
 	}
-	public List<T> getData() {
-		return data;
+	public Configure getPdfconfigure() {
+		return pdfconfigure;
 	}
-	public void setData(List<T> data) {
-		this.data = data;
+	public void setPdfconfigure(Configure pdfconfigure) {
+		this.pdfconfigure = pdfconfigure;
 	}
-	public Configure getConfigure() {
-		return configure;
+	public List<T> getPdf() {
+		return pdf;
 	}
-	public void setConfigure(Configure configure) {
-		this.configure = configure;
+	public void setPdf(List<T> pdf) {
+		this.pdf = pdf;
 	}
-
+	public VideoConfigure getVideoconfigure() {
+		return videoconfigure;
+	}
+	public void setVideoconfigure(VideoConfigure videoconfigure) {
+		this.videoconfigure = videoconfigure;
+	}
+	public List<T> getVideo() {
+		return video;
+	}
+	public void setVideo(List<T> video) {
+		this.video = video;
+	}
 }

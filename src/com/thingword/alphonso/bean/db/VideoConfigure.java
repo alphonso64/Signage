@@ -1,6 +1,6 @@
 package com.thingword.alphonso.bean.db;
 
-public class Configure {
+public class VideoConfigure {
 	private int ID;
 	private String invcode;
 	private String w1;
@@ -134,26 +134,26 @@ public class Configure {
 	public void setW17(String w17) {
 		this.w17 = w17;
 	}
-	public Configure reducePath(){
-		w1 = w1==null?null:w1.substring(w1.lastIndexOf("\\")+1,w1.length()-4);
-		w2 = w2==null?null:w2.substring(w2.lastIndexOf("\\")+1,w2.length()-4);
-		w3 = w3==null?null:w3.substring(w3.lastIndexOf("\\")+1,w3.length()-4);
-		w4 = w4==null?null:w4.substring(w4.lastIndexOf("\\")+1,w4.length()-4);
-		w5 = w5==null?null:w5.substring(w5.lastIndexOf("\\")+1,w5.length()-4);
-		w6 = w6==null?null:w6.substring(w6.lastIndexOf("\\")+1,w6.length()-4);
-		w7 = w7==null?null:w7.substring(w7.lastIndexOf("\\")+1,w7.length()-4);
+	public VideoConfigure reducePath(){
+		w1 = w1==null?null:w1.substring(w1.lastIndexOf("\\")+1,w1.length()-5);
+		w2 = w2==null?null:w2.substring(w2.lastIndexOf("\\")+1,w2.length()-5);
+		w3 = w3==null?null:w3.substring(w3.lastIndexOf("\\")+1,w3.length()-5);
+		w4 = w4==null?null:w4.substring(w4.lastIndexOf("\\")+1,w4.length()-5);
+		w5 = w5==null?null:w5.substring(w5.lastIndexOf("\\")+1,w5.length()-5);
+		w6 = w6==null?null:w6.substring(w6.lastIndexOf("\\")+1,w6.length()-5);
+		w7 = w7==null?null:w7.substring(w7.lastIndexOf("\\")+1,w7.length()-5);
 		
-		w8 = w8==null?null:w8.substring(w8.lastIndexOf("\\")+1,w8.length()-4);
-		w9 = w9==null?null:w9.substring(w9.lastIndexOf("\\")+1,w9.length()-4);
-		w10 = w10==null?null:w10.substring(w10.lastIndexOf("\\")+1,w10.length()-4);
-		w11 = w11==null?null:w11.substring(w11.lastIndexOf("\\")+1,w11.length()-4);
-		w12 = w12==null?null:w12.substring(w12.lastIndexOf("\\")+1,w12.length()-4);
-		w13 = w13==null?null:w13.substring(w13.lastIndexOf("\\")+1,w13.length()-4);
-		w14 = w14==null?null:w14.substring(w14.lastIndexOf("\\")+1,w14.length()-4);
+		w8 = w8==null?null:w8.substring(w8.lastIndexOf("\\")+1,w8.length()-5);
+		w9 = w9==null?null:w9.substring(w9.lastIndexOf("\\")+1,w9.length()-5);
+		w10 = w10==null?null:w10.substring(w10.lastIndexOf("\\")+1,w10.length()-5);
+		w11 = w11==null?null:w11.substring(w11.lastIndexOf("\\")+1,w11.length()-5);
+		w12 = w12==null?null:w12.substring(w12.lastIndexOf("\\")+1,w12.length()-5);
+		w13 = w13==null?null:w13.substring(w13.lastIndexOf("\\")+1,w13.length()-5);
+		w14 = w14==null?null:w14.substring(w14.lastIndexOf("\\")+1,w14.length()-5);
 		
-		w15 = w15==null?null:w15.substring(w15.lastIndexOf("\\")+1,w15.length()-4);
-		w16 = w16==null?null:w16.substring(w16.lastIndexOf("\\")+1,w16.length()-4);
-		w17 = w17==null?null:w17.substring(w17.lastIndexOf("\\")+1,w17.length()-4);
+		w15 = w15==null?null:w15.substring(w15.lastIndexOf("\\")+1,w15.length()-5);
+		w16 = w16==null?null:w16.substring(w16.lastIndexOf("\\")+1,w16.length()-5);
+		w17 = w17==null?null:w17.substring(w17.lastIndexOf("\\")+1,w17.length()-5);
 		
 //		w1 = w1==null?null:w1.substring(w1.lastIndexOf("\\")+1);
 //		w2 = w2==null?null:w2.substring(w2.lastIndexOf("\\")+1);

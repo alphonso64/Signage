@@ -218,10 +218,10 @@ html {
 body {
   height: 100%;
   width: 100%;
-  background-color: #404040;
-  background-image: url(images/texture.png);
+  background-color: #fff;
+  /*background-color: #404040;*/
+  /*background-image: url(images/texture.png);*/
 }
-
 body,
 input,
 button,
@@ -229,7 +229,6 @@ select {
   font: message-box;
   outline: none;
 }
-
 .hidden {
   display: none !important;
 }

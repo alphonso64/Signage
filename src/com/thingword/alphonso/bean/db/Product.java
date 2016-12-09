@@ -8,6 +8,7 @@ public class Product {
 	private String path;
 	private String pdfpath;
 	private String invstd;
+	private String videopath;
 	
 	public String getInvcode() {
 		return invcode;
@@ -42,6 +43,12 @@ public class Product {
 	}
 	public void setInvstd(String invstd) {
 		this.invstd = invstd;
+	}
+	public String getVideopath() {
+		return videopath;
+	}
+	public void setVideopath(String videopath) {
+		this.videopath = videopath;
 	}
 
 }

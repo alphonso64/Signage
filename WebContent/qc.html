@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta HTTP-EQUIV="Pragma" CONTENT="no-cache"> 
+		<meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache"> 
+		<meta HTTP-EQUIV="Expires" CONTENT="0">
+		<title>QC操作界面|达峰科技</title>
+		<link rel="shortcut icon" href="web/images/dafeng.ico"/>
+		<link rel="stylesheet" type="text/css" href="css/qc.css"/>
+	</head>
+	<body>
+		<header>
+			<p><img src="css/logo2.png"/> 达峰科技 QC 操作界面</p>
+		</header>
+		<nav>
+			<ul>
+				<li>流水线号：B1</li>
+				<li>产品编号：7834333</li>
+				<li>故障提交</li>
+			</ul>
+		</nav>
+		<div id="main">
+			<ul id="main_left">
+				<div>
+					<p>流水线号:&nbsp;<i>B1</i></p>
+					<p>产品编号:&nbsp;<i>536345</i></p>
+				</div>
+				<li class="selected">故障申报</li>
+				<li>统计图表</li>
+			</ul>
+			<div id="main_box">
+				<div id="bad" class="selected">
+					<table></table>
+					<p>故障申报>></p>
+					<ul class="bad_box">
+						
+					</ul>
+				</div>
+				
+				<div id="chart">
+					<table></table>
+					<p>统计图表>></p>
+					<div id="chart_box"></div>
+				</div>
+				
+			</div>
+		</div>
+		
+		<!--不良品弹出框-->
+		<div id="chose">
+			<div id="chose_box">
+				<span>请选择出现的问题：</span>
+				<div>
+					数量 :&nbsp;&nbsp;<button class="subtract">-</button><span>1</span><button class="add">+</button>
+				</div>
+				<ul>
+					<li>
+						<label><input type="radio" name="bad" value="1"/>1.没插到位</label>
+					</li>
+					<li>
+						<label><input type="radio" name="bad" value="2"/>2.插反了</label>
+					</li>
+					<li>
+						<label><input type="radio" name="bad" value="3"/>3.员工损坏元件</label>
+					</li>
+					<li>
+						<label><input type="radio" name="bad" value="4"/>4.元件自身不良</label>
+					</li>
+					<li>
+						<label><input type="radio" name="bad" value="5"/>5.线断了</label>
+					</li>
+					<li>
+						<label><input type="radio" name="bad" value="6"/>6.pcb板氧化</label><br />
+					</li>
+				</ul>
+				<form>
+					<input class="chose_cancel" type="button" value="取消" />
+					<input class="chose_confirm" type="submit" value="确定"/>
+				</form>
+			</div>
+		</div>
+		<div id="confirm">
+			<div>
+				<p>确认提交？</p>
+				<button>取消</button>
+				<button>确认</button>
+			</div>
+		</div>
+		<div id="popup">
+			<div>
+				<p>提交成功!</p>
+				<button>确定</button>
+			</div>
+		</div>
+		<script src="web/jquery-1.11.3.js" type="text/javascript" charset="utf-8"></script>
+		<script src="build/qc.js" type="text/javascript" charset="utf-8"></script>
+		<script src="build/dist/echarts.js"></script>
+	</body>
+</html>

@@ -13,6 +13,16 @@
 		<property name="invstd" type="string" />
 		<property name="path" type="string" />
 		<property name="pdfpath" type="string" />
+		<property name="videopath" type="string" />
+	</class>
+	
+	<class name="Set" table="cusset">
+		<id name="ID" column="Id" type="int">
+			<generator class="native" />
+		</id>
+		<property name="pdfinterval" type="string" />
+		<property name="videointerval" type="string" />
+		<property name="msginterval" type="string" />
 	</class>
 
 	<class name="Configure" table="configure">
@@ -40,6 +50,54 @@
 	</class>
 	
 	<class name="RmLine" table="rmline">
+		<id name="ID" column="Id" type="int">
+			<generator class="native" />
+		</id>
+		<property name="line" type="string" />
+		<property name="w1" type="string" />
+		<property name="w2" type="string" />
+		<property name="w3" type="string" />
+		<property name="w4" type="string" />
+		<property name="w5" type="string" />
+		<property name="w6" type="string" />
+		<property name="w7" type="string" />
+		<property name="w8" type="string" />
+		<property name="w9" type="string" />
+		<property name="w10" type="string" />
+		<property name="w11" type="string" />
+		<property name="w12" type="string" />
+		<property name="w13" type="string" />
+		<property name="w14" type="string" />
+		<property name="w15" type="string" />
+		<property name="w16" type="string" />
+		<property name="w17" type="string" />
+	</class>
+	
+	<class name="VideoConfigure" table="videoconfigure">
+		<id name="ID" column="Id" type="int">
+			<generator class="native" />
+		</id>
+		<property name="invcode" type="string" />
+		<property name="w1" type="string" />
+		<property name="w2" type="string" />
+		<property name="w3" type="string" />
+		<property name="w4" type="string" />
+		<property name="w5" type="string" />
+		<property name="w6" type="string" />
+		<property name="w7" type="string" />
+		<property name="w8" type="string" />
+		<property name="w9" type="string" />
+		<property name="w10" type="string" />
+		<property name="w11" type="string" />
+		<property name="w12" type="string" />
+		<property name="w13" type="string" />
+		<property name="w14" type="string" />
+		<property name="w15" type="string" />
+		<property name="w16" type="string" />
+		<property name="w17" type="string" />
+	</class>
+	
+	<class name="VideoRmLine" table="videormline">
 		<id name="ID" column="Id" type="int">
 			<generator class="native" />
 		</id>

@@ -19,14 +19,18 @@ import org.hibernate.loader.plan.exec.process.spi.ReturnReader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.interceptor.CacheableOperation;
 
+import com.thingword.alphonso.bean.DispatchFile;
 import com.thingword.alphonso.bean.MESSAGE;
+import com.thingword.alphonso.bean.ReturnData;
 import com.thingword.alphonso.bean.ReturnMessage;
 import com.thingword.alphonso.bean.db.Configure;
 import com.thingword.alphonso.bean.db.Product;
+import com.thingword.alphonso.bean.db.VideoConfigure;
 import com.thingword.alphonso.dao.ConfigureDao;
 import com.thingword.alphonso.dao.impl.ConfigureDaoImpl;
 import com.thingword.alphonso.dao.impl.ProductDaoImpl;
 import com.thingword.alphonso.service.UploadService;
+import com.thingword.alphonso.util.CLog;
 import com.thingword.alphonso.util.FileUtil;
 import com.thingword.alphonso.util.ZipUtil;
 
@@ -51,6 +55,9 @@ public class UploadServiceImpl implements UploadService {
 	private ConfigureDaoImpl configureDaoImpl;
 
 	private static final String prePath = "D:\\upload\\";
+	
+	private static final String videoPath = "D:\\upload\\video\\";
+	private static final String videopreName = "Õ®”√-";
 	private static final String tempPath = "temp\\";
 	private static final String pdfPath = "pdf\\";
 
@@ -86,6 +93,7 @@ public class UploadServiceImpl implements UploadService {
 		ReturnMessage returnMessage = new ReturnMessage();
 		returnMessage.setReturn_code(MESSAGE.RETURN_FAIL);
 		returnMessage.setReturn_msg(MESSAGE.UPLOAD_FIAL);
+		
 		Product product = parseProductCraftFileName(name);
 		String parent = product.getInvcode();
 		if (parent == null) {
@@ -97,14 +105,17 @@ public class UploadServiceImpl implements UploadService {
 			returnMessage.setReturn_msg(MESSAGE.UPLOAD_FAIL_UNZIP);
 			return returnMessage;
 		}
-//		HashMap<String, List<String>> files = parseXlsFile(prePath + parent, product);
 		
 		HashMap<String, List<String>> files = parseALLpdfFile(prePath + parent, product);
 		Configure configure = parsePdfFiles(files);
+		VideoConfigure videoConfigure = new VideoConfigure();
+		videoConfigure.setInvcode(parent);
 		configure.setInvcode(parent);
 		product.setPdfpath(prePath + parent);
+		product.setVideopath(prePath + parent);
 		productDaoImpl.updateProduct(product);
 		configureDaoImpl.updateConfigure(configure);
+		configureDaoImpl.updateVideoConfigure(videoConfigure);
 		returnMessage.setReturn_code(MESSAGE.RETURN_SUCCESS);
 		returnMessage.setReturn_msg(MESSAGE.UPLOAD_SUCCESS);
 		return returnMessage;
@@ -260,6 +271,53 @@ public class UploadServiceImpl implements UploadService {
 		} catch (UnsupportedEncodingException e) {
 		}
 		return product;
+	}
+	
+	private String parseUniversalVideoFileName(String name) {
+		String val = null;
+		try {
+			String pname = new String(name.getBytes("ISO8859-1"), "utf-8");
+			CLog.Log(pname);
+			if(pname.endsWith("webm")){
+				val = pname;
+				
+			}
+		} catch (UnsupportedEncodingException e) {
+		}
+		return val;
+	}
+
+	@Override
+	public ReturnMessage uploadUniversalVideoesource(String name, InputStream inputStream) {
+		ReturnMessage returnMessage = new ReturnMessage();
+		returnMessage.setReturn_code(MESSAGE.RETURN_FAIL);
+		returnMessage.setReturn_msg(MESSAGE.UPLOAD_FIAL);
+		
+		String pname = parseUniversalVideoFileName(name);
+		if(pname == null){
+			returnMessage.setReturn_msg(MESSAGE.UPLOAD_FAIL_FORMAT);
+			return returnMessage;
+		}
+		
+		try {
+			FileUtil.saveToFile(videoPath+videopreName+pname,inputStream);
+		} catch (IOException e) {
+			return returnMessage;
+		}
+		
+		returnMessage.setReturn_code(MESSAGE.RETURN_SUCCESS);
+		returnMessage.setReturn_msg(MESSAGE.UPLOAD_SUCCESS);
+		return returnMessage;
+	}
+
+	@Override
+	public ReturnData<DispatchFile> getUniversalVideoList() {
+		ReturnData returnData = new ReturnData();
+		List<DispatchFile> dispatchFiles = FileUtil.getVideoFileList(videoPath);
+		returnData.setData(dispatchFiles);
+		returnData.setReturn_code(MESSAGE.RETURN_SUCCESS);
+		returnData.setReturn_msg(MESSAGE.QUERY_DISPATCH__SUCCESS);
+		return returnData;
 	}
 
 }

@@ -1,5 +1,6 @@
 package com.thingword.alphonso.util;
 
+import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -89,6 +90,21 @@ public class FileUtil {
 		return ls;
 	}
 	
+	public static List<DispatchFile> getVideoFileList(String parent) {
+		List<DispatchFile> ls = new ArrayList<>();
+		File root = new File(parent);
+		File[] files = root.listFiles();
+		for (File file : files) {
+			if (file.getName().toLowerCase().endsWith(".webm") && file.isFile()) {
+				DispatchFile dispatchFile = new DispatchFile();
+				dispatchFile.setName(file.getName());
+				dispatchFile.setPath(file.getAbsolutePath());
+				ls.add(dispatchFile);
+			}
+		}
+		return ls;
+	}
+	
 	public static List<File> getpdfFileList(String parent) {
 		List<File> ls = new ArrayList<>();
 		File root = new File(parent);
@@ -100,7 +116,7 @@ public class FileUtil {
 		}
 		return ls;
 	}
-
+	
 	public static String xlsToPdf(String inFilePath, String outFilePath) {
 		ComThread.InitSTA(true);
 		ActiveXComponent ax = new ActiveXComponent("Excel.Application");
@@ -234,4 +250,21 @@ public class FileUtil {
 		}
 		return outmap;
 	}
+	
+	public static void saveToFile(String fileName, InputStream in) throws IOException {   
+		File file = new File(fileName);
+		if(file.exists())
+			file.delete();
+        FileOutputStream fos = null;      
+        BufferedInputStream bis = null;      
+        int BUFFER_SIZE = 1024;   
+        byte[] buf = new byte[BUFFER_SIZE];      
+        int size = 0;      
+        bis = new BufferedInputStream(in);      
+        fos = new FileOutputStream(fileName);     
+        while ( (size = bis.read(buf)) != -1)       
+          fos.write(buf, 0, size);                    
+        fos.close();      
+        bis.close();      
+      }  
 }

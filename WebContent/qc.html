@@ -2,51 +2,53 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<meta HTTP-EQUIV="Pragma" CONTENT="no-cache"> 
-		<meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache"> 
+		<meta HTTP-EQUIV="Pragma" CONTENT="no-cache">
+		<meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache">
 		<meta HTTP-EQUIV="Expires" CONTENT="0">
 		<title>QC操作界面|达峰科技</title>
-		<link rel="shortcut icon" href="web/images/dafeng.ico"/>
+		<link rel="shortcut icon" href="img/dafeng.ico"/>
 		<link rel="stylesheet" type="text/css" href="css/qc.css"/>
 	</head>
 	<body>
 		<header>
-			<p><img src="css/logo2.png"/> 达峰科技 QC 操作界面</p>
-		</header>
-		<nav>
-			<ul>
-				<li>流水线号：B1</li>
-				<li>产品编号：7834333</li>
-				<li>故障提交</li>
-			</ul>
-		</nav>
-		<div id="main">
-			<ul id="main_left">
-				<div>
-					<p>流水线号:&nbsp;<i>B1</i></p>
-					<p>产品编号:&nbsp;<i>536345</i></p>
+			<div id="logo"><img src="img/logo2.png"/> 达峰科技QC操作</div>
+			<div id="top">
+				<div id="top_left">
+					<p>生产工序：<select>
+						<option value="插件">插件</option>
+						<option value="焊接">焊接</option>
+						<option value="包装">包装</option>
+						</select>
+						<span>流水线号：<select>
+						<option>B1</option>
+						<option>C1</option>
+					</select></span></p>
+					文件搜索：<input type="text" class="input" onkeyup="value=value.replace(/[^\w\.\/]/ig,'')" onkeydown="keyDown(event)"/><button class="query btn">查询</button>
+					<button class="empty btn">清空</button>
 				</div>
-				<li class="selected">故障申报</li>
+				<div id="top_right">
+					<p>生产日期：<span>2016年 12月 13日</span></p>
+					不良率：<span>5%</span>&nbsp;&nbsp;&nbsp;不良总数：<span>284</span>
+				</div>
+			</div>
+			<ul>
+				<li class="selected">问题提交</li>
 				<li>统计图表</li>
 			</ul>
-			<div id="main_box">
-				<div id="bad" class="selected">
-					<table></table>
-					<p>故障申报>></p>
-					<ul class="bad_box">
-						
-					</ul>
-				</div>
-				
-				<div id="chart">
-					<table></table>
-					<p>统计图表>></p>
-					<div id="chart_box"></div>
-				</div>
-				
+		</header>
+		<div id="main">
+			<div id="bad">
+				<table></table>
+				<p>问题提交>></p>
+				<ul class="materiel"></ul>
+			</div>
+			<div id="chart">
+				<table></table>
+				<p>统计图表>></p>
+				<div id="chart_bar"></div>
+				<div id="chart_pie"></div>
 			</div>
 		</div>
-		
 		<!--不良品弹出框-->
 		<div id="chose">
 			<div id="chose_box">
@@ -55,23 +57,44 @@
 					数量 :&nbsp;&nbsp;<button class="subtract">-</button><span>1</span><button class="add">+</button>
 				</div>
 				<ul>
-					<li>
-						<label><input type="radio" name="bad" value="1"/>1.没插到位</label>
+					<li class="list1">
+						<label><input type="radio" name="bad" value="1"/>1.不到位</label>
+					</li>
+					<li class="list2">
+						<label><input type="radio" name="bad" value="2"/>2.短路</label>
 					</li>
 					<li>
-						<label><input type="radio" name="bad" value="2"/>2.插反了</label>
+						<label><input type="radio" name="bad" value="3"/>3.漏贴</label>
+					</li>
+					<li class="list1">
+						<label><input type="radio" name="bad" value="4"/>4.错件</label>
+					</li>
+					<li class="list2">
+						<label><input type="radio" name="bad" value="5"/>5.反件</label>
 					</li>
 					<li>
-						<label><input type="radio" name="bad" value="3"/>3.员工损坏元件</label>
+						<label><input type="radio" name="bad" value="6"/>6.虚焊</label><br />
+					</li>
+					<li class="list1">
+						<label><input type="radio" name="bad" value="7"/>7.锡渣</label><br />
+					</li>
+					<li class="list2">
+						<label><input type="radio" name="bad" value="8"/>8.漏件</label><br />
 					</li>
 					<li>
-						<label><input type="radio" name="bad" value="4"/>4.元件自身不良</label>
+						<label><input type="radio" name="bad" value="9"/>9.漏焊</label><br />
+					</li>
+					<li class="list1">
+						<label><input type="radio" name="bad" value="10"/>10.损伤</label><br />
+					</li>
+					<li class="list2">
+						<label><input type="radio" name="bad" value="11"/>11.缺脚</label><br />
 					</li>
 					<li>
-						<label><input type="radio" name="bad" value="5"/>5.线断了</label>
+						<label><input type="radio" name="bad" value="12"/>12.无反应</label><br />
 					</li>
-					<li>
-						<label><input type="radio" name="bad" value="6"/>6.pcb板氧化</label><br />
+					<li class="list1">
+						<label><input type="radio" name="bad" value="13"/>13.其他</label><br />
 					</li>
 				</ul>
 				<form>
@@ -89,12 +112,12 @@
 		</div>
 		<div id="popup">
 			<div>
-				<p>提交成功!</p>
+				<p></p>
 				<button>确定</button>
 			</div>
 		</div>
-		<script src="web/jquery-1.11.3.js" type="text/javascript" charset="utf-8"></script>
-		<script src="build/qc.js" type="text/javascript" charset="utf-8"></script>
-		<script src="build/dist/echarts.js"></script>
+		<script src="js/jquery-1.11.3.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/qc.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/build/dist/echarts.js"></script>
 	</body>
 </html>

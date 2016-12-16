@@ -64,19 +64,37 @@ function conSuccess1(e){//查询成功
 	}else if( $('input.con_invcode2').attr('readonly') == 'readonly' ){
 		$('input.con_submit').addClass('sub');//添加样式 @
 	}
-//	$('#configure>ul>li:first-child select').attr('disabled','disabled');
 	var conQuery1_pdf = '<li>文件名</li>';
 	var conQuery1_video = '<li>视频名</li>';
 	for(var key1 in e.pdfconfigure){//pdf文件
-		if( key1 != 'invcode' && key1 != 'id' ){
-			var pdfkey= e.pdfconfigure[key1] == null ? '空' : e.pdfconfigure[key1];
-			conQuery1_pdf += '<li>' + pdfkey + '</li>';
+		if( key1 != 'invcode' && key1 != 'id' && e.pdfconfigure[key1] != null){
+			for(var i=0; i<e.pdf.length; i++){
+				if( e.pdfconfigure[key1] == e.pdf[i].name.replace(/\.\w+$/ig,'') ){
+					conQuery1_pdf += '<li>' + e.pdfconfigure[key1] + '<span>' + e.pdf[i].path + '</span></li>'
+				}
+			}
+		}else if( e.pdfconfigure[key1] == null ){
+			conQuery1_pdf += '<li>' + '空' + '<span>空</span>' + '</li>';
 		}
 	}
 	for(var key2 in e.videoconfigure){//视频文件
-		if( key2 != 'invcode' && key2 != 'id' ){
-			var videokey= e.videoconfigure[key2] == null ? '空' : e.videoconfigure[key2];
-			conQuery1_video += '<li>' + videokey + '</li>';
+		if( key2 != 'invcode' && key2 != 'id' && e.videoconfigure[key2] != null){
+			if( e.videoconfigure[key2].indexOf('通用-') == -1 ){//不是通用视频
+				for(var i=0; i<e.video.length; i++){
+					if( e.videoconfigure[key2] == e.video[i].name.replace(/\.\w+$/ig,'') ){
+						conQuery1_video += '<li>' + e.videoconfigure[key2] + '<span>' + e.video[i].path + '</span></li>';
+					}
+				}
+			}else{
+				var pubvideo = $('#publicVideo dl');
+				for(var j=0; j<pubvideo.length; j++){
+					if( e.videoconfigure[key2] == pubvideo.eq(j).html().replace(/<dt>.*<\/dt>/ig,'') ){
+						conQuery1_video += '<li>' + e.videoconfigure[key2] + '<span>' + pubvideo.eq(j).children('dt').html() + '</span></li>';
+					}
+				}
+			}
+		}else if( e.videoconfigure[key2] == null ){
+			conQuery1_video += '<li>' + '空' + '<span>空</span>' + '</li>';
 		}
 	}
 	$('#con_box>ul').eq(1).html( conQuery1_pdf );
@@ -138,19 +156,37 @@ function conSuccess2(e){//查询成功
 	if( $('input.con_invcode').attr('readonly') == 'readonly'){
 		$('input.con_submit').addClass('sub');//添加样式@
 	}
-//	$('#configure>ul>li:first-child select').attr('disabled','disabled');
 	var conQuery2_pdf = '<li>文件名</li>';
 	var conQuery2_video = '<li>视频名</li>';
-	for(var key1 in e.pdfconfigure){
-		if( key1 != 'invcode' && key1 != 'id' ){
-			var pdfkey= e.pdfconfigure[key1] == null ? '空' : e.pdfconfigure[key1];
-			conQuery2_pdf += '<li>' + pdfkey + '</li>';
+	for(var key1 in e.pdfconfigure){//pdf
+		if( key1 != 'invcode' && key1 != 'id' && e.pdfconfigure[key1] != null){
+			for(var i=0; i<e.pdf.length; i++){
+				if( e.pdfconfigure[key1] == e.pdf[i].name.replace(/\.\w+$/ig,'') ){
+					conQuery2_pdf += '<li>' + e.pdfconfigure[key1] + '<span>' + e.pdf[i].path + '</span></li>'
+				}
+			}
+		}else if( e.pdfconfigure[key1] == null ){
+			conQuery2_pdf += '<li>' + '空' + '<span>空</span>' + '</li>';
 		}
 	}
-	for(var key2 in e.videoconfigure){
-		if( key2 != 'invcode' && key2 != 'id' ){
-			var videokey= e.videoconfigure[key2] == null ? '空' : e.videoconfigure[key2];
-			conQuery2_video += '<li>' + videokey + '</li>';
+	for(var key2 in e.videoconfigure){//video
+		if( key2 != 'invcode' && key2 != 'id' && e.videoconfigure[key2] != null){
+			if( e.videoconfigure[key2].indexOf('通用-') == -1 ){//不是通用视频
+				for(var i=0; i<e.video.length; i++){
+					if( e.videoconfigure[key2] == e.video[i].name.replace(/\.\w+$/ig,'') ){
+						conQuery2_video += '<li>' + e.videoconfigure[key2] + '<span>' + e.video[i].path + '</span></li>';
+					}
+				}
+			}else{
+				var pubvideo = $('#publicVideo dl');
+				for(var j=0; j<pubvideo.length; j++){
+					if( e.videoconfigure[key2] == pubvideo.eq(j).html().replace(/<dt>.*<\/dt>/ig,'') ){
+						conQuery2_video += '<li>' + e.videoconfigure[key2] + '<span>' + pubvideo.eq(j).children('dt').html() + '</span></li>';
+					}
+				}
+			}
+		}else if( e.videoconfigure[key2] == null ){
+			conQuery2_video += '<li>' + '空' + '<span>空</span>' + '</li>';
 		}
 	}
 	$('#con_box1>ul').eq(1).html( conQuery2_pdf );
@@ -178,35 +214,26 @@ $(function(){
 		$('#popup p').html('连接中请稍后...');
 		ifButton();
 		$('#popup').removeClass('hidden');
-		var coninv={};
-		if( $('#configure>button').html() == '显示混合配置' ){
-			for(var i=1; i<18; i++){
-				coninv['w'+i] = $('input.con_invcode').val();
-			}
-		}else{
-			for(var i=1; i<18; i++){
+//		var coninv={};
+		if( $('#configure>button').html() == '显示混合配置' ){//只有一条线
+			conHuanxian( $('input.con_invcode').val() );
+		}else{//混合配置
+			for(var i=1,redList=0; i<18; i++){
 				if( $('#con_box2>ul:nth-child(1) li').eq(i).hasClass('red') ){
-					coninv['w'+i] = $('input.con_invcode2').val();
+//					coninv['w'+i] = $('input.con_invcode2').val();
+					redList ++;
 				}else{
-					coninv['w'+i] = $('input.con_invcode').val();
+//					coninv['w'+i] = $('input.con_invcode').val();
 				}
 			}
 		}
-		$.ajax({
-			type:"get",
-			url:"/Signage/rest/upload/dispatchFiles?productionline=" + $('.con_sec').val() + "&invcode=" + $('input.con_invcode').val(),
-			dataType:"json",
-//			contentType:"application/json",
-//			data: JSON.stringify(coninv),
-			success:function(e){
-				$('#popup p').html(e.return_msg);
-				ifButton();
-			},
-			error:function(){
-				$('#popup p').html('服务器连接错误！');
-				ifButton();
-			}
-		});
+		if( redList == 0 ){//只有第一条
+			conHuanxian( $('input.con_invcode').val() );
+		}else if( redList == 17 ){//只有第二条
+			conHuanxian( $('input.con_invcode2').val() );
+		}else{//混合配置
+			
+		}
 	});
 	///操作一清空
 	$('input.con_clear').click(function(){
@@ -223,7 +250,6 @@ $(function(){
 		$('input.con_query').addClass('query');
 		$('input.con_submit').removeClass('sub');
 		$('input.con_invcode').addClass('inv');
-//		$('#configure>ul>li:first-child select').removeAttr('disabled');
 	});
 	///操作二清空
 	$('input.con_clear2').click(function(){
@@ -237,7 +263,6 @@ $(function(){
 		$('input.con_query2').addClass('query');
 		$('input.con_submit').removeClass('sub');
 		$('input.con_invcode2').addClass('inv');
-//		$('#configure>ul>li:first-child select').removeAttr('disabled');
 	});
 	//混合配置显示隐藏按钮
 	$('#configure>button').click(function(){
@@ -259,6 +284,21 @@ $(function(){
 		reduction();
 	});
 });
+function conHuanxian(val){
+	$.ajax({
+		type:"get",
+		url:"/Signage/rest/upload/dispatchFiles?productionline=" + $('.con_sec').val() + "&invcode=" + val,
+		dataType:"json",
+		success:function(e){
+			$('#popup p').html(e.return_msg);
+			ifButton();
+		},
+		error:function(){
+			$('#popup p').html('服务器连接错误！');
+			ifButton();
+		}
+	});
+}
 function reduction(){//还原混合界面
 	for(var i=1; i< 19; i++){
 		$('#con_box2 ul:nth-child(2) li').eq(i).html( $('#con_box>ul:nth-child(2) li').eq(i).html() );
@@ -311,7 +351,6 @@ function ope_success(e){
 	$('input.ope_query').removeClass('query');//禁止查找
 	$('input.ope_submit').addClass('chen');//添加提交样式
 	$('input.ope_changeLine').addClass('sub');//添加换线样式
-//	$('#ope_top>ul>li:first-child select').attr('disabled','disabled');
 	$('ul.proset_invcode').html('');
 	$('ul.toset_invcode').html('');
 	$('ul.video').html('');
@@ -671,7 +710,6 @@ function opeClear(){
 	$('ul.proset_invcode,ul.toset_invcode,ul.video').html(add);
 	$('#pdfView').html('<legend>指导书文件缩略图</legend>');
 	$('#videoView').html('<legend>视频文件缩略图</legend>');
-//	$('#ope_top>ul>li:first-child select').removeAttr('disabled');
 }
 ////文件提交///判断是否存在
 $("#flieSubmit").click(function(){
@@ -1126,7 +1164,7 @@ $(function(){
   			"videointerval": '' + $('.publicset>li:first-child select').eq(1).val()
 		};
 		$('#confirm7').hide();
-		$("#popup p").html("设置中...");
+		$("#popup p").html("文件上传中...");
 		ifButton();
 		$('#popup').removeClass('hidden');
 		$.ajax({
@@ -1144,7 +1182,124 @@ $(function(){
 			}
 		});
 	});
+	//管理流水线
+	$('#line_btn').click(function(){
+		if($(this).val() == '点击管理'){
+			$('#line_box button').show();
+			$(this).val('结束管理');
+		}else{
+			$('#line_box button').hide();
+			$(this).val('点击管理');
+		}
+	});
+	//增加流水线
+	$('#line_add').click(function(){
+		if( $(this).hasClass('addipt') && $(this).val() == '增加流水线' ){//关闭
+			$('#line_ipt').animate({
+				width: 0
+			},200,function(){
+				$('#line_ipt').hide();
+				$('#line_add').css('border-top-left-radius','3px').css('border-bottom-left-radius','3px');
+				$('#line_add').removeClass('addipt');
+			});
+		}else if($(this).val() == '增加流水线'){//展开
+			$(this).css('border-top-left-radius',0).css('border-bottom-left-radius',0).addClass('addipt');
+			$('#line_ipt').show().animate({
+				width: "100px"
+			}, 300);
+		}else if($(this).val() == '确认增加'){//增加流水线
+			for(var i=1; i<$('#line_box>li').length; i++){
+				if($(this).prev().val().toUpperCase() == $('#line_box>li').eq(i).html().replace(/<button>.*<\/button>/ig,'')){break;}
+			}
+			if( i == $('#line_box>li').length ){
+				$('#confirm8').show();
+			}else{
+				$('#popup').removeClass('hidden');
+				$('#popup p').html('流水线已存在!');
+				ifButton();
+			}
+		}
+	});
+	$('#confirm8 button').eq(0).click(function(){//取消提交
+		$(this).parent().parent().hide();
+	});
+	$('#confirm8 button').eq(1).click(function(){//确认提交
+		$('#confirm8').hide();
+		$('#popup p').html('连接中请稍后...');
+		ifButton();
+		$('#popup').removeClass('hidden');
+		$.ajax({
+			type:"get",
+			url:"?line=" + $('#line_ipt').val(),
+			dataType:'json',
+			success:function(e){
+				$('#popup p').html(e.return_msg);
+				ifButton();
+				if(e.return_msg == 'success'){
+					lineRefresh();//刷新流水线
+				}
+			},
+			error:function(){
+				$('#popup p').html('连接服务器错误!');
+				ifButton();
+			}
+		});
+	});
+	$('#line_ipt').on('input',function(){
+		$('#line_add').val( $(this).val().length != 0 ? '确认增加' : '增加流水线');
+	});
+	//删除流水线
+	$('#line_box').on('click','button',function(){
+		$(this).parent().addClass('removeline');
+		$('#confirm9').show();
+	});
+	$('#confirm9 button').eq(0).click(function(){//取消提交
+		$(this).parent().parent().hide();
+		$('#line_box li.removeline').removeClass('removeline');
+	});
+	$('#confirm9 button').eq(1).click(function(){//确认提交
+		$('#confirm9').hide();
+		$('#popup p').html('连接中请稍后...');
+		ifButton();
+		$('#popup').removeClass('hidden');
+		$.ajax({
+			type:"get",
+			url:"?daleteline=" + $('#line_box li.removeline').html().replace(/<button>.*<\/button>/ig,''),
+			dataType:'json',
+			success:function(e){
+				$('#line_box li.removeline').removeClass('removeline');
+				$('#popup p').html(e.return_msg);
+				ifButton();
+				if(e.return_msg == 'success'){
+					lineRefresh();//刷新流水线
+				}
+			},
+			error:function(){
+				$('#popup p').html('连接服务器错误!');
+				ifButton();
+				$('#line_box li.removeline').removeClass('removeline');
+			}
+		});
+	});
 });
+//流水线刷新
+function lineRefresh(){
+	$.ajax({
+		type:"get",
+		url:"/Signage/rest/upload/getRmLineList",
+//		url:"php/line.php",
+		dataType:"json",
+		success:function(e){
+			if(e.return_code == 'success'){
+				for(var i=0; i<e.data.length; i++){
+					$('.con_sec').append( '<option>' + e.data[i] + '</option>' );
+					$('.ope_sec').append( '<option>' + e.data[i] + '</option>' );
+					$('#line_box').append('<li>' + e.data[i] + '<button>删除</button></li>');
+				}
+			}
+		}
+	});
+}
 window.onload=function(){
 	ifLoading();
 	for(var i=0,addLi=''; i<17; i++){
@@ -1154,6 +1309,7 @@ window.onload=function(){
 	$.ajax({//通用视频
 		type:"get",
 		url:"/Signage/rest/upload/getUniversalVideoList",
+//		url:"php/publicVideo.php",
 		dataType: 'json',
 		success: function(e){
 			if(e.return_code == 'success'){
@@ -1163,20 +1319,8 @@ window.onload=function(){
 			}
 		}
 	});
-	$.ajax({//流水线列表
-		type:"get",
-		url:"/Signage/rest/upload/getRmLineList",
-		dataType:"json",
-		success:function(e){
-			if(e.return_code == 'success'){
-				for(var i=0; i<e.data.length; i++){
-					$('.con_sec').append( '<option>' + e.data[i] + '</option>' );
-					$('.ope_sec').append( '<option>' + e.data[i] + '</option>' );
-				}
-			}
-		}
-	});
-	$.ajax({
+	lineRefresh();//刷新流水线
+	$.ajax({//加载时间
 		type:"get",
 		url:"/Signage/rest/upload/getSet",
 		dataType:"json",

@@ -16,11 +16,10 @@
 
 'use strict';
 
-
 var productionline=localStorage.productionline;
 var station=localStorage.station;
 var DEFAULT_URL='/Signage/rest/upload/reqUpdatePDF?'+'productionline='+productionline+'&station='+station;
-//var DEFAULT_URL='新F65小尺寸主板工艺文件.pdf';
+//var DEFAULT_URL='../../新F65小尺寸主板工艺文件.pdf';
 var pdfjsWebLibs = {pdfjsWebPDFJS: window.pdfjsDistBuildPdf};
   
 (function () {
@@ -7723,11 +7722,11 @@ var PDFViewerApplication = {
       self.metadata = metadata;
 
       // Provides some basic debug information
-      console.log('PDF ' + pdfDocument.fingerprint + ' [' +
-                  info.PDFFormatVersion + ' ' + (info.Producer || '-').trim() +
-                  ' / ' + (info.Creator || '-').trim() + ']' +
-                  ' (PDF.js: ' + (pdfjsLib.version || '-') +
-                  (!pdfjsLib.PDFJS.disableWebGL ? ' [WebGL]' : '') + ')');
+//      console.log('PDF ' + pdfDocument.fingerprint + ' [' +
+//                  info.PDFFormatVersion + ' ' + (info.Producer || '-').trim() +
+//                  ' / ' + (info.Creator || '-').trim() + ']' +
+//                  ' (PDF.js: ' + (pdfjsLib.version || '-') +
+//                  (!pdfjsLib.PDFJS.disableWebGL ? ' [WebGL]' : '') + ')');
 
       var pdfTitle;
       if (metadata && metadata.has('dc:title')) {

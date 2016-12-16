@@ -103,6 +103,9 @@ div[id^="con_box"]>ul:last-child>li{
 div[id^="con_box"]>ul li:first-child{
 	font-size: 1em;
 }
+div[id^="con_box"]>ul span{
+	display: none;
+}
 #con_box1 ul:nth-child(1)>li{
 	background-color: #F08362;
 }
@@ -164,6 +167,9 @@ canvas{
 }
 #ope_top>ul select,#configure>ul select{
 	height: 31px;
+}
+.proset_invcode>li{
+	overflow: hidden;
 }
 input.ope_invcode,input[class^="con_invcode"]{
 	padding: 2px 5px;
@@ -577,8 +583,8 @@ input.chen:active{
 #file_box>ul>li>div{
 	display: none;
 	background-color: #F8F8F8;
-	user-select:none;
 	padding: 3px 7px 7px;
+	user-select:none;
 	-webkit-user-select:none;
 	-moz-user-select:none;/*火狐*/
 	-ms-user-select:none;/*IE10*/
@@ -625,11 +631,10 @@ input.chen:active{
 }
 /*通用设置*/
 .publicset>li{
-	height: 70px;
-	line-height: 70px;
+	border-bottom: 1px solid #56A2CF;
+	padding: 20px 0;
 }
 .publicset>li:first-child{
-	border-bottom: 1px solid #56A2CF;
 }
 .publicset>li:first-child>select{
 	height: 25px;
@@ -643,13 +648,49 @@ input.chen:active{
 	padding: 2px 6px;
 	margin-left: 50px;
 }
-.line>li{
-	height: 30px;
-	line-height: 30px;
+#line_btn{
+	height: 28px;
+	border-radius: 3px;
+	cursor: pointer;
+	color: #fff;
+	margin-right: 10px;
+	margin-left: 10px;
 }
-
-
-
+#line_ipt{
+	display: none;
+	width: 0;
+	padding-left: 8px;
+	border: 1px solid #3385FF;
+	height: 24px;
+	border-top-left-radius: 3px;
+	border-bottom-left-radius: 3px;
+}
+#line_add{
+	width: 80px;
+	height: 28px;
+	cursor: pointer;
+	color: #fff;
+	border-radius: 3px;
+}
+#line_box{
+	overflow: hidden;
+}
+#line_box>li{
+	float: left;
+	width: 150px;
+	height: 35px;
+	line-height: 33px;
+	margin-top: 20px;
+	border-right: 1px solid #fff;
+	background-color: #56A2CF;
+	color: #fff;
+	text-align: center;
+}
+#line_box button{
+	display: none;
+	cursor: pointer;
+	margin-left: 10px;
+}
 
 
 

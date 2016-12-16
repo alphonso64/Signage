@@ -3,49 +3,15 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>达峰科技信息录入页面</title>
-		<link rel="shortcut icon" href="web/images/dafeng.ico"/>
+		<link rel="shortcut icon" href="img/dafeng.ico"/>
 		<style type="text/css">
-			div{
-				border: 1px solid #ccc;
-				border-radius: 4px;
-				padding: 30px 50px;
-				margin:200px auto;
-				width: 450px;
-				box-shadow: 5px 5px 15px 4px #ddd;
-			}
-			p{
-				display: block;
-				width: 250px;
-				font-weight: bold;
-				margin: 0 auto 10px;
-			}
-			span,input{
-				margin:10px 0;
-			}
-			span{
-				display: inline-block;
-				width:180px;
-				padding: 5px;
-				margin-left: 10px;
-			}
-			input{
-				width: 150px;
-				height: 26px;
-				margin: 10px auto;
-				padding: 0 10px;
-			}
-			b{
-				float: right;
-				overflow: hidden;
-				margin-right: 74px;
-				font-size: 0.8em;
-				color: #666;
-				font-weight: 300;
-			}
-			#submit{
-				width: 174px;
-				height: 30px;
-			}
+			div{border: 1px solid #ccc;border-radius: 4px;padding: 30px 50px;margin:200px auto;width: 450px;box-shadow: 5px 5px 15px 4px #ddd;}
+			p{display: block;width: 250px;font-weight: bold;margin: 0 auto 10px;}
+			span,input{margin:10px 0;}
+			span{display: inline-block;width:180px;padding: 5px;margin-left: 10px;}
+			input{width: 150px;height: 26px;margin: 10px auto;padding: 0 10px;}
+			b{float: right;overflow: hidden;margin-right: 74px;font-size: 0.8em;color: #666;font-weight: 300;}
+			#submit{width: 174px;height: 30px;}
 		</style>
 	</head>
 	<body>
@@ -58,16 +24,14 @@
 			</form>
 			<b>**信息提交错误，请重复提交**</b>
 		</div>
-		<script src="web/jquery-1.11.3.js"></script>
-		<script type="text/javascript">
-			if(!window.localStorage){
-				alert('浏览器不支持localStorage');
-			}
-			$("#submit").click(function(event){
+		<script>
+			if(!window.localStorage){alert('浏览器不支持localStorage');}
+			document.getElementById('submit').addEventListener('click',function(event){
 				event.preventDefault();
-				var productionline = $("#productionline").val();
-				var station = $("#station").val();
-				if(productionline.length!=0&&station.length!=0){
+				var productionline = document.getElementById('productionline').value.toUpperCase();
+				var station = document.getElementById('station').value;
+				console.log( productionline + station );
+				if(productionline.length !=0 && station.length != 0){
 					localStorage.productionline = productionline;
 					localStorage.station = station;
 					alert("信息录入成功！");

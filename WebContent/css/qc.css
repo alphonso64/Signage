@@ -1,7 +1,7 @@
 img{
 	vertical-align:bottom;
 }
-ul,p,h1,h2,h3,h4,h5,h6,dl,dt,dd{
+ul,p,dl,dt,dd{
 	margin:0;
 	padding:0;
 	list-style:none;
@@ -18,119 +18,142 @@ input,button,select{
 body{
 	margin: 0;
 	font-family: "Microsoft YaHei","宋体",
-	"Segoe UI", "Lucida Grande", Helvetica, 
+	"Segoe UI", "Lucida Grande", Helvetica,
 	Arial,sans-serif, FreeSans, Arimo;
 }
-header>p{
-	color: #5B8E8D;
+header{
+	min-width: 1200px;
+	padding: 20px;
+	padding-right: 0;
+	background-color: #90D8D3;
+	color: #404040;
+}
+#logo{
+	float: left;
 	font-size: 40px;
+	margin-right: 30px;
+	margin-top: 7px;
+}
+#top{
+	display: inline-block;
+}
+#top_left p{
+	padding-bottom: 20px;
+}
+#top_right p{
+	padding-bottom: 23px;
+}
+#top_left span{
+	float: right;
+}
+#top_left span select{
+	width: 50px;
+}
+#top_left input{
+	width: 130px;
+	padding: 4px;
+}
+#top_left select{
+	padding: 2px 3px;
+}
+header>ul{
+	float: right;
 	text-align: center;
-	line-height: 46px;
-	padding: 20px 0;
 }
-nav{
-	display: none;
-	background-color: #56A2CF;
-	color: #fff;
-	padding-left: 30px;
-	border-bottom: 3px solid #666;
-}
-nav>ul{
-	overflow: hidden;
-}
-nav>ul>li{
+header>ul li{
 	float: left;
-	height: 40px;
-	line-height: 40px;
-}
-#main_left{
-	width: 200px;
-	float: left;
-}
-#main_left>li{
 	width: 100px;
-	margin: 60px auto;
-	text-align: center;
+	height: 50px;
+	line-height: 50px;
+	margin-right: 30px;
+	cursor: pointer;
+	background-color: #fff;
+	border-radius: 5px;
+	margin-top: 10px;
+	font-weight: bold;
+	position: relative;
+	user-select:none;
+	-webkit-user-select:none;
+	-moz-user-select:none;/*火狐*/
+	-ms-user-select:none;/*IE10*/
+}
+header>ul li:hover{
+	background-color: #D1D1D1;
+}
+header>ul li:active{
+	top: 2px;
+	left: 2px;
+}
+header>ul li.selected{
+	background-color: #FF7753;
+	color: #fff;
+}
+header input{
+	border:1px solid #ccc;
+	ime-mode:disabled;
+}
+header input:focus{
+	border-color: #056AF2;
+}
+#top>div{
+	float: left;
+}
+.btn{
+	width: 50px;
+	height: 25px;
+}
+#top_right{
+	margin-left: 50px;
+}
+.ipt{
+	background-color: #FAFF52;
+}
+/*主体*/
+#main>div{
+	padding-left: 40px;
+}
+#chart{
+	display: none;
+}
+#main>div>p{
 	padding-top: 20px;
 	padding-bottom: 20px;
-	font-weight: bold;
-	cursor: pointer;
-	box-shadow: 2px 2px 5px 0.5px #9D9B9D;
-	position: relative;
-}
-#main_left>li:active{
-	top: 3px;
-	left: 2px;
-	box-shadow: 1px 1px 2px 0 #9D9B9D;
-}
-#main_left>li.selected{
-	background-color: #E34B4B;
-	color: #fff;
-}
-#main_left>div{
-	background-color: #56A2CF;
-	color: #fff;
-	padding-top: 10px;
-	padding-left: 10px;
-}
-#main_left>div>p{
-	padding-bottom: 10px;
-}
-#main_box{
-	overflow-x: hidden;
-	background-color: #EDFCFF;
-}
-#main_box>div{
-	display: none;
-}
-#main_box>div.selected{
-	display: block;
-}
-#main_box>div>p{
-	margin: 10px;
-	padding: 10px 3%;
 	font-size: 30px;
 	color: #5B8E8D;
 }
-ul.bad_box{
-	min-height: 500px;
-	margin: 2px 10px 10px;
+ul.materiel{
+	min-height: 350px;
 	overflow: hidden;
 }
-ul.bad_box>li{
+ul.materiel>li{
 	float: left;
 	margin-bottom: 3%;
-	margin-left: 3%;
+	margin-right: 3%;
 	width: 100px;
 	height: 60px;
 	line-height: 60px;
 	position: relative;
 	text-align: center;
 	box-shadow: 2px 2px 5px 0.5px #aaa;
-	background-color: #56A2CF;
+	background-color: #F0F0F0;
 	border-bottom-right-radius: 20px;
-	color: #fff;
 	cursor: pointer;
 	overflow: hidden;
+	user-select:none;
+	-webkit-user-select:none;
+	-moz-user-select:none;/*火狐*/
+	-ms-user-select:none;/*IE10*/
 }
-ul.bad_box>li:active{
+ul.materiel>li:active{
 	box-shadow: 1px 1px 2px 0 #9D9B9D;
 	background-color: #8E8E8E;
 	top: 2px;
 	left: 2px;
 }
 /*图表大小*/
-
-
-
-
-
-
-
-
-
-
-
+#chart>div{
+	float: left;
+}
 /*错误弹出框*/
 #chose{
 	display: none;
@@ -144,10 +167,14 @@ ul.bad_box>li:active{
 #chose_box{
 	width: 500px;
 	padding: 40px;
-	margin: 10% auto;
 	background-color: #56A2CF;
 	color: #fff;
 	overflow: hidden;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	margin-left:-290px;
+	margin-top:-250px;
 }
 #chose_box>div{
 	float: right;
@@ -162,6 +189,7 @@ ul.bad_box>li:active{
 	font-size: 18px;
 	width: 29px;
 	height: 28px;
+	cursor: pointer;
 }
 #chose_box>div>button:active{
 	background-color: #5D5D5D;
@@ -184,8 +212,13 @@ ul.bad_box>li:active{
 }
 #chose_box>ul li{
 	float: left;
-	width: 50%;
 	margin: 20px 0;
+}
+.list1{
+	width: 42%;
+}
+.list2{
+	width: 42%;
 }
 #chose_box>form{
 	float: right;
@@ -197,6 +230,7 @@ ul.bad_box>li:active{
 	margin-left: 40px;
 	background-color: #9D9B9D;
 	border: 2px solid #fff;
+	cursor: pointer;
 }
 #chose_box>form input:active{
 	background-color: #C9302C;
@@ -226,8 +260,9 @@ ul.bad_box>li:active{
 }
 #confirm button,#popup button{
 	width: 60px;
-	height: 30px;
+	height: 25px;
 	margin-top: 40px;
+	cursor: pointer;
 }
 #confirm>div>button:nth-child(2){
 	margin-right: 70px;

@@ -6,89 +6,23 @@
 		<meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache">
 		<meta HTTP-EQUIV="Expires" CONTENT="0">
 		<title>达峰科技作业指导书</title>
-		<link rel="shortcut icon" href="web/images/dafeng.ico"/>
+		<link rel="shortcut icon" href="img/dafeng.ico"/>
 		<style type="text/css">
-			body{
-				margin: 0;
-				background-color: #fff;
-			}
-			#pdf{
-				position: fixed;
-				left: -5%; right: -5%; top: -5%; bottom: -5%;
-			}
-			iframe{
-				border: 0;
-				width: 100%;
-				height: 100%;
-			}
-			#vid{
-				display: none;
-				position: fixed;
-				top: 0; left: 0; right: 0; bottom: 0;
-			}
-			#video{
-				width: 100%;
-				height: 100%;
-			}
-			#warning{
-				display: none;
-				position: fixed;
-				top: 0; left: 0; right: 0; bottom: 0;
-				background-color: rgba(255,255,255,0.5);
-				text-align: center;
-			}
-			#warning>div,#empty div{
-				width: 600px;
-				height: 300px;
-				border: 5px solid red;
-				border-radius: 10px;
-				background: #FFD42A url(/web/images/warning.png) no-repeat 20px 50px;
-				position: absolute;
-				left: 50%;
-				top: 50%;
-				margin-left:-300px;
-				margin-top:-150px;
-			}
-			#warning h1{
-				font-size: 50px;
-				padding-left: 140px;
-			}
-			#warning p{
-				font-size: 30px;
-				font-weight: bold;
-				padding-left: 100px;
-				margin-bottom: 30px;
-			}
-			#empty{
-				display: none;
-				position: fixed;
-				top: 0; left: 0; right: 0; bottom: 0;
-				background-color: #fff;
-			}
-			#empty div{
-				background: #3E90BF url(/web/images/empty.png) no-repeat 40px 50px;
-			}
-			#empty p{
-				text-align: center;
-				margin-top: 30px;
-				padding-left: 200px;
-				font-size: 40px;
-				font-weight: bold;
-				color: #C90505;
-			}
-			#empty p:first-child{
-				padding-left: 173px;
-				margin-top: 80px;
-			}
-			#mark{
-				position: absolute;
-				border-bottom-right-radius: 50px;
-				background-color: #64EAAD;
-			}
-			#mark>p{
-				margin: 13px 20px;
-				color: #333;
-			}
+			body{margin: 0;background-color: #fff;}
+			iframe{border: 0;width: 100%;height: 100%;}
+			#pdf{position: fixed;left: -5%; right: -5%; top: -5%; bottom: -5%;}
+			#vid{display: none;position: fixed;top: 0; left: 0; right: 0; bottom: 0;background-color: #fff;}
+			#video{width: 100%;height: 100%;}
+			#warning{display: none;position: fixed;top: 0; left: 0; right: 0; bottom: 0;background-color: rgba(255,255,255,0.5);text-align: center;}
+			#empty{display: none;position: fixed;top: 0; left: 0; right: 0; bottom: 0;background-color: #fff;}
+			#warning>div,#empty>div{width: 600px;height: 300px;border: 5px solid red;border-radius: 10px;position: absolute;left: 50%;top: 50%;margin-left:-300px;margin-top:-150px;background-color: #FFD42A;}
+			#warning img,#empty img{position: absolute;top: 50px;left: 30px;}
+			#warning h1{margin-top: 50px;font-size: 50px;padding-left: 140px;}
+			#warning p{font-size: 30px;font-weight: bold;padding-left: 100px;margin-bottom: 30px;}
+			#empty div{background-color: #3E90BF;}
+			#empty p{text-align: center;line-height: 220px;padding-left: 200px;font-size: 40px;font-weight: bold;color: #C90505;}
+			#mark{position: absolute;border-bottom-right-radius: 50px;background-color: #64EAAD;}
+			#mark>p{margin: 13px 20px;color: #333;}
 		</style>
 	</head>
 	<body>
@@ -96,10 +30,11 @@
 			<iframe name="ifrmname" ></iframe>
 		</div>
 		<div id="vid">
-			<video id="video" controls="controls">当前浏览器不支持 video直接播放!</video>
+			<video id="video" controls="controls" preload="auto"></video>
 		</div>
 		<div id="warning">
 			<div>
+				<img src="img/warning.png"/>
 				<h1>注意！！！</h1>
 				<p>189321</p>
 				<p>插错或插反</p>
@@ -107,89 +42,80 @@
 		</div>
 		<div id="empty">
 			<div>
-				<p>当前工位</p>
-				<p>未配置！</p>
+				<img src="img/empty.png"/>
+				<p>当前工位未配置！</p>
 			</div>
 		</div>
 		<div id="mark">
-			<p>流水线号：<b></b></p>
-			<p>工位号：<b></b></p>
+			<p>流水线号：<i></i></p>
+			<p>工位号：<i></i></p>
 		</div>
 		<a onclick="window.location.reload(true);"></a>
-		<script src="web/jquery-1.11.3.js"></script>
-		<script src="build/reconnecting-websocket.min.js"></script>
+		<script src="js/reconnecting-websocket.min.js"></script>
 		<script>
-			var now = new Date();
-			var nowDate = now.getMonth()+1+''+now.getDate()+''+now.getHours()+''+now.getMinutes()+''+now.getSeconds();
+			var now = new Date().getTime();
 			var line = localStorage.productionline.toUpperCase();
 			var stat = localStorage.station;
-			var src = '/Signage/rest/upload/reqUpdateVideo?'+'productionline='+line+'&station='+stat+"&date="+nowDate;
-//			var src = 'huaban.mp4';
+			var src = '/Signage/rest/upload/reqUpdateVideo?productionline='+line+'&station='+stat+"&date="+now;
 			var webhref=window.location.href.replace(/(\/[a-zA-Z]+)*\.html\?*.*/g,'/Signage/websocket').replace(/https*/g,'ws');
 			var socket = new ReconnectingWebSocket(webhref);
 	        socket.onopen = function(e){
-	            var proObject ={ productionline:line,
-										station:stat
-				};
+	            var proObject ={ productionline:line,station:stat};
 	            var pro_json=JSON.stringify(proObject);
 	            socket.send(pro_json);
 	        }
 	        socket.onmessage = function(e){
-	        	$('a').click();
+				document.getElementsByTagName('a')[0].click();
 	        }
 	        window.onload = function(){
-	        	$('#mark b').eq(0).html( line );
-	        	$('#mark b').eq(1).html( stat );
-	        	$.ajax({
-	        		type:"get",
-//	        		url:"php/pdf.php",
-	        		url:"/Signage/rest/upload/reqCurrentState?productionline="+line+"&station="+stat,
-	        		dataType:'json',
-	        		success: function(e){
-					    var dtime = Number(e.pdfInterval);
-					    var vtime = Number(e.videoInterval);
-						var a = 1;
-	        			$('#video').removeAttr('loop');
-						if( e.pdf != null && e.video != null ){//pdf和视频都有
-							$('iframe').attr('src','web/viewer.html');
-							$('video').attr('src',src);
-							video.addEventListener('ended',function(){
-								if( a < vtime){
+	        	document.getElementsByTagName('i')[0].innerHTML = line;
+	        	document.getElementsByTagName('i')[1].innerHTML = stat;
+	        	var xhr = new XMLHttpRequest();
+	        	xhr.onreadystatechange = function(){
+	        		if(xhr.readyState === 4){
+	        			if(xhr.status === 200){
+	        				var e = JSON.parse(xhr.responseText);
+	        				var dtime = Number(e.pdfInterval);
+	        				var vtime = Number(e.videoInterval);
+	        				var i = 1;
+							if( e.pdf != null && e.video != null ){
+								document.getElementsByTagName('iframe')[0].src = 'js/web/viewer.html';
+								video.src = src;
+								video.addEventListener('ended',function(){
+									clearTimeout( first );
+									if( i < vtime ){
+										i++;
+										video.play();
+									}else{
+										i = 1;
+										vid.style.display = 'none';
+										clearTimeout( timeout );
+										var timeout = setTimeout(function(){
+											vid.style.display = 'block';
+											video.play();
+										},dtime * 1000);
+									}
+								});
+								clearTimeout( first );
+								var first = setTimeout(function(){
+									vid.style.display = 'block';
 									video.play();
-									a++;
-								}else{
-									video.pause();
-									$('#vid').fadeOut(300);
-									a = 1;
-								}
-							});
-							var YanChi = setTimeout(function(){
-					        	var vlength = document.getElementById('video').duration;
-								timeout(dtime);//第一次执行一遍
-								clearInterval( interval );
-								var interval = setInterval(function(){
-									timeout(dtime);
-								},(vtime * vlength + dtime) * 1000);
-							},1000);
-						}else if( e.video != null && e.pdf == null){//只显示视频
-							$('video').attr('src',src);
-							$('#vid').fadeIn(300);
-							video.play();
-							$('#video').attr('loop','loop');
-						}else if( e.pdf == null && e.video == null ){//显示空白
-							$('#empty').fadeIn(300);
-						}else{//显示pdf
-							$('iframe').attr('src','web/viewer.html');
-						}
+								},dtime * 1000);
+							}else if( e.video != null && e.pdf == null){
+								video.src = src;
+								video.loop = 'loop';
+								vid.style.display = 'block';
+								video.play();
+							}else if( e.pdf == null && e.video == null ){
+								empty.style.display = 'block';
+							}else{
+								document.getElementsByTagName('iframe')[0].src = 'js/web/viewer.html';
+							}
+	        			}
 	        		}
-	        	});
-	        }
-	        function timeout(dtime){
-	        	clearTimeout( pdftimeout );
-				var pdftimeout = setTimeout(function(){
-					$('#vid').fadeIn(300);
-					video.play();
-				},dtime*1000);
+	        	}
+	        	xhr.open('GET','/Signage/rest/upload/reqCurrentState?productionline='+line+'&station='+stat);
+	        	xhr.send(null);
 	        }
 		</script>
 	</body>

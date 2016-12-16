@@ -6,12 +6,12 @@
 		<meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache"> 
 		<meta HTTP-EQUIV="Expires" CONTENT="0">
 		<title>达峰科技指导书操作配置界面</title>
-		<link rel="shortcut icon" href="web/images/dafeng.ico"/>
+		<link rel="shortcut icon" href="img/dafeng.ico"/>
 		<link rel="stylesheet" type="text/css" href="css/index.css"/>
 	</head>
 	<body>
 		<header>
-			<p><img src="css/logo2.png"/> 达峰科技指导书操作配置界面</p>
+			<p><img src="img/logo2.png"/> 达峰科技指导书操作配置界面</p>
 		</header>
 		<div id="nav">
 			<ul class="menu">
@@ -217,16 +217,13 @@
 						</select>次
 						<button>提交</button>
 					</li>
-					<li id="line">
-						<!--<p>流水线管理：</p>
-						<ul class="line">
-							<li>
-								流水线编号
-							</li>
+					<li id="line" class="hidden">
+						<p>流水线管理:<input type="button" class="sub" id="line_btn" value="点击管理"/>
+							<input type="text" id="line_ipt" onkeyup="value=value.replace(/[^\w\.\/]/ig,'')" placeholder="请输入流水线号"/><input type="button" id="line_add" class="query" value="增加流水线"/>
+						</p>
+						<ul id="line_box">
+							<li>流水线编号</li>
 						</ul>
-						<p>
-							<button>增加流水线</button>
-						</p>-->
 					</li>
 				</ul>
 			</div>
@@ -304,8 +301,22 @@
 				<button>确定</button>
 			</div>
 		</div>
-		<script src="web/jquery-1.11.3.js"></script>
-		<script src="web/jquery-form.js"></script>
-		<script src="build/index.js"></script>
+		<div id="confirm8">
+			<div>
+				<p>确认增加流水线？</p>
+				<button>取消</button>
+				<button>确认</button>
+			</div>
+		</div>
+		<div id="confirm9">
+			<div>
+				<p>确认删除流水线？</p>
+				<button>取消</button>
+				<button>确认</button>
+			</div>
+		</div>
+		<script src="js/jquery-1.11.3.js"></script>
+		<script src="js/jquery-form.js"></script>
+		<script src="js/index.js"></script>
 	</body>
 </html>

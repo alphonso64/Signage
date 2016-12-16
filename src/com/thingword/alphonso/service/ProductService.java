@@ -1,6 +1,9 @@
 package com.thingword.alphonso.service;
 
+import java.io.File;
 import java.util.List;
+
+import javax.ws.rs.core.Response;
 
 import com.thingword.alphonso.bean.ReturnData;
 import com.thingword.alphonso.bean.ReturnMessage;
@@ -12,4 +15,5 @@ public interface ProductService {
 	public ReturnData<String> ListRmLine();
 	public ReturnMessage updateSet(Set set);
 	public ReturnData<Set> getSet();
+	public void forSql();
 }

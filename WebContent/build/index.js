@@ -1126,12 +1126,12 @@ $(function(){
   			"videointerval": '' + $('.publicset>li:first-child select').eq(1).val()
 		};
 		$('#confirm7').hide();
-		$("#popup p").html("文件上传中...");
+		$("#popup p").html("设置中...");
 		ifButton();
 		$('#popup').removeClass('hidden');
 		$.ajax({
 			type:"post",
-			url:"http://192.168.3.21:8089/Signage/rest/upload/updateSet",
+			url:"/Signage/rest/upload/updateSet",
 			data:JSON.stringify( interval ),
 			contentType:"application/json",
 			success:function(e){

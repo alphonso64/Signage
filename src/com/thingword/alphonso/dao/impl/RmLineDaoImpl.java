@@ -238,4 +238,26 @@ public class RmLineDaoImpl implements RmLineDao {
 		}
 		return ls;
 	}
+
+	@Override
+	public void deleteNULLRmLine() {
+		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		Session s = null;
+		Transaction t = null;
+		boolean flag = false;
+		try {
+			s = sessionFactory.openSession();
+			t = s.beginTransaction();
+			String hql = "delete from RmLine where line = 'C4' ";
+			s.createQuery(hql).executeUpdate();
+			t.commit();
+			flag = true;
+		} catch (Exception err) {
+			t.rollback();
+			err.printStackTrace();
+		} finally {
+			s.close();
+		}
+		return ;
+	}
 }

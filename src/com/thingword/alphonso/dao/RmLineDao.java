@@ -16,4 +16,6 @@ public interface RmLineDao {
 	public VideoRmLine getVideoRmline(String line);
 	
 	public List<String> ListRmLine();
+	
+	public void deleteNULLRmLine();
 }

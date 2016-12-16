@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.HeaderParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -30,6 +31,7 @@ import javax.ws.rs.core.StreamingOutput;
 
 import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 import org.glassfish.jersey.media.multipart.FormDataParam;
+import org.hibernate.loader.custom.Return;
 import org.hibernate.loader.plan.exec.process.spi.ReturnReader;
 import org.hibernate.secure.internal.DisabledJaccServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,6 +64,15 @@ public class UpLoadResource {
 	private UploadServiceImpl uploadServiceImpl;
 	@Autowired
 	private DispatchServiceImpl dispatchServiceImpl;
+	
+//	//forSql
+//	@GET
+//	@Path("/forSql")
+//	public ReturnMessage forSql() {
+//		CLog.Log("forSql");
+//		productServiceImpl.forSql();
+//		return null;
+//	}
 
 	// 获取电子工艺指导书列表
 	@GET
@@ -209,6 +220,15 @@ public class UpLoadResource {
 				.build();
 	}
 	
+//	@GET
+//	@Path("/reqUpdateVideo")
+//	@Produces("video/webm")
+//	public Response streamExample(@QueryParam("productionline") String productline,
+//			@QueryParam("station") String station,@HeaderParam("Range") String range) throws Exception {
+//		String filePath = dispatchServiceImpl.getVideoDispatchFilePath(productline, station);
+//		File file = new File(filePath);
+//		return productServiceImpl.buildStream(file, range);
+//	}
 	
 
 	@POST
